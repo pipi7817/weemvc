@@ -5,7 +5,7 @@
  * 2008-12-14 16:39
  */
 package org.weemvc.as3.control {
-	import org.weemvc.as3.IframeworkError;
+	import org.weemvc.as3.WeemvcError;
 	
 	import flash.utils.Dictionary;
 	
@@ -15,7 +15,7 @@ package org.weemvc.as3.control {
 		
 		public function Controller() {
 			if (m_instance != null) {
-				throw new IframeworkError(IframeworkError.SINGLETON_CONTROLLER_MSG);
+				throw new WeemvcError(WeemvcError.SINGLETON_CONTROLLER_MSG);
 			}
 		}
 		
@@ -28,7 +28,7 @@ package org.weemvc.as3.control {
 		
 		public function addCommand(commandRef:Class):void {
 			if (hasCommand(commandRef)) {
-				throw new IframeworkError(IframeworkError.ADD_COMMAND_MSG);
+				throw new WeemvcError(WeemvcError.ADD_COMMAND_MSG);
 			}
 			m_commandMap[commandRef] = commandRef;
 		}
@@ -46,7 +46,7 @@ package org.weemvc.as3.control {
 		
 		public function executeCommand(commandRef:Class, data:Object = null):void{
 			if (!hasCommand(commandRef)) {
-				throw new IframeworkError(IframeworkError.COMMAND_NOT_FOUND);
+				throw new WeemvcError(WeemvcError.COMMAND_NOT_FOUND);
 			}
 			var commandClass:Class = m_commandMap[commandRef];
 			var commandInstance:ICommand = new commandClass();

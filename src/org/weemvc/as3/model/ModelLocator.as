@@ -5,7 +5,7 @@
  * 2009-1-8 22:59
  */
 package org.weemvc.as3.model {
-	import org.weemvc.as3.IframeworkError;
+	import org.weemvc.as3.WeemvcError;
 	
 	import flash.utils.Dictionary;
 	
@@ -15,7 +15,7 @@ package org.weemvc.as3.model {
 		
 		public function ModelLocator() {
 			if (m_instance != null) {
-				throw new IframeworkError(IframeworkError.SINGLETON_MODEL_MSG);
+				throw new WeemvcError(WeemvcError.SINGLETON_MODEL_MSG);
 			}
 		}
 		
@@ -33,7 +33,7 @@ package org.weemvc.as3.model {
 		 */
 		public function retrieveModel(modelRef:Class):* {
 			if (!hasModel(modelRef)) {
-				throw new IframeworkError(IframeworkError.MODEL_NOT_FOUND);
+				throw new WeemvcError(WeemvcError.MODEL_NOT_FOUND);
 			}
 			return m_modelMap[modelRef];
 		}
@@ -45,7 +45,7 @@ package org.weemvc.as3.model {
 		 */
 		public function addModel(modelRef:Class, data:Object = null):void {
 			if (hasModel(modelRef)) {
-				throw new IframeworkError(IframeworkError.ADD_MODEL_MSG);
+				throw new WeemvcError(WeemvcError.ADD_MODEL_MSG);
 			}
 			if (data != null) {
 				m_modelMap[modelRef] = new modelRef(data);
