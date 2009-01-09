@@ -7,7 +7,7 @@
  */
 
 package org.weemvc.as3.view {
-	import org.weemvc.as3.IframeworkError;
+	import org.weemvc.as3.WeemvcError;
 	
 	import flash.display.Sprite;
 	import flash.utils.Dictionary;
@@ -18,7 +18,7 @@ package org.weemvc.as3.view {
 		
 		public function ViewLocator() {
 			if (m_instance != null) {
-				throw new IframeworkError(IframeworkError.SINGLETON_VIEW_MSG);
+				throw new WeemvcError(WeemvcError.SINGLETON_VIEW_MSG);
 			}
 		}
 		
@@ -50,7 +50,7 @@ package org.weemvc.as3.view {
 		 */
 		public function retrieveView(viewRef:Class):* {
 			if (!hasView(viewRef)) {
-				throw new IframeworkError(IframeworkError.VIEW_NOT_FOUND);
+				throw new WeemvcError(WeemvcError.VIEW_NOT_FOUND);
 			}
 			return m_viewMap[viewRef].instance;
 		}
@@ -62,7 +62,7 @@ package org.weemvc.as3.view {
 		 */
 		public function addView(viewRef:Class, inlet:String = null):void {
 			if (hasView(viewRef)) {
-				throw new IframeworkError(IframeworkError.ADD_VIEW_MSG);
+				throw new WeemvcError(WeemvcError.ADD_VIEW_MSG);
 			}
 			m_viewMap[viewRef] = {view:viewRef, instance:null, param:inlet};
 		}
