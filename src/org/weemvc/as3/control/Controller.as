@@ -1,6 +1,7 @@
 ﻿/**
+ * WeeMVC - Copyright(c) 2008-2009
  * 控制器--分发视图过来的操作
- * @version	0.22
+ * @version	1.0.22 + 5
  * @author	weemve.org
  * 2008-12-14 16:39
  */
@@ -26,31 +27,30 @@ package org.weemvc.as3.control {
 			return m_instance;
 		}
 		
-		public function addCommand(commandRef:Class):void {
-			if (hasCommand(commandRef)) {
+		public function addCommand(commandName:Class):void {
+			if (hasCommand(commandName)) {
 				throw new WeemvcError(WeemvcError.ADD_COMMAND_MSG);
 			}
-			m_commandMap[commandRef] = commandRef;
+			m_commandMap[commandName] = commandName;
 		}
 		
-		public function hasCommand(commandRef:Class):Boolean {
-			return m_commandMap[commandRef] != undefined;
+		public function hasCommand(commandName:Class):Boolean {
+			return m_commandMap[commandName] != undefined;
 		}
 		
-		public function removeCommand(commandRef:Class):void {
-			if (hasCommand(commandRef)){
-				// remove the command
-				delete m_commandMap[commandRef];
+		public function removeCommand(commandName:Class):void {
+			if (hasCommand(commandName)){
+				delete m_commandMap[commandName];
 			}
 		}
 		
-		public function executeCommand(commandRef:Class, data:Object = null):void{
-			if (!hasCommand(commandRef)) {
+		public function executeCommand(commandName:Class, data:Object = null, viewName:Class = null):void{
+			if (!hasCommand(commandName)) {
 				throw new WeemvcError(WeemvcError.COMMAND_NOT_FOUND);
 			}
-			var commandClass:Class = m_commandMap[commandRef];
+			var commandClass:Class = m_commandMap[commandName];
 			var commandInstance:ICommand = new commandClass();
-			commandInstance.execute(data);
+			commandInstance.execute(data, viewName);
 		}
 	}
 }

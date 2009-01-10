@@ -1,6 +1,7 @@
 ﻿/**
+ * WeeMVC - Copyright(c) 2008-2009
  * 错误处理
- * @version	0.22
+ * @version	1.0.22 + 5
  * @author	weemve.org
  * 2009-1-9 14:31
  */
@@ -15,7 +16,6 @@ package org.weemvc.as3 {
 		public static const ADD_MODEL_MSG:String = "已经添加过此名称的 Model！";
 		public static const ADD_VIEW_MSG:String = "已经添加过此名称的 View！";
 		
-		
 		public static const COMMAND_NOT_FOUND : String = "没有找到相关 Command！";
 		public static const MODEL_NOT_FOUND : String = "没有找到相关 Model";
 		public static const VIEW_NOT_FOUND : String = "没有找到相关 View！";
@@ -27,9 +27,9 @@ package org.weemvc.as3 {
 		protected function formatMessage(errorCode:String, className:String, ... rest):String {
 			var message:String;
 			if (className != null) {
-				message = "Iframework# " + errorCode + " at [" + className + "] " + rest.toString();
+				message = "WeeMVC# " + errorCode + " at [" + className + "] " + rest.toString();
 			}else {
-				message = "Iframework# " + errorCode + rest.toString();
+				message = "WeeMVC# " + errorCode + rest.toString();
 			}
 			return message;
 		}

@@ -1,6 +1,7 @@
 ﻿/**
+ * WeeMVC - Copyright(c) 2008-2009
  * 单例模式的数据集合
- * @version	0.22
+ * @version	1.0.22 + 5
  * @author	weemve.org
  * 2009-1-8 22:59
  */
@@ -28,39 +29,39 @@ package org.weemvc.as3.model {
 		
 		/**
 		 * 取回某个model
-		 * @param	modelRef<Class>:		注册的名字
+		 * @param	modelName<Class>:		注册的名字
 		 * @return	<model instance>		当前的model
 		 */
-		public function retrieveModel(modelRef:Class):* {
-			if (!hasModel(modelRef)) {
+		public function retrieveModel(modelName:Class):* {
+			if (!hasModel(modelName)) {
 				throw new WeemvcError(WeemvcError.MODEL_NOT_FOUND);
 			}
-			return m_modelMap[modelRef];
+			return m_modelMap[modelName];
 		}
 		
 		/**
 		 * 添加model
-		 * @param	modelRef<Class>：	此model的Class
+		 * @param	modelName<Class>：	此model的Class
 		 * @param	data<Object>：		此model构造函数的参数
 		 */
-		public function addModel(modelRef:Class, data:Object = null):void {
-			if (hasModel(modelRef)) {
+		public function addModel(modelName:Class, data:Object = null):void {
+			if (hasModel(modelName)) {
 				throw new WeemvcError(WeemvcError.ADD_MODEL_MSG);
 			}
 			if (data != null) {
-				m_modelMap[modelRef] = new modelRef(data);
+				m_modelMap[modelName] = new modelName(data);
 			}else {
-				m_modelMap[modelRef] = new modelRef();
+				m_modelMap[modelName] = new modelName();
 			}
 		}
 		
-		public function hasModel(modelRef:Class):Boolean {
-			return m_modelMap[modelRef] != undefined;
+		public function hasModel(modelName:Class):Boolean {
+			return m_modelMap[modelName] != undefined;
 		}
 		
-		public function removeModel(modelRef:Class):void {
-			if (hasModel(modelRef)){
-				delete m_modelMap[modelRef];
+		public function removeModel(modelName:Class):void {
+			if (hasModel(modelName)){
+				delete m_modelMap[modelName];
 			}
 		}
 	}
