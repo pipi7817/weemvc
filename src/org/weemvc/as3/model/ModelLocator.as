@@ -1,7 +1,7 @@
 ﻿/**
  * WeeMVC - Copyright(c) 2008-2009
  * 单例模式的数据集合
- * @version	1.0.22 + 5
+ * @version	1.0.22 + 7
  * @author	weemve.org
  * 2009-1-8 22:59
  */
@@ -30,7 +30,7 @@ package org.weemvc.as3.model {
 		/**
 		 * 取回某个model
 		 * @param	modelName<Class>:		注册的名字
-		 * @return	<model instance>		当前的model
+		 * @return	model instance:			当前的model
 		 */
 		public function retrieveModel(modelName:Class):* {
 			if (!hasModel(modelName)) {

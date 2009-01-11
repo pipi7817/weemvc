@@ -2,7 +2,7 @@
  * WeeMVC - Copyright(c) 2008-2009
  * 保存注册的视图类
  * 通过它,你可以找到你想要的视图
- * @version	1.0.22 + 5
+ * @version	1.0.22 + 7
  * @author	weemve.org
  * 2009-1-5 14:06
  */
@@ -46,8 +46,8 @@ package org.weemvc.as3.view {
 		
 		/**
 		 * 取回某个view
-		 * @param	viewName<Class>:		注册的名字
-		 * @return	<view instance>		当前的view
+		 * @param	viewName<Class>:	注册的名字
+		 * @return	view instance:		当前的view
 		 */
 		public function retrieveView(viewName:Class):* {
 			if (!hasView(viewName)) {
