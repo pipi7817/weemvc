@@ -1,7 +1,7 @@
 ﻿package application.view {
 	import org.weemvc.as3.view.BaseView;
 	import flash.display.MovieClip;
-	//TODO做加载loading
+	
 	public class StageInitialize extends BaseView {
 		protected var m_root:MovieClip;
 		
