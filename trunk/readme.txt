@@ -27,6 +27,6 @@ WeeMVC 是一种微型、简洁的ActionScript快速开发框架
 
 
 
-网址：http://www.weemvc.org 
+项目主页：http://www.weemvc.org
 
 SVN：http://weemvc.googlecode.com/svn/trunk/
