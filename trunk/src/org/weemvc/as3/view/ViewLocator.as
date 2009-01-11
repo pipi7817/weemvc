@@ -9,7 +9,7 @@
 package org.weemvc.as3.view {
 	import org.weemvc.as3.WeemvcError;
 	
-	import flash.display.Sprite;
+	import flash.display.MovieClip;
 	import flash.utils.Dictionary;
 	
 	public class ViewLocator {
@@ -35,10 +35,10 @@ package org.weemvc.as3.view {
 		 * 应该使用每个view的句柄
 		 * @param	main	文档类入口
 		 */
-		public function initialize(main:Sprite):void {
+		public function initialize(main:MovieClip):void {
 			for each(var obj:Object in m_viewMap) {
 				var viewName:Class = obj.view;
-				var container:Sprite = (obj.param != null) ? main[obj.param] : main;
+				var container:MovieClip = (obj.param != null) ? main[obj.param] : main;
 				obj.instance = new viewName(container);
 				obj.instance.viewName = viewName;
 			}

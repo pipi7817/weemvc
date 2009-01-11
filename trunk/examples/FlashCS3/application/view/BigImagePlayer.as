@@ -38,7 +38,7 @@
 			return m_imageList[m_currIndex].loadPercent;
 		}
 		
-		public function showImage(index:uint):void {1
+		public function showImage(index:uint):void {
 			//trace(index);
 			m_currIndex = index;
 			var imageData:ImageVO = m_playList[m_currIndex] as ImageVO;
