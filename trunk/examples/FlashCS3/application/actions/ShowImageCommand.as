@@ -22,8 +22,9 @@ package application.actions {
 			viewLocator.retrieveView(BigImagePlayer).showImage(index);
 			if (viewLocator.retrieveView(BigImagePlayer).currImgLoadPercent != 100) {
 				var timer:Timer = new Timer(100);
-				//因为这这命令类本身会多次被调用，所以这里用了用引用有利于垃圾回收
-				timer.addEventListener(TimerEvent.TIMER, onTimer_handler, false, 0, true);
+				//这里取消弱引用是为了让此监听在当前生面周期内一直有效，这样才能完整的监听加载进度
+				//timer.addEventListener(TimerEvent.TIMER, onTimer_handler, false, 0, true);
+				timer.addEventListener(TimerEvent.TIMER, onTimer_handler);
 				timer.start();
 			}
 		}
