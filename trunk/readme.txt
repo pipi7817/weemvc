@@ -5,28 +5,11 @@ WeeMVC 是一种微型、简洁的ActionScript快速开发框架
 目前正在完善中...希望大家多提意见、多多关注，让此微型框架更加成熟。
 
 
-*缘起*
 
-虽然在ActionScript领域优秀的框架数不胜数，最常见的如 PureMVC 、Cairngorm 等等，都提供了很完美的 MVC 开发解决方案。但是我觉得有时候使用这些NB的框架显得不太合适，比如一下情况：
-
-    # 在使用 FLASH IDE 开发较小型项目的时候；
-    # 新手入门开发的时候；
-    # 快速开发的时候。
-
-
-虽然 PureMVC 对 FLASH 的支持也很不错，但是个人觉得在使用 FLASH 开发的时候，大部分都是一些不是很大的项目，所以用这个就有点不太合适。Cairngorm 虽然在这点上做得不错，但是目前她对 FLASH 的支持又不怎么友好。
-
-当然有很多朋友会说，在开发小的项目的时候不用框架会更好，代码量少，编译的 swf 重量轻。我个人认为，这个可以取一个权衡：用框架，那么代码的可扩展性和可维护性都将大大增加，不好的地方就是对此框架的学习成本和应用成本。
-
-基于以上的考虑，我在参考了 PureMVC 和 Cairngorm 之后，根据自己的理解写了这个超级微型的框架，我觉得其存在的理由主要有一下几点：
-
-    * 超级微型，简洁、简单，上手快，适合新手学习和开发小型项目；
-    * 整合 PureMVC 与 Cairngorm 的优点进行设计；
-    * FLASH 友好设计，对于 FLASH 的相关小型项目开发效率较高；
-    * 在解耦上做了优化处理，使得 model 和 view 复用更容易。
-
-
-
-项目主页：http://www.weemvc.org
+项目主页：weemvc.org
 
 SVN：http://weemvc.googlecode.com/svn/trunk/
+
+在线提交 BUG：http://code.google.com/p/weemvc/issues/list
+
+联系方式(MSN)：ibio520@hotmail.com

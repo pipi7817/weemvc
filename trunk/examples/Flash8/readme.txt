@@ -10,6 +10,8 @@
 联系：
 项目主页：weemvc.org
 
+SVN：http://weemvc.googlecode.com/svn/trunk/
+
 在线提交 BUG：http://code.google.com/p/weemvc/issues/list
 
 联系方式(MSN)：ibio520@hotmail.com
