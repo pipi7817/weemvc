@@ -18,7 +18,7 @@ package org.weemvc.as3.view {
 		
 		public function ViewLocator() {
 			if (m_instance != null) {
-				throw new WeemvcError(WeemvcError.SINGLETON_VIEW_MSG);
+				throw new WeemvcError(WeemvcError.SINGLETON_VIEW_MSG, ViewLocator);
 			}
 		}
 		
@@ -51,7 +51,7 @@ package org.weemvc.as3.view {
 		 */
 		public function retrieveView(viewName:Class):* {
 			if (!hasView(viewName)) {
-				throw new WeemvcError(WeemvcError.VIEW_NOT_FOUND);
+				throw new WeemvcError(WeemvcError.VIEW_NOT_FOUND, ViewLocator, viewName);
 			}
 			return m_viewMap[viewName].instance;
 		}
@@ -63,7 +63,7 @@ package org.weemvc.as3.view {
 		 */
 		public function addView(viewName:Class, stageInstance:String = null):void {
 			if (hasView(viewName)) {
-				throw new WeemvcError(WeemvcError.ADD_VIEW_MSG);
+				throw new WeemvcError(WeemvcError.ADD_VIEW_MSG, ViewLocator, viewName);
 			}
 			m_viewMap[viewName] = {view:viewName, instance:null, param:stageInstance};
 		}
