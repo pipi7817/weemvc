@@ -16,7 +16,7 @@ package org.weemvc.as3.control {
 		
 		public function Controller() {
 			if (m_instance != null) {
-				throw new WeemvcError(WeemvcError.SINGLETON_CONTROLLER_MSG);
+				throw new WeemvcError(WeemvcError.SINGLETON_CONTROLLER_MSG, Controller);
 			}
 		}
 		
@@ -29,7 +29,7 @@ package org.weemvc.as3.control {
 		
 		public function addCommand(commandName:Class):void {
 			if (hasCommand(commandName)) {
-				throw new WeemvcError(WeemvcError.ADD_COMMAND_MSG);
+				throw new WeemvcError(WeemvcError.ADD_COMMAND_MSG, Controller, commandName);
 			}
 			m_commandMap[commandName] = commandName;
 		}
@@ -46,7 +46,7 @@ package org.weemvc.as3.control {
 		
 		public function executeCommand(commandName:Class, data:Object = null, viewName:Class = null):void{
 			if (!hasCommand(commandName)) {
-				throw new WeemvcError(WeemvcError.COMMAND_NOT_FOUND);
+				throw new WeemvcError(WeemvcError.COMMAND_NOT_FOUND, Controller, commandName);
 			}
 			var commandClass:Class = m_commandMap[commandName];
 			var commandInstance:ICommand = new commandClass();
