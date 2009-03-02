@@ -14,7 +14,7 @@ class org.weemvc.as2.view.ViewLocator {
 	
 	public function ViewLocator() {
 		if (m_instance != null) {
-			throw new WeemvcError(WeemvcError.SINGLETON_VIEW_MSG);
+			throw new WeemvcError(WeemvcError.SINGLETON_VIEW_MSG, "ViewLocator");
 		}
 	}
 	
@@ -47,7 +47,7 @@ class org.weemvc.as2.view.ViewLocator {
 	 */
 	public function retrieveView(viewName:String) {
 		if (!hasView(viewName)) {
-			throw new WeemvcError(WeemvcError.VIEW_NOT_FOUND);
+			throw new WeemvcError(WeemvcError.VIEW_NOT_FOUND, "ViewLocator", [viewName]);
 		}
 		return m_viewMap[viewName].instance;
 	}
@@ -60,7 +60,7 @@ class org.weemvc.as2.view.ViewLocator {
 	 */
 	public function addView(viewName:String, viewClass:Object, stageInstance:String):Void {
 		if (hasView(viewName)) {
-			throw new WeemvcError(WeemvcError.ADD_VIEW_MSG);
+			throw new WeemvcError(WeemvcError.ADD_VIEW_MSG, "ViewLocator", [viewName]);
 		}
 		m_viewMap[viewName] = {view:viewClass, instance:null, param:stageInstance};
 	}
