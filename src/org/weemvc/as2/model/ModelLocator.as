@@ -13,7 +13,7 @@ class org.weemvc.as2.model.ModelLocator {
 	
 	public function ModelLocator() {
 		if (m_instance != null) {
-			throw new WeemvcError(WeemvcError.SINGLETON_MODEL_MSG);
+			throw new WeemvcError(WeemvcError.SINGLETON_MODEL_MSG, "ModelLocator");
 		}
 	}
 	
@@ -31,7 +31,7 @@ class org.weemvc.as2.model.ModelLocator {
 	 */
 	public function retrieveModel(modelName:String) {
 		if (!hasModel(modelName)) {
-			throw new WeemvcError(WeemvcError.MODEL_NOT_FOUND);
+			throw new WeemvcError(WeemvcError.MODEL_NOT_FOUND, "ModelLocator", [modelName]);
 		}
 		return m_modelMap[modelName];
 	}
@@ -44,7 +44,7 @@ class org.weemvc.as2.model.ModelLocator {
 	 */
 	public function addModel(modelName:String, modelClass:Object, data:Object):Void {
 		if (hasModel(modelName)) {
-			throw new WeemvcError(WeemvcError.ADD_MODEL_MSG);
+			throw new WeemvcError(WeemvcError.ADD_MODEL_MSG, "ModelLocator", [modelName]);
 		}
 		if (data != undefined) {
 			m_modelMap[modelName] = new modelClass(data);

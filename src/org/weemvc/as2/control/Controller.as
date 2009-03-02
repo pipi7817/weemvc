@@ -14,7 +14,7 @@ class org.weemvc.as2.control.Controller {
 		
 	public function Controller() {
 		if (m_instance != null) {
-			throw new WeemvcError(WeemvcError.SINGLETON_CONTROLLER_MSG);
+			throw new WeemvcError(WeemvcError.SINGLETON_CONTROLLER_MSG, "Controller");
 		}
 	}
 	
@@ -27,7 +27,7 @@ class org.weemvc.as2.control.Controller {
 	
 	public function addCommand(commandName:String, commandClass:Object):Void {
 		if (hasCommand(commandName)) {
-			throw new WeemvcError(WeemvcError.ADD_COMMAND_MSG);
+			throw new WeemvcError(WeemvcError.ADD_COMMAND_MSG, "Controller", [commandName]);
 		}
 		m_commandMap[commandName] = commandClass;
 	}
@@ -44,7 +44,7 @@ class org.weemvc.as2.control.Controller {
 	
 	public function executeCommand(commandName:String, data:Object, viewName:Object):Void{
 		if (!hasCommand(commandName)) {
-			throw new WeemvcError(WeemvcError.COMMAND_NOT_FOUND);
+			throw new WeemvcError(WeemvcError.COMMAND_NOT_FOUND, "Controller", [commandName]);
 		}
 		var commandClass:Object = m_commandMap[commandName];
 		var commandInstance:ICommand = new commandClass();
