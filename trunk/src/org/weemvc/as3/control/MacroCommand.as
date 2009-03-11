@@ -8,6 +8,7 @@
 package org.weemvc.as3.control {
 	import org.weemvc.as3.model.ModelLocator;
 	import org.weemvc.as3.view.ViewLocator;
+	import org.weemvc.as3.control.Controller;
 	
 	public class MacroCommand implements ICommand {
 		protected var m_subCommands:Array;
