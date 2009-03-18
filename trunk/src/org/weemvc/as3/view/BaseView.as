@@ -6,7 +6,6 @@
  * 2008-12-14 16:42
  */
 package org.weemvc.as3.view {
-	
 	import org.weemvc.as3.control.Controller;
 	
 	import flash.display.MovieClip;

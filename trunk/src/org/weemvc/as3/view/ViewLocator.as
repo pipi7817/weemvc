@@ -7,14 +7,13 @@
  * 2009-1-5 14:06
  */
 package org.weemvc.as3.view {
+	import org.weemvc.as3.core.WeemvcLocator;
 	import org.weemvc.as3.WeemvcError;
 	
 	import flash.display.MovieClip;
-	import flash.utils.Dictionary;
 	
-	public class ViewLocator {
+	public class ViewLocator extends WeemvcLocator {
 		static private var m_instance:ViewLocator = null;
-		protected var m_viewMap:Dictionary = new Dictionary();
 		
 		public function ViewLocator() {
 			if (m_instance != null) {
@@ -36,7 +35,7 @@ package org.weemvc.as3.view {
 		 * @param	main	文档类入口
 		 */
 		public function initialize(main:MovieClip):void {
-			for each(var obj:Object in m_viewMap) {
+			for each(var obj:Object in m_weeMap) {
 				var viewName:Class = obj.view;
 				var container:MovieClip = (obj.param != null) ? main[obj.param] : main;
 				obj.instance = new viewName(container);
@@ -50,10 +49,10 @@ package org.weemvc.as3.view {
 		 * @return	view instance:		当前的view
 		 */
 		public function retrieveView(viewName:Class):* {
-			if (!hasView(viewName)) {
+			if (!hasExists(viewName)) {
 				throw new WeemvcError(WeemvcError.VIEW_NOT_FOUND, ViewLocator, viewName);
 			}
-			return m_viewMap[viewName].instance;
+			return m_weeMap[viewName].instance;
 		}
 		
 		/**
@@ -62,20 +61,18 @@ package org.weemvc.as3.view {
 		 * @param	stageInstance<String>：	此view构造函数的参数，当前在舞台上对应的实例名
 		 */
 		public function addView(viewName:Class, stageInstance:String = null):void {
-			if (hasView(viewName)) {
+			if (hasExists(viewName)) {
 				throw new WeemvcError(WeemvcError.ADD_VIEW_MSG, ViewLocator, viewName);
 			}
-			m_viewMap[viewName] = {view:viewName, instance:null, param:stageInstance};
-		}
-		
-		public function hasView(viewName:Class):Boolean {
-			return m_viewMap[viewName] != undefined;
+			add(viewName, {view:viewName, instance:null, param:stageInstance});
 		}
 		
 		public function removeView(viewName:Class):void {
-			if (hasView(viewName)){
-				delete m_viewMap[viewName];
-			}
+			remove(viewName);
+		}
+		
+		public function hasView(viewName:Class):Boolean {
+			return hasExists(viewName);
 		}
 	}
 }
