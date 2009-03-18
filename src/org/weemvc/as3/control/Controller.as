@@ -6,13 +6,11 @@
  * 2008-12-14 16:39
  */
 package org.weemvc.as3.control {
+	import org.weemvc.as3.core.WeemvcLocator;
 	import org.weemvc.as3.WeemvcError;
 	
-	import flash.utils.Dictionary;
-	
-	public class Controller {
+	public class Controller extends WeemvcLocator {
 		static private var m_instance:Controller = null;
-		protected var m_commandMap:Dictionary = new Dictionary();
 		
 		public function Controller() {
 			if (m_instance != null) {
@@ -28,27 +26,25 @@ package org.weemvc.as3.control {
 		}
 		
 		public function addCommand(commandName:Class):void {
-			if (hasCommand(commandName)) {
+			if (hasExists(commandName)) {
 				throw new WeemvcError(WeemvcError.ADD_COMMAND_MSG, Controller, commandName);
 			}
-			m_commandMap[commandName] = commandName;
-		}
-		
-		public function hasCommand(commandName:Class):Boolean {
-			return m_commandMap[commandName] != undefined;
+			add(commandName, commandName);
 		}
 		
 		public function removeCommand(commandName:Class):void {
-			if (hasCommand(commandName)){
-				delete m_commandMap[commandName];
-			}
+			remove(commandName);
+		}
+		
+		public function hasCommand(commandName:Class):Boolean {
+			return hasExists(commandName);
 		}
 		
 		public function executeCommand(commandName:Class, data:Object = null, viewName:Class = null):void{
-			if (!hasCommand(commandName)) {
+			if (!hasExists(commandName)) {
 				throw new WeemvcError(WeemvcError.COMMAND_NOT_FOUND, Controller, commandName);
 			}
-			var commandClass:Class = m_commandMap[commandName];
+			var commandClass:Class = retrieve(commandName);
 			var commandInstance:ICommand = new commandClass();
 			commandInstance.execute(data, viewName);
 		}
