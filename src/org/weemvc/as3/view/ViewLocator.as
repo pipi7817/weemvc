@@ -37,7 +37,7 @@ package org.weemvc.as3.view {
 		public function initialize(main:MovieClip):void {
 			for each(var obj:Object in m_weeMap) {
 				var viewName:Class = obj.view;
-				var container:MovieClip = (obj.param != null) ? main[obj.param] : main;
+				var container:MovieClip = getContainer(main, obj.param);
 				obj.instance = new viewName(container);
 				obj.instance.viewName = viewName;
 			}
@@ -73,6 +73,22 @@ package org.weemvc.as3.view {
 		
 		public function hasView(viewName:Class):Boolean {
 			return hasExists(viewName);
+		}
+		
+		//递归获得舞台上相应的 MC
+		protected function getContainer(main:MovieClip, param:String):MovieClip {
+			var container:MovieClip = main;
+			if (param == null) {
+				return container;
+			}
+			var reg:RegExp = /[\w]+/ig;
+			var temp:Array = param.match(reg);
+			if(temp && temp.length > 0){
+				for(var i:uint = 0; i < temp.length; i++){
+					container = container[temp[i]];
+				}
+			}
+			return container;
 		}
 	}
 }
