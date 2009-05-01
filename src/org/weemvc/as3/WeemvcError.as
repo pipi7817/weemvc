@@ -20,6 +20,7 @@ package org.weemvc.as3 {
 		public static const COMMAND_NOT_FOUND : String = "没有找到此 Command：";
 		public static const MODEL_NOT_FOUND : String = "没有找到此 Model：";
 		public static const VIEW_NOT_FOUND : String = "没有找到此 View：";
+		public static const MC_NOT_FOUND : String = "没有找到此 MovieClip：";
 		
 		public function WeemvcError(errorMsg:String, currentClass:Class = null, ... rest){
 			super(formatMessage(errorMsg, currentClass, rest));

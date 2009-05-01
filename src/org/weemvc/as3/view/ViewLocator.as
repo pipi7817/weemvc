@@ -84,11 +84,24 @@ package org.weemvc.as3.view {
 			var reg:RegExp = /[\w]+/ig;
 			var temp:Array = param.match(reg);
 			if(temp && temp.length > 0){
-				for(var i:uint = 0; i < temp.length; i++){
-					container = container[temp[i]];
+				for (var i:uint = 0; i < temp.length; i++) {
+					if (container[temp[i]] == null) {
+						throw new WeemvcError(WeemvcError.MC_NOT_FOUND, ViewLocator, getFullPath(container) + " 容器内的 " +  temp[i]);
+					}else {
+						container = container[temp[i]];
+					}
 				}
 			}
 			return container;
+		}
+		
+		protected function getFullPath(data:MovieClip):String {
+			var path:String = data.name;
+			while (data.stage && (data.parent != data.stage)) {
+				data = data.parent as MovieClip;
+				path = data.name + "." + path;
+			}
+			return path;
 		}
 	}
 }
