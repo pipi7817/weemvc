@@ -1,9 +1,10 @@
 ﻿/**
  * 配置程序
  * ibio-develop
- * 2009-1-8 16:53
+ * 2009-5-12 10:48
  */
 package {
+	import com.ibio8.utils.BaseDocument;
 	import org.weemvc.as3.control.Controller;
 	import application.actions.StartupCommand;
 	import application.actions.LoadDataCommand;
@@ -17,25 +18,19 @@ package {
 	import flash.events.ContextMenuEvent;
 	import flash.events.Event;	
 	
-	public class Main extends MovieClip {
+	public class Main extends BaseDocument {
+		public static const PLAY_LIST_LOADED:String = "playListLoaded";
+		public static const LOADING_IMAGE:String = "loadingImage";
 		
 		public function Main() {
-			//初始化舞台
-			this.stage.align = StageAlign.TOP_LEFT;
-			this.stage.scaleMode = StageScaleMode.NO_SCALE;
 			//注册Command
 			Controller.getInstance().addCommand(StartupCommand);
 			//程序入口
-			this.addEventListener(Event.ADDED_TO_STAGE, onStageLoaded_handler);
-		}
-		
-		protected function onStageLoaded_handler(e:Event):void {
-			this.removeEventListener(Event.ADDED_TO_STAGE, onStageLoaded_handler);
 			Controller.getInstance().executeCommand(StartupCommand, this);
 			var params:Object = stage.loaderInfo.parameters;
 			//显示列表
-			if (params['playList'] != null) {
-				Controller.getInstance().executeCommand(LoadDataCommand, {playList:params['playList']});
+			if (params[LoadDataCommand.PLAY_LIST] != null) {
+				Controller.getInstance().executeCommand(LoadDataCommand, {playList:params[LoadDataCommand.PLAY_LIST]});
 			}else {
 				Controller.getInstance().executeCommand(LoadDataCommand, {playList:"stuff/playList.json"});
 			}

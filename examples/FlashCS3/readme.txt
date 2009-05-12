@@ -8,7 +8,7 @@
 
 
 联系：
-项目主页：weemvc.org
+项目主页：www.weemvc.org
 
 SVN：http://weemvc.googlecode.com/svn/trunk/
 
