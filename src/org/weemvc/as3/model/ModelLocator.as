@@ -25,9 +25,9 @@ package org.weemvc.as3.model {
 		}
 		
 		/**
-		 * 取回某个model
-		 * @param	modelName<Class>：	注册的名字
-		 * @return<IModel>：			当前的 model 实例
+		 * 取回模型
+		 * @param	modelName<Class>：	模型类
+		 * @return<IModel>：			当前模型实例
 		 */
 		public function retrieveModel(modelName:Class):IModel {
 			if (!hasExists(modelName)) {
@@ -37,9 +37,9 @@ package org.weemvc.as3.model {
 		}
 		
 		/**
-		 * 添加model
-		 * @param	modelName<Class>：	此model的Class
-		 * @param	data<Object>：		此model构造函数的参数
+		 * 添加模型
+		 * @param	modelName<Class>：	模型类
+		 * @param	data<Object>：		当前模型构造函数的参数
 		 */
 		public function addModel(modelName:Class, data:Object = null):void {
 			if (hasExists(modelName)) {
@@ -52,10 +52,19 @@ package org.weemvc.as3.model {
 			}
 		}
 		
+		/**
+		 * 移除模型
+		 * @param	modelName<Class>：	模型类
+		 */
 		public function removeModel(modelName:Class):void {
 			remove(modelName);
 		}
 		
+		/**
+		 * 判断此模型是否已经存在
+		 * @param	modelName<Class>：	模型类
+		 * @return<Boolean>：			是否存在
+		 */
 		public function hasModel(modelName:Class):Boolean {
 			return hasExists(modelName);
 		}

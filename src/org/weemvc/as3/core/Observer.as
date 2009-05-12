@@ -15,6 +15,9 @@ package org.weemvc.as3.core {
 			context = notifyContext;
 		}
 		
+		/**
+		 * 回调函数
+		 */
 		public function set callBack(method:Function):void {
 			m_callBack = method;
 		}
@@ -23,6 +26,9 @@ package org.weemvc.as3.core {
 			return m_callBack;
 		}
 		
+		/**
+		 * 回调函数域
+		 */
 		public function set context(obj:Object):void {
 			m_context = obj;
 		}
@@ -31,10 +37,20 @@ package org.weemvc.as3.core {
 			return m_context;
 		}
 		
+		/**
+		 * 执行此通知
+		 * @param	notification<Class/String>：命令类或者每个 view 对应的相应的 notifications 列表
+		 * @param	data<Object>：				传递的参数
+		 */
 		public function notifyObserver(notification:*, data:Object = null):void {
 			callBack.call(context, notification, data);
 		}
 		
+		/**
+		 * 比较函数域是否为当前传递进来的一致
+		 * @param	object<Objcet>：一个函数域
+		 * @return<Boolean>：		是否一致
+		 */
 		public function compareContext(object:Object):Boolean {
 			return (context === object);
 		}

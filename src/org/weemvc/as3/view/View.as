@@ -15,6 +15,12 @@ package org.weemvc.as3.view {
 		protected var m_notifications:Array = new Array();
 		protected var m_notifier:INotifier = Notifier.getInstance();
 		
+		/**
+		 * 发送 weemvc 事件通知
+		 * @param	notification<Class/String>：命令类或者每个 view 对应的相应的
+		 * 										notifications 列表里的某一通知
+		 * @param	data<Object>：				传递的参数
+		 */
 		public function sendNotification(notification:*, data:Object = null):void {
 			m_notifier.sendNotification(notification, data);
 		}
@@ -27,9 +33,9 @@ package org.weemvc.as3.view {
 			return m_notifications;
 		}
 		
-		//model 更新之后返回的数据，会 call 此函数
+		//模型更新之后返回的数据，会 call 此函数
 		public function onDataChanged(notification:String, data:Object = null):void {
-			//在子类覆盖此类
+			//在子类覆盖此函数
 		}
 	}
 }

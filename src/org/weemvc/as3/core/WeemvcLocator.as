@@ -1,6 +1,6 @@
 ﻿/**
  * WeeMVC - Copyright(c) 2008-2009
- * Weemvc核心
+ * Weemvc map
  * Controller、ModelLocator、ViewLocator、Notifier 都继承此类
  * @author	weemve.org
  * 2008-12-14 16:39
