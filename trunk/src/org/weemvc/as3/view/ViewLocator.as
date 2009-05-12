@@ -34,16 +34,16 @@ package org.weemvc.as3.view {
 		}
 		
 		/**
-		 * @param	main	文档类入口
+		 * @param	main<MovieClip>：	文档类入口
 		 */
 		public function initialize(main:MovieClip):void {
 			m_main = main;
 		}
 		
 		/**
-		 * 取回某个view
-		 * @param	viewName<Class>：	注册的名字
-		 * @return<IView>：				当前的 view 实例
+		 * 取回视图
+		 * @param	viewName<Class>：	视图类
+		 * @return<IView>：				当前的视图实例
 		 */
 		public function retrieveView(viewName:Class):IView {
 			if (!hasExists(viewName)) {
@@ -53,9 +53,9 @@ package org.weemvc.as3.view {
 		}
 		
 		/**
-		 * 添加view
-		 * @param	viewName<Class>：		此view的Class
-		 * @param	stageInstance<String>：	此view构造函数的参数，当前在舞台上对应的实例名
+		 * 添加视图
+		 * @param	viewName<Class>：		视图类
+		 * @param	stageInstance<String>：	当前的视图构造函数的参数（当前在舞台上对应的实例名）
 		 */
 		public function addView(viewName:Class, stageInstance:String = null):void {
 			if (hasExists(viewName)) {
@@ -73,10 +73,19 @@ package org.weemvc.as3.view {
 			add(viewName, viewInstance);
 		}
 		
+		/**
+		 * 移除视图
+		 * @param	viewName<Class>：	视图类
+		 */
 		public function removeView(viewName:Class):void {
 			remove(viewName);
 		}
 		
+		/**
+		 * 判断此视图是否已经存在
+		 * @param	viewName<Class>：	视图类
+		 * @return<Boolean>：			是否存在
+		 */
 		public function hasView(viewName:Class):Boolean {
 			return hasExists(viewName);
 		}

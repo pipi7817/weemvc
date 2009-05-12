@@ -23,6 +23,11 @@ package org.weemvc.as3.core {
 			return m_instance;
 		}
 		
+		/**
+		 * 添加观察者对象
+		 * @param	notification<Class/String>：通知
+		 * @param	observer<IObserver>：		观察者
+		 */
 		public function addObserver(notification:*, observer:IObserver):void {
 			var observers:Array = retrieve(notification);
 			//
@@ -34,6 +39,11 @@ package org.weemvc.as3.core {
 			add(notification, observers);
 		}
 		
+		/**
+		 * 移除观察者对象
+		 * @param	notification<Class/String>：通知
+		 * @param	notifyContext<Object>：		此观察者函数域
+		 */
 		public function removeObserver(notification:*, notifyContext:Object):void {
 			var observers:Array = retrieve(notification) as Array;
 			var observer:IObserver;
@@ -51,8 +61,9 @@ package org.weemvc.as3.core {
 		}
 		
 		/**
-		 * 发送一个 weemvc 事件通知
-		 * @param	notification<Class/String>：命令类或者每个 view 对应的相应的 notifications 列表
+		 * 发送 weemvc 事件通知
+		 * @param	notification<Class/String>：命令类或者每个 view 对应的相应的
+		 * 										notifications 列表里的某一通知
 		 * @param	data<Object>：				传递的参数
 		 */
 		public function sendNotification(notification:*, data:Object = null):void {

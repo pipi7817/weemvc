@@ -29,6 +29,10 @@ package org.weemvc.as3.control {
 			return m_instance;
 		}
 		
+		/**
+		 * 添加命令
+		 * @param	commandName<Class>：命令类
+		 */
 		public function addCommand(commandName:Class):void {
 			if (hasExists(commandName)) {
 				throw new WeemvcError(WeemvcError.ADD_COMMAND_MSG, Controller, commandName);
@@ -38,15 +42,29 @@ package org.weemvc.as3.control {
 			add(commandName, commandName);
 		}
 		
+		/**
+		 * 移除命令
+		 * @param	commandName<Class>：命令类
+		 */
 		public function removeCommand(commandName:Class):void {
 			m_notifier.removeObserver(commandName, this);
 			remove(commandName);
 		}
 		
+		/**
+		 * 判断此命令是否已经存在
+		 * @param	commandName<Class>：命令类
+		 * @return<Boolean>：			是否存在
+		 */
 		public function hasCommand(commandName:Class):Boolean {
 			return hasExists(commandName);
 		}
 		
+		/**
+		 * 执行此命令
+		 * @param	commandName<Class>：命令类
+		 * @param	data<Objcet>：		实例化此命令类时所带的参数
+		 */
 		public function executeCommand(commandName:Class, data:Object = null):void {
 			if (!hasExists(commandName)) {
 				throw new WeemvcError(WeemvcError.COMMAND_NOT_FOUND, Controller, commandName);
