@@ -2,18 +2,23 @@
  * WeeMVC - Copyright(c) 2008-2009
  * 保存注册的视图类
  * 通过它,你可以找到你想要的视图
- * @version	1.0.22 + 7
  * @author	weemve.org
  * 2009-1-5 14:06
  */
 package org.weemvc.as3.view {
 	import org.weemvc.as3.core.WeemvcLocator;
+	import org.weemvc.as3.core.Notifier;
+	import org.weemvc.as3.core.INotifier;
+	import org.weemvc.as3.core.Observer;
+	import org.weemvc.as3.core.IObserver;
 	import org.weemvc.as3.WeemvcError;
 	
 	import flash.display.MovieClip;
 	
-	public class ViewLocator extends WeemvcLocator {
+	public class ViewLocator extends WeemvcLocator implements IViewLocator {
 		static private var m_instance:ViewLocator = null;
+		protected var m_main:MovieClip;
+		protected var m_notifier:INotifier = Notifier.getInstance();
 		
 		public function ViewLocator() {
 			if (m_instance != null) {
@@ -21,38 +26,30 @@ package org.weemvc.as3.view {
 			}
 		}
 		
-		static public function getInstance():ViewLocator{
-			if(m_instance == null){
+		static public function getInstance():IViewLocator {
+			if (m_instance == null) {
 				m_instance = new ViewLocator();
 			}
 			return m_instance;
 		}
 		
 		/**
-		 * 这里是构造所有的view的地方
-		 * 注意不要直接在本类（ViewLocator）里使用main以及main里的实例
-		 * 应该使用每个view的句柄
 		 * @param	main	文档类入口
 		 */
 		public function initialize(main:MovieClip):void {
-			for each(var obj:Object in m_weeMap) {
-				var viewName:Class = obj.view;
-				var container:MovieClip = getContainer(main, obj.param);
-				obj.instance = new viewName(container);
-				obj.instance.viewName = viewName;
-			}
+			m_main = main;
 		}
 		
 		/**
 		 * 取回某个view
-		 * @param	viewName<Class>:	注册的名字
-		 * @return	view instance:		当前的view
+		 * @param	viewName<Class>：	注册的名字
+		 * @return<IView>：				当前的 view 实例
 		 */
-		public function retrieveView(viewName:Class):* {
+		public function retrieveView(viewName:Class):IView {
 			if (!hasExists(viewName)) {
 				throw new WeemvcError(WeemvcError.VIEW_NOT_FOUND, ViewLocator, viewName);
 			}
-			return m_weeMap[viewName].instance;
+			return m_weeMap[viewName];
 		}
 		
 		/**
@@ -64,7 +61,16 @@ package org.weemvc.as3.view {
 			if (hasExists(viewName)) {
 				throw new WeemvcError(WeemvcError.ADD_VIEW_MSG, ViewLocator, viewName);
 			}
-			add(viewName, {view:viewName, instance:null, param:stageInstance});
+			var container:MovieClip = getContainer(m_main, stageInstance);
+			var viewInstance:IView = new viewName(container);
+			var oberver:IObserver;
+			if (viewInstance.notifications.length > 0) {
+				for (var i:uint = 0; i < viewInstance.notifications.length; i++) {
+					oberver = new Observer(viewInstance.onDataChanged, viewInstance);
+					m_notifier.addObserver(viewInstance.notifications[i], oberver);
+				}
+			}
+			add(viewName, viewInstance);
 		}
 		
 		public function removeView(viewName:Class):void {
