@@ -49,8 +49,8 @@ package org.weemvc.as3.core {
 			var observer:IObserver;
 			for (var i:int = 0; i < observers.length; i++) {
 				observer = observers[i] as IObserver;
+				//如果函数作用域和传递进来的一致，则删除
 				if (observer.compareContext(notifyContext)) {
-					//
 					observers.splice(i, 1);
 					break;
 				}

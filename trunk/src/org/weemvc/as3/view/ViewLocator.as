@@ -78,6 +78,14 @@ package org.weemvc.as3.view {
 		 * @param	viewName<Class>：	视图类
 		 */
 		public function removeView(viewName:Class):void {
+			var viewInstance:IView = retrieveView(viewName);
+			if (viewInstance) {
+				var notifications:Array = viewInstance.notifications;
+				//移除该视图里面所有的通知
+				for ( var i:Number = 0; i < notifications.length; i++ ) {
+					m_notifier.removeObserver(notifications[i], viewInstance);
+				}
+			}
 			remove(viewName);
 		}
 		
