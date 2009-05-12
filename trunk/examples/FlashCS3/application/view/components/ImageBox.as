@@ -1,4 +1,9 @@
-﻿package application.view.components {
+﻿/**
+ * 大图
+ * ibio-develop
+ * 2009-5-12 11:47
+ */
+package application.view.components {
 	import flash.display.Sprite;
 	import flash.display.Loader;
 	import flash.net.URLRequest;
@@ -7,10 +12,11 @@
 	import flash.events.IOErrorEvent;
 	
 	public class ImageBox extends Sprite {
+		public var index:uint;
 		protected var m_loader:Loader;
 		protected var m_width:uint;
 		protected var m_height:uint;
-		protected var m_loaded:uint;
+		protected var m_doLater:Function;
 		
 		public function ImageBox(width:uint, height:uint) {
 			m_width = width;
@@ -25,8 +31,8 @@
 			m_loader.load(new URLRequest(url));
 		}
 		
-		public function get loadPercent():uint {
-			return m_loaded;
+		public function loadDoLater(doLater:Function):void {
+			m_doLater = doLater;
 		}
 		
 		protected function onLoaded_handler(e:Event):void {
@@ -40,7 +46,10 @@
 		}
 		
 		protected function onProgress_handler(e:ProgressEvent):void {
-			m_loaded = Math.round(e.bytesLoaded / e.bytesTotal * 100);
+			var loaded:uint = Math.round(e.bytesLoaded / e.bytesTotal * 100);
+			if (m_doLater != null) {
+				m_doLater(loaded);
+			}
 		}
 		
 		protected function onIOError_handler(e:IOErrorEvent):void {

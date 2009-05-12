@@ -1,5 +1,10 @@
-﻿package application.view {
-	import org.weemvc.as3.view.BaseView;
+﻿/**
+ * 大图播放区域
+ * ibio-develop
+ * 2009-5-12 11:40
+ */
+package application.view {
+	import org.weemvc.as3.view.View;
 	import application.model.vo.ImageVO;
 	import application.view.components.ImageBox;
 	
@@ -11,7 +16,7 @@
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 	
-	public class BigImagePlayer extends BaseView {
+	public class BigImagePlayer extends View {
 		protected var m_player:MovieClip;
 		protected var m_playList:Array;
 		protected var m_posList:Array = new Array();
@@ -26,16 +31,19 @@
 			m_player.txt_description.text = "";
 			m_player.buttonMode = true;
 			m_player.addEventListener(MouseEvent.CLICK, onClick_handler);
+			notifications = [Main.PLAY_LIST_LOADED];
+		}
+		
+		override public function onDataChanged(notification:String, data:Object = null):void {
+			if (notification == Main.PLAY_LIST_LOADED) {
+				init(data as Array);
+			}
 		}
 		
 		public function init(playList:Array):void {
 			m_playList = playList;
 			buildImages();
 			m_player.mc_body.mask = m_player.mc_mask;
-		}
-		
-		public function get currImgLoadPercent():uint {
-			return m_imageList[m_currIndex].loadPercent;
 		}
 		
 		public function showImage(index:uint):void {
@@ -61,12 +69,21 @@
 				var imageData:ImageVO = m_playList[i] as ImageVO;
 				var imageBox:ImageBox = new ImageBox(m_player.mc_mask.width, m_player.mc_mask.height);
 				//
+				imageBox.index = i;
 				imageBox.x = 0;
 				imageBox.y = i * m_player.mc_mask.height;
 				imageBox.load(imageData.location);
+				imageBox.loadDoLater(showImgLoadPercent);
 				m_player.mc_body.addChild(imageBox);
 				m_imageList.push(imageBox);
 				m_posList.push({x:imageBox.x, y:imageBox.y});
+			}
+		}
+		
+		protected function showImgLoadPercent(percent:uint):void {
+			//如果是当前的大图
+			if (m_imageList[m_currIndex].index == m_currIndex) {
+				sendNotification(Main.LOADING_IMAGE, percent);
 			}
 		}
 		

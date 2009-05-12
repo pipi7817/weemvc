@@ -1,8 +1,8 @@
 ﻿/**
  * 程序初始化命令
- * 注册所有的命令
+ * 注册所有的命令、模型、视图
  * ibio-develop
- * 2009-1-5 14:07
+ * 2009-5-12 11:35
  */
 package application.actions {
 	import org.weemvc.as3.control.ICommand;
@@ -12,12 +12,11 @@ package application.actions {
 	
 	public class StartupCommand extends SimpleCommand implements ICommand {
 		
-		public override function execute(data:Object = null, viewName:Class = null):void {
+		public override function execute(data:Object = null):void {
+			viewLocator.initialize(data as Main);
 			addViews();
 			addModels();
 			addCommands();
-			//初始化view
-			viewLocator.initialize(data as Main);
 		}
 		
 		protected function addViews():void {
