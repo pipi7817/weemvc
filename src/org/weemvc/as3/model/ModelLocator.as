@@ -29,7 +29,7 @@ package org.weemvc.as3.model {
 		 * @param	modelName<Class>：	模型类
 		 * @return<IModel>：			当前模型实例
 		 */
-		public function retrieveModel(modelName:Class):IModel {
+		public function getModel(modelName:Class):IModel {
 			if (!hasExists(modelName)) {
 				throw new WeemvcError(WeemvcError.MODEL_NOT_FOUND, ModelLocator, modelName);
 			}

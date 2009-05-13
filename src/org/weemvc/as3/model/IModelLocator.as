@@ -8,7 +8,7 @@ package org.weemvc.as3.model {
 	
 	public interface IModelLocator {
 		
-		function retrieveModel(modelName:Class):IModel;
+		function getModel(modelName:Class):IModel;
 		function addModel(modelName:Class, data:Object = null):void;
 		function removeModel(modelName:Class):void;
 		function hasModel(modelName:Class):Boolean;
