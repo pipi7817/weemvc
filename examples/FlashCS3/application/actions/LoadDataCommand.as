@@ -12,7 +12,7 @@ package application.actions {
 		public static const PLAY_LIST:String = "playList";
 		
 		public override function execute(data:Object = null):void {
-			var model:DataProxy = modelLocator.retrieveModel(DataProxy) as DataProxy;
+			var model:DataProxy = modelLocator.getModel(DataProxy) as DataProxy;
 			if ((data.playList != undefined) && (data.playList != "")) {
 				model.loadPlayList(data.playList);
 			}
