@@ -45,7 +45,7 @@ package org.weemvc.as3.view {
 		 * @param	viewName<Class>：	视图类
 		 * @return<IView>：				当前的视图实例
 		 */
-		public function retrieveView(viewName:Class):IView {
+		public function getView(viewName:Class):IView {
 			if (!hasExists(viewName)) {
 				throw new WeemvcError(WeemvcError.VIEW_NOT_FOUND, ViewLocator, viewName);
 			}
@@ -78,7 +78,7 @@ package org.weemvc.as3.view {
 		 * @param	viewName<Class>：	视图类
 		 */
 		public function removeView(viewName:Class):void {
-			var viewInstance:IView = retrieveView(viewName);
+			var viewInstance:IView = getView(viewName);
 			if (viewInstance) {
 				var notifications:Array = viewInstance.notifications;
 				//移除该视图里面所有的通知
