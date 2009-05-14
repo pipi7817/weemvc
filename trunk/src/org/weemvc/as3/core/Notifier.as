@@ -69,9 +69,20 @@ package org.weemvc.as3.core {
 		public function sendNotification(notification:*, data:Object = null):void {
 			if (hasExists(notification)) {
 				//取回当前通知的 list
-				var observers:Array = retrieve(notification) as Array;
+				var observersList:Array = retrieve(notification) as Array;
+				var observers:Array = new Array();
 				var observer:IObserver;
-				for (var i:uint = 0; i < observers.length; i++) {
+				var i:uint;
+				/**
+				 * 将所有的观察者从列表里取出，并加到一个空数组里面
+				 * 因为在循环发送通知的时候列表有可能会发生改变
+				 */
+				for (i = 0; i < observersList.length; i++) { 
+					observer = observersList[i] as IObserver;
+					observers.push(observer);
+				}
+				//
+				for (i = 0; i < observers.length; i++) {
 					observer = observers[i] as IObserver;
 					observer.notifyObserver(notification, data);
 				}

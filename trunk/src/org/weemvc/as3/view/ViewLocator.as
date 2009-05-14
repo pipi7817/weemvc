@@ -67,7 +67,13 @@ package org.weemvc.as3.view {
 			if (viewInstance.notifications.length > 0) {
 				for (var i:uint = 0; i < viewInstance.notifications.length; i++) {
 					oberver = new Observer(viewInstance.onDataChanged, viewInstance);
-					m_notifier.addObserver(viewInstance.notifications[i], oberver);
+					/**
+					 * 如果当前的 notification 是字符串，则添加到通知列表
+					 * 此操作意在过滤掉其他 view 对命令 notification 的帧听
+					 */
+					if (viewInstance.notifications[i] is String) {
+						m_notifier.addObserver(viewInstance.notifications[i], oberver);
+					}
 				}
 			}
 			add(viewName, viewInstance);
