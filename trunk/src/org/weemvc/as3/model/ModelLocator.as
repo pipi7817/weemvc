@@ -7,6 +7,7 @@
 package org.weemvc.as3.model {
 	import org.weemvc.as3.core.WeemvcLocator;
 	import org.weemvc.as3.WeemvcError;
+	import org.weemvc.as3.PaperLogger;
 	
 	public class ModelLocator extends WeemvcLocator implements IModelLocator {
 		static private var m_instance:IModelLocator = null;
@@ -31,7 +32,7 @@ package org.weemvc.as3.model {
 		 */
 		public function getModel(modelName:Class):IModel {
 			if (!hasExists(modelName)) {
-				throw new WeemvcError(WeemvcError.MODEL_NOT_FOUND, ModelLocator, modelName);
+				PaperLogger.getInstance().log(WeemvcError.MODEL_NOT_FOUND, ModelLocator, modelName);
 			}
 			return retrieve(modelName);
 		}
@@ -42,13 +43,14 @@ package org.weemvc.as3.model {
 		 * @param	data<Object>：		当前模型构造函数的参数
 		 */
 		public function addModel(modelName:Class, data:Object = null):void {
-			if (hasExists(modelName)) {
-				throw new WeemvcError(WeemvcError.ADD_MODEL_MSG, ModelLocator, modelName);
-			}
-			if (data != null) {
-				add(modelName, new modelName(data));
+			if (!hasExists(modelName)) {
+				if (data != null) {
+					add(modelName, new modelName(data));
+				}else {
+					add(modelName, new modelName());
+				}
 			}else {
-				add(modelName, new modelName());
+				PaperLogger.getInstance().log(WeemvcError.ADD_MODEL_MSG, ModelLocator, modelName);
 			}
 		}
 		
@@ -57,7 +59,11 @@ package org.weemvc.as3.model {
 		 * @param	modelName<Class>：	模型类
 		 */
 		public function removeModel(modelName:Class):void {
-			remove(modelName);
+			if (hasExists(modelName)) {
+				remove(modelName);
+			}else {
+				PaperLogger.getInstance().log(WeemvcError.REMOVE_MODEL_MSG, ModelLocator, modelName);
+			}
 		}
 		
 		/**

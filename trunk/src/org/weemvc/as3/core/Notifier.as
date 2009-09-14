@@ -34,7 +34,7 @@ package org.weemvc.as3.core {
 			if (observers) {
 				observers.push(observer);
 			} else {
-				observers = [observer];
+				observers = new Array(observer);
 			}
 			add(notification, observers);
 		}
@@ -50,12 +50,13 @@ package org.weemvc.as3.core {
 			for (var i:int = 0; i < observers.length; i++) {
 				observer = observers[i] as IObserver;
 				//如果函数作用域和传递进来的一致，则删除
+				//一个 observer 只可能对应一个作用域，所以要 break
 				if (observer.compareContext(notifyContext)) {
 					observers.splice(i, 1);
 					break;
 				}
 			}
-			if (observers.length == 0) {
+			if (observers.length <= 0) {
 				remove(notification);
 			}
 		}
@@ -69,20 +70,10 @@ package org.weemvc.as3.core {
 		public function sendNotification(notification:*, data:Object = null):void {
 			if (hasExists(notification)) {
 				//取回当前通知的 list
-				var observersList:Array = retrieve(notification) as Array;
-				var observers:Array = new Array();
+				var observers:Array = retrieve(notification) as Array;
 				var observer:IObserver;
-				var i:uint;
-				/**
-				 * 将所有的观察者从列表里取出，并加到一个空数组里面
-				 * 因为在循环发送通知的时候列表有可能会发生改变
-				 */
-				for (i = 0; i < observersList.length; i++) { 
-					observer = observersList[i] as IObserver;
-					observers.push(observer);
-				}
 				//
-				for (i = 0; i < observers.length; i++) {
+				for (var i:uint = 0; i < observers.length; i++) {
 					observer = observers[i] as IObserver;
 					observer.notifyObserver(notification, data);
 				}

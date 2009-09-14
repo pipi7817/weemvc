@@ -14,10 +14,15 @@ package org.weemvc.as3 {
 		public static const SINGLETON_MODEL_MSG:String = "单件模式的 ModelLocator 已经创建！";
 		public static const SINGLETON_VIEW_MSG:String = "单件模式的 ViewLocator 已经创建！";
 		public static const SINGLETON_NOTIFIER_MSG:String = "单件模式的 Notifier 已经创建！";
+		public static const SINGLETON_PAPERLOGGER_MSG:String = "单件模式的 PaperLogger 已经创建！";
 		
 		public static const ADD_COMMAND_MSG:String = "已经添加过此 Command：";
 		public static const ADD_MODEL_MSG:String = "已经添加过此 Model：";
 		public static const ADD_VIEW_MSG:String = "已经添加过此 View：";
+		
+		public static const REMOVE_COMMAND_MSG:String = "已经删除过此 Command：";
+		public static const REMOVE_MODEL_MSG:String = "已经删除过此 Model：";
+		public static const REMOVE_VIEW_MSG:String = "已经删除过此 View：";
 		
 		public static const COMMAND_NOT_FOUND : String = "没有找到此 Command：";
 		public static const MODEL_NOT_FOUND : String = "没有找到此 Model：";
@@ -25,16 +30,16 @@ package org.weemvc.as3 {
 		public static const MC_NOT_FOUND : String = "没有找到此 MovieClip：";
 		
 		public function WeemvcError(errorMsg:String, currentClass:Class = null, ... rest){
-			super(formatMessage(errorMsg, currentClass, rest));
+			super(formatMessage("WeeMVC Error# ", errorMsg, currentClass, rest));
 		}
 		
-		protected function formatMessage(errorMsg:String, currentClass:Class, ... rest):String {
+		public static function formatMessage(type:String, errorMsg:String, currentClass:Class, ... rest):String {
 			var message:String = "WeeMVC 当前版本：" + Version.VERSION + "  最后更新：" + Version.LAST_UPDATE + "\n";
 			if (currentClass != null) {
 				var className:String = getQualifiedClassName(currentClass);
-				message += "WeeMVC# " + "在 [" + className + "] 中，" + errorMsg + rest.toString();
+				message += type + "在 [" + className + "] 中，" + errorMsg + rest.toString();
 			}else {
-				message += "WeeMVC# " + errorMsg + rest.toString();
+				message += type + errorMsg + rest.toString();
 			}
 			return message;
 		}

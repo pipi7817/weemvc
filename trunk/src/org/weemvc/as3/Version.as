@@ -8,7 +8,7 @@ package org.weemvc.as3 {
 	
 	public class Version {
 		
-		public static const VERSION:String = "1.2.3";
-		public static const LAST_UPDATE:String = "2009-5-11 18:10";
+		public static const VERSION:String = "1.2.4";
+		public static const LAST_UPDATE:String = "2009-9-12 16:45";
 	}
 }

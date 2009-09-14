@@ -9,25 +9,16 @@ package org.weemvc.as3.control {
 	import org.weemvc.as3.model.IModelLocator;
 	import org.weemvc.as3.view.ViewLocator;
 	import org.weemvc.as3.view.IViewLocator;
+	import org.weemvc.as3.control.Controller;
+	import org.weemvc.as3.control.IController;
+	import org.weemvc.as3.control.SimpleCommand;
 	
-	public class MacroCommand implements ICommand {
+	public class MacroCommand import SimpleCommand implements ICommand {
 		protected var m_subCommands:Array;
 		
 		public function MacroCommand() {
 			m_subCommands = new Array();
 			initialize();		
-		}
-		
-		public function get modelLocator():IModelLocator {
-			return ModelLocator.getInstance();
-		}
-		
-		public function get viewLocator():IViewLocator {
-			return ViewLocator.getInstance();
-		}
-		
-		public function get controller():IController {
-			return Controller.getInstance();
 		}
 		
 		protected function initialize():void {
@@ -38,7 +29,7 @@ package org.weemvc.as3.control {
 			m_subCommands.push(commandName);
 		}
 		
-		public final function execute(data:Object = null):void {
+		final override public function execute(data:Object = null):void {
 			while (m_subCommands.length > 0) {
 				var commandClass:Class = m_subCommands.shift();
 				var commandInstance:ICommand = new commandClass();

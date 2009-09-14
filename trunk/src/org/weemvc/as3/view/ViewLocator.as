@@ -12,6 +12,7 @@ package org.weemvc.as3.view {
 	import org.weemvc.as3.core.Observer;
 	import org.weemvc.as3.core.IObserver;
 	import org.weemvc.as3.WeemvcError;
+	import org.weemvc.as3.PaperLogger;
 	
 	import flash.display.MovieClip;
 	
@@ -47,7 +48,7 @@ package org.weemvc.as3.view {
 		 */
 		public function getView(viewName:Class):IView {
 			if (!hasExists(viewName)) {
-				throw new WeemvcError(WeemvcError.VIEW_NOT_FOUND, ViewLocator, viewName);
+				PaperLogger.getInstance().log(WeemvcError.VIEW_NOT_FOUND, ViewLocator, viewName);
 			}
 			return m_weeMap[viewName];
 		}
@@ -58,25 +59,27 @@ package org.weemvc.as3.view {
 		 * @param	stageInstance<String>：	当前的视图构造函数的参数（当前在舞台上对应的实例名）
 		 */
 		public function addView(viewName:Class, stageInstance:String = null):void {
-			if (hasExists(viewName)) {
-				throw new WeemvcError(WeemvcError.ADD_VIEW_MSG, ViewLocator, viewName);
-			}
-			var container:MovieClip = getContainer(m_main, stageInstance);
-			var viewInstance:IView = new viewName(container);
-			var oberver:IObserver;
-			if (viewInstance.notifications.length > 0) {
-				for (var i:uint = 0; i < viewInstance.notifications.length; i++) {
-					oberver = new Observer(viewInstance.onDataChanged, viewInstance);
-					/**
-					 * 如果当前的 notification 是字符串，则添加到通知列表
-					 * 此操作意在过滤掉其他 view 对命令 notification 的帧听
-					 */
-					if (viewInstance.notifications[i] is String) {
-						m_notifier.addObserver(viewInstance.notifications[i], oberver);
+			if (!hasExists(viewName)) {
+				var container:MovieClip = getContainer(m_main, stageInstance);
+				var viewInstance:IView = new viewName(container);
+				var oberver:IObserver;
+				if (viewInstance.notifications.length > 0) {
+					for (var i:uint = 0; i < viewInstance.notifications.length; i++) {
+						oberver = new Observer(viewInstance.onDataChanged, viewInstance);
+						/**
+						 * 如果当前的 notification 是字符串，则添加到通知列表
+						 * 此操作意在过滤掉其他 view 对命令 notification 的帧听
+						 */
+						if (viewInstance.notifications[i] is String) {
+							m_notifier.addObserver(viewInstance.notifications[i], oberver);
+						}
 					}
 				}
+				add(viewName, viewInstance);
+			}else {
+				PaperLogger.getInstance().log(WeemvcError.ADD_VIEW_MSG, ViewLocator, viewName);
 			}
-			add(viewName, viewInstance);
+			
 		}
 		
 		/**
@@ -84,15 +87,19 @@ package org.weemvc.as3.view {
 		 * @param	viewName<Class>：	视图类
 		 */
 		public function removeView(viewName:Class):void {
-			var viewInstance:IView = getView(viewName);
-			if (viewInstance) {
-				var notifications:Array = viewInstance.notifications;
-				//移除该视图里面所有的通知
-				for ( var i:Number = 0; i < notifications.length; i++ ) {
-					m_notifier.removeObserver(notifications[i], viewInstance);
+			if (hasExists(viewName)) {
+				var viewInstance:IView = getView(viewName);
+				if (viewInstance) {
+					var notifications:Array = viewInstance.notifications;
+					//移除该视图里面所有的通知
+					for ( var i:Number = 0; i < notifications.length; i++ ) {
+						m_notifier.removeObserver(notifications[i], viewInstance);
+					}
 				}
+				remove(viewName);
+			}else {
+				PaperLogger.getInstance().log(WeemvcError.REMOVE_VIEW_MSG, ViewLocator, viewName);
 			}
-			remove(viewName);
 		}
 		
 		/**
