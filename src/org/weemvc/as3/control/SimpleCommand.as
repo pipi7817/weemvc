@@ -9,6 +9,9 @@ package org.weemvc.as3.control {
 	import org.weemvc.as3.model.IModelLocator;
 	import org.weemvc.as3.view.ViewLocator;
 	import org.weemvc.as3.view.IViewLocator;
+	import org.weemvc.as3.control.Controller;
+	import org.weemvc.as3.control.IController;
+	import org.weemvc.as3.core.Notifier;
 	
 	public class SimpleCommand implements ICommand {
 		
@@ -26,6 +29,10 @@ package org.weemvc.as3.control {
 		
 		public function get controller():IController {
 			return Controller.getInstance();
+		}
+		
+		public function sendNotification(notification:*, data:Object = null):void {
+			Notifier.getInstance().sendNotification(notification, data);
 		}
 	}
 }

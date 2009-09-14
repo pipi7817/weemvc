@@ -11,6 +11,7 @@ package org.weemvc.as3.control {
 	import org.weemvc.as3.core.Observer;
 	import org.weemvc.as3.core.IObserver;
 	import org.weemvc.as3.WeemvcError;
+	import org.weemvc.as3.PaperLogger;
 	
 	public class Controller extends WeemvcLocator implements IController {
 		static private var m_instance:Controller = null;
@@ -34,12 +35,13 @@ package org.weemvc.as3.control {
 		 * @param	commandName<Class>：命令类
 		 */
 		public function addCommand(commandName:Class):void {
-			if (hasExists(commandName)) {
-				throw new WeemvcError(WeemvcError.ADD_COMMAND_MSG, Controller, commandName);
+			if (!hasExists(commandName)) {
+				var oberver:IObserver = new Observer(executeCommand, this);
+				m_notifier.addObserver(commandName, oberver);
+				add(commandName, commandName);
+			}else {
+				PaperLogger.getInstance().log(WeemvcError.ADD_COMMAND_MSG, Controller, commandName);
 			}
-			var oberver:IObserver = new Observer(executeCommand, this);
-			m_notifier.addObserver(commandName, oberver);
-			add(commandName, commandName);
 		}
 		
 		/**
@@ -47,8 +49,12 @@ package org.weemvc.as3.control {
 		 * @param	commandName<Class>：命令类
 		 */
 		public function removeCommand(commandName:Class):void {
-			m_notifier.removeObserver(commandName, this);
-			remove(commandName);
+			if (hasExists(commandName)) {
+				m_notifier.removeObserver(commandName, this);
+				remove(commandName);
+			}else {
+				PaperLogger.getInstance().log(WeemvcError.REMOVE_COMMAND_MSG, Controller, commandName);
+			}
 		}
 		
 		/**
@@ -66,12 +72,13 @@ package org.weemvc.as3.control {
 		 * @param	data<Objcet>：		实例化此命令类时所带的参数
 		 */
 		public function executeCommand(commandName:Class, data:Object = null):void {
-			if (!hasExists(commandName)) {
-				throw new WeemvcError(WeemvcError.COMMAND_NOT_FOUND, Controller, commandName);
+			if (hasExists(commandName)) {
+				var commandClass:Class = retrieve(commandName);
+				var commandInstance:ICommand = new commandClass();
+				commandInstance.execute(data);
+			}else {
+				PaperLogger.getInstance().log(WeemvcError.COMMAND_NOT_FOUND, Controller, commandName);
 			}
-			var commandClass:Class = retrieve(commandName);
-			var commandInstance:ICommand = new commandClass();
-			commandInstance.execute(data);
 		}
 	}
 }

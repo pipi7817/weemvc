@@ -11,8 +11,8 @@ package org.weemvc.as3.core {
 		protected var m_context:Object;
 		
 		public function Observer(notifyMethod:Function, notifyContext:Object = null) {
-			callBack = notifyMethod;
-			context = notifyContext;
+			m_callBack = notifyMethod;
+			m_context = notifyContext;
 		}
 		
 		/**
@@ -43,7 +43,7 @@ package org.weemvc.as3.core {
 		 * @param	data<Object>：				传递的参数
 		 */
 		public function notifyObserver(notification:*, data:Object = null):void {
-			callBack.call(context, notification, data);
+			m_callBack.call(m_context, notification, data);
 		}
 		
 		/**
@@ -52,7 +52,7 @@ package org.weemvc.as3.core {
 		 * @return<Boolean>：		是否一致
 		 */
 		public function compareContext(object:Object):Boolean {
-			return (context === object);
+			return (m_context === object);
 		}
 	}
 }
