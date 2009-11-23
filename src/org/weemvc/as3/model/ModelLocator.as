@@ -28,9 +28,9 @@ package org.weemvc.as3.model {
 		/**
 		 * 取回模型
 		 * @param	modelName<Class>：	模型类
-		 * @return<IModel>：			当前模型实例
+		 * @return<*>：					当前模型实例
 		 */
-		public function getModel(modelName:Class):IModel {
+		public function getModel(modelName:Class):* {
 			if (!hasExists(modelName)) {
 				PaperLogger.getInstance().log(WeemvcError.MODEL_NOT_FOUND, ModelLocator, modelName);
 			}

@@ -11,7 +11,7 @@ package org.weemvc.as3.view {
 	public interface IViewLocator {
 		
 		function initialize(main:MovieClip):void;
-		function getView(viewName:Class):IView;
+		function getView(viewName:Class):*;
 		function addView(viewName:Class, stageInstance:String = null):void;
 		function removeView(viewName:Class):void;
 		function hasView(viewName:Class):Boolean;

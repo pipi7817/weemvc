@@ -17,7 +17,7 @@ package org.weemvc.as3.model {
 		 * 										notifications 列表里的某一通知
 		 * @param	data<Object>：				传递的参数
 		 */
-		public function sendNotification(notification:*, data:Object = null):void {
+		public function sendNotification(notification:Object, data:Object = null):void {
 			m_notifier.sendNotification(notification, data);
 		}
 	}

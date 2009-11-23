@@ -31,7 +31,7 @@ package org.weemvc.as3.control {
 			return Controller.getInstance();
 		}
 		
-		public function sendNotification(notification:*, data:Object = null):void {
+		public function sendNotification(notification:Object, data:Object = null):void {
 			Notifier.getInstance().sendNotification(notification, data);
 		}
 	}

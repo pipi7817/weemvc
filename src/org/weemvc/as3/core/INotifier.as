@@ -8,8 +8,8 @@ package org.weemvc.as3.core {
 	
 	public interface INotifier {
 		
-		function addObserver(notification:*, observer:IObserver):void;
-		function removeObserver(notification:*, notifyContext:Object):void;
-		function sendNotification(notification:*, data:Object = null):void;
+		function addObserver(notification:Object, observer:IObserver):void;
+		function removeObserver(notification:Object, notifyContext:Object):void;
+		function sendNotification(notification:Object, data:Object = null):void;
 	}
 }

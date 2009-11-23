@@ -8,6 +8,6 @@ package org.weemvc.as3.model {
 	
 	public interface IModel {
 		
-		function sendNotification(notification:*, data:Object = null):void;
+		function sendNotification(notification:Object, data:Object = null):void;
 	}
 }

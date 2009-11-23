@@ -6,6 +6,7 @@
  */
 package org.weemvc.as3.core {
 	import org.weemvc.as3.WeemvcError;
+	import org.weemvc.as3.PaperLogger;
 	
 	public class Notifier extends WeemvcLocator implements INotifier {
 		static private var m_instance:Notifier = null;
@@ -28,7 +29,7 @@ package org.weemvc.as3.core {
 		 * @param	notification<Class/String>：通知
 		 * @param	observer<IObserver>：		观察者
 		 */
-		public function addObserver(notification:*, observer:IObserver):void {
+		public function addObserver(notification:Object, observer:IObserver):void {
 			var observers:Array = retrieve(notification);
 			//
 			if (observers) {
@@ -44,8 +45,8 @@ package org.weemvc.as3.core {
 		 * @param	notification<Class/String>：通知
 		 * @param	notifyContext<Object>：		此观察者函数域
 		 */
-		public function removeObserver(notification:*, notifyContext:Object):void {
-			var observers:Array = retrieve(notification) as Array;
+		public function removeObserver(notification:Object, notifyContext:Object):void {
+			var observers:Array = retrieve(notification);
 			var observer:IObserver;
 			for (var i:int = 0; i < observers.length; i++) {
 				observer = observers[i] as IObserver;
@@ -67,16 +68,18 @@ package org.weemvc.as3.core {
 		 * 										notifications 列表里的某一通知
 		 * @param	data<Object>：				传递的参数
 		 */
-		public function sendNotification(notification:*, data:Object = null):void {
+		public function sendNotification(notification:Object, data:Object = null):void {
 			if (hasExists(notification)) {
 				//取回当前通知的 list
-				var observers:Array = retrieve(notification) as Array;
+				var observers:Array = retrieve(notification);
 				var observer:IObserver;
 				//
 				for (var i:uint = 0; i < observers.length; i++) {
 					observer = observers[i] as IObserver;
 					observer.notifyObserver(notification, data);
 				}
+			}else {
+				PaperLogger.getInstance().log(WeemvcError.NOTIFICATION_NOT_FOUND, Notifier, notification);
 			}
 		}
 	}
