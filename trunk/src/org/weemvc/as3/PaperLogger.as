@@ -11,7 +11,7 @@ package org.weemvc.as3 {
 	public class PaperLogger {
 		static private var m_instance:PaperLogger = null;
 		//这里 logger 是静态类
-		protected var m_traceLogger:*;
+		protected var m_traceLogger:Object;
 		
 		public function PaperLogger() {
 			if (m_instance != null) {
@@ -28,7 +28,7 @@ package org.weemvc.as3 {
 		}
 		
 		public function addLogger(logger:Class):void {
-			if (!m_traceLogger) {
+			if (logger && (logger.record != null)) {
 				m_traceLogger = logger;
 			}
 		}
@@ -40,7 +40,7 @@ package org.weemvc.as3 {
 		}
 		
 		public function log(errorMsg:String, currentClass:Class = null, ... rest):void {
-			m_traceLogger.record(WeemvcError.formatMessage("WeeMVC Info# ", errorMsg, currentClass, rest));
+			m_traceLogger.record(WeemvcError.formatMessage("WeeMVC Warning# ", errorMsg, currentClass, rest));
 		}
 	}
 }

@@ -12,7 +12,7 @@ package org.weemvc.as3.core {
 		function get callBack():Function;
 		function set context(obj:Object):void;
 		function get context():Object;
-		function notifyObserver(notification:*, data:Object = null):void;
+		function notifyObserver(notification:Object, data:Object = null):void;
 		function compareContext(object:Object):Boolean;
 	}
 }

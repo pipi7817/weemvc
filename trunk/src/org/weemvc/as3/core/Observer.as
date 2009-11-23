@@ -42,7 +42,7 @@ package org.weemvc.as3.core {
 		 * @param	notification<Class/String>：命令类或者每个 view 对应的相应的 notifications 列表
 		 * @param	data<Object>：				传递的参数
 		 */
-		public function notifyObserver(notification:*, data:Object = null):void {
+		public function notifyObserver(notification:Object, data:Object = null):void {
 			m_callBack.call(m_context, notification, data);
 		}
 		

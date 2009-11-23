@@ -44,9 +44,9 @@ package org.weemvc.as3.view {
 		/**
 		 * 取回视图
 		 * @param	viewName<Class>：	视图类
-		 * @return<IView>：				当前的视图实例
+		 * @return<*>：					当前的视图实例
 		 */
-		public function getView(viewName:Class):IView {
+		public function getView(viewName:Class):* {
 			if (!hasExists(viewName)) {
 				PaperLogger.getInstance().log(WeemvcError.VIEW_NOT_FOUND, ViewLocator, viewName);
 			}
@@ -68,7 +68,7 @@ package org.weemvc.as3.view {
 						oberver = new Observer(viewInstance.onDataChanged, viewInstance);
 						/**
 						 * 如果当前的 notification 是字符串，则添加到通知列表
-						 * 此操作意在过滤掉其他 view 对命令 notification 的帧听
+						 * 此操作意在过滤掉其他 view 对命令 notification 的侦听
 						 */
 						if (viewInstance.notifications[i] is String) {
 							m_notifier.addObserver(viewInstance.notifications[i], oberver);

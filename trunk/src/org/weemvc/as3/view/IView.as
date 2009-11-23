@@ -8,7 +8,7 @@ package org.weemvc.as3.view {
 	
 	public interface IView {
 		
-		function sendNotification(notification:*, data:Object = null):void;
+		function sendNotification(notification:Object, data:Object = null):void;
 		function set notifications(list:Array):void;
 		function get notifications():Array;
 		function onDataChanged(notification:String, data:Object = null):void;
