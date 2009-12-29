@@ -13,7 +13,7 @@ package application.actions {
 		
 		public override function execute(data:Object = null):void {
 			var index:uint = data as uint;
-			var model:DataProxy = modelLocator.getModel(DataProxy) as DataProxy;
+			var model:DataProxy = modelLocator.getModel(DataProxy);
 			model.currentIndex = index;
 			var bigImage:BigImagePlayer = viewLocator.getView(BigImagePlayer) as BigImagePlayer;
 			//显示某张图片

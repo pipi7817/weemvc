@@ -1,5 +1,5 @@
 ﻿package application.view.components {
-	import com.ibio8.components.button.BaseRadioButton;
+	import com.ibio8.components.buttons.BaseRadioButton;
 	
 	import flash.text.TextField;
 	
