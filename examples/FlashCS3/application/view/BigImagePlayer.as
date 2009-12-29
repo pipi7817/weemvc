@@ -30,7 +30,7 @@ package application.view {
 			m_player.txt_title.text = "";
 			m_player.txt_description.text = "";
 			m_player.buttonMode = true;
-			m_player.addEventListener(MouseEvent.CLICK, onClick_handler);
+			m_player.addEventListener(MouseEvent.CLICK, onClickHandler);
 			notifications = [Main.PLAY_LIST_LOADED];
 		}
 		
@@ -87,7 +87,7 @@ package application.view {
 			}
 		}
 		
-		protected function onClick_handler(e:MouseEvent):void {
+		protected function onClickHandler(e:MouseEvent):void {
 			var imageData:ImageVO = m_playList[m_currIndex] as ImageVO;
 			navigateToURL(new URLRequest(imageData.clickUrl), "_blank");
 			//trace(imageData.clickUrl);

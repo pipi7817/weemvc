@@ -22,9 +22,9 @@ package application.view.components {
 			m_width = width;
 			m_height = height;
 			m_loader = new Loader();
-			m_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoaded_handler);
-			m_loader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS, onProgress_handler);
-			m_loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, onIOError_handler);
+			m_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoadedHandler);
+			m_loader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS, onProgressHandler);
+			m_loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, onIOErrorHandler);
 		}
 		
 		public function load(url:String):void {
@@ -35,28 +35,28 @@ package application.view.components {
 			m_doLater = doLater;
 		}
 		
-		protected function onLoaded_handler(e:Event):void {
-			m_loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, onLoaded_handler);
-			m_loader.contentLoaderInfo.removeEventListener(ProgressEvent.PROGRESS, onProgress_handler);
-			m_loader.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, onIOError_handler);
+		protected function onLoadedHandler(e:Event):void {
+			m_loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, onLoadedHandler);
+			m_loader.contentLoaderInfo.removeEventListener(ProgressEvent.PROGRESS, onProgressHandler);
+			m_loader.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, onIOErrorHandler);
 			//
 			m_loader.width = m_width;
 			m_loader.height = m_height;
 			this.addChild(m_loader);
 		}
 		
-		protected function onProgress_handler(e:ProgressEvent):void {
+		protected function onProgressHandler(e:ProgressEvent):void {
 			var loaded:uint = Math.round(e.bytesLoaded / e.bytesTotal * 100);
 			if (m_doLater != null) {
 				m_doLater(loaded);
 			}
 		}
 		
-		protected function onIOError_handler(e:IOErrorEvent):void {
+		protected function onIOErrorHandler(e:IOErrorEvent):void {
 			//trace("加载错误！");
-			m_loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, onLoaded_handler);
-			m_loader.contentLoaderInfo.removeEventListener(ProgressEvent.PROGRESS, onProgress_handler);
-			m_loader.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, onIOError_handler);
+			m_loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, onLoadedHandler);
+			m_loader.contentLoaderInfo.removeEventListener(ProgressEvent.PROGRESS, onProgressHandler);
+			m_loader.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, onIOErrorHandler);
 		}
 	}
 }

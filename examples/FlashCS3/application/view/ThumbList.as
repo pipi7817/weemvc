@@ -43,11 +43,11 @@ package application.view {
 				var imageData:ImageVO = m_playList[i] as ImageVO;
 				m_panel["mc_thumb" + i].index = i;
 				m_panel["mc_thumb" + i].setData(imageData.title, imageData.subtitle);
-				m_panel["mc_thumb" + i].addEventListener(MouseEvent.CLICK, onThumbClick_handler);
+				m_panel["mc_thumb" + i].addEventListener(MouseEvent.CLICK, onThumbClickHandler);
 			}
 		}
 		
-		protected function onThumbClick_handler(e:MouseEvent):void {
+		protected function onThumbClickHandler(e:MouseEvent):void {
 			//清除之前的
 			for (var i = 0; i < m_playList.length; i++) {
 				m_panel["mc_thumb" + i].selected = false;
@@ -58,7 +58,7 @@ package application.view {
 			try {
 				m_tweenY.stop();
 			}catch (e:Error) {
-				trace("ThumbList::onThumbClick_handler:", e.message);
+				trace("ThumbList::onThumbClickHandler:", e.message);
 			}
 			m_tweenY = new Tween(m_panel.mc_arrow, "y", Strong.easeOut, m_panel.mc_arrow.y, newY, 1.5, true);
 			//trace("当前点击：", e.currentTarget.index);
