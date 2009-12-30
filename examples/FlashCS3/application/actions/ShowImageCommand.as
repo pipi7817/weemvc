@@ -15,7 +15,7 @@ package application.actions {
 			var index:uint = data as uint;
 			var model:DataProxy = modelLocator.getModel(DataProxy);
 			model.currentIndex = index;
-			var bigImage:BigImagePlayer = viewLocator.getView(BigImagePlayer) as BigImagePlayer;
+			var bigImage:BigImagePlayer = viewLocator.getView(BigImagePlayer);
 			//显示某张图片
 			bigImage.showImage(index);
 		}
