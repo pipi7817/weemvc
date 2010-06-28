@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008-2009
  * 单例模式的数据集合
  * @author	weemve.org
@@ -13,13 +13,15 @@ package org.weemvc.as3.model {
 		static private var m_instance:IModelLocator = null;
 		
 		public function ModelLocator() {
-			if (m_instance != null) {
+			if (m_instance) {
 				throw new WeemvcError(WeemvcError.SINGLETON_MODEL_MSG, ModelLocator);
+			}else {
+				m_instance = this;
 			}
 		}
 		
 		static public function getInstance():IModelLocator {
-			if (m_instance == null) {
+			if (!m_instance) {
 				m_instance = new ModelLocator();
 			}
 			return m_instance;
@@ -44,7 +46,7 @@ package org.weemvc.as3.model {
 		 */
 		public function addModel(modelName:Class, data:Object = null):void {
 			if (!hasExists(modelName)) {
-				if (data != null) {
+				if (data) {
 					add(modelName, new modelName(data));
 				}else {
 					add(modelName, new modelName());

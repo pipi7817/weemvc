@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008-2009
  * 错误处理
  * @author	weemve.org
@@ -36,7 +36,7 @@ package org.weemvc.as3 {
 		
 		public static function formatMessage(type:String, errorMsg:String, currentClass:Class, ... rest):String {
 			var message:String = "WeeMVC 当前版本：" + Version.VERSION + "  最后更新：" + Version.LAST_UPDATE + "\n";
-			if (currentClass != null) {
+			if (currentClass) {
 				var className:String = getQualifiedClassName(currentClass);
 				message += type + "在 [" + className + "] 中，" + errorMsg + rest.toString();
 			}else {

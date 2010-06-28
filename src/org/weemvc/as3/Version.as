@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008-2009
  * 版本以及更新时间
  * @author	weemve.org
@@ -8,7 +8,7 @@ package org.weemvc.as3 {
 	
 	public class Version {
 		
-		public static const VERSION:String = "1.2.5";
-		public static const LAST_UPDATE:String = "2009-11-22 0:11";
+		public static const VERSION:String = "1.2.6";
+		public static const LAST_UPDATE:String = "2010-6-25 11:49";
 	}
 }

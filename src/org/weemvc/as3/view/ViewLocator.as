@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008-2009
  * 保存注册的视图类
  * 通过它,你可以找到你想要的视图
@@ -22,13 +22,15 @@ package org.weemvc.as3.view {
 		protected var m_notifier:INotifier = Notifier.getInstance();
 		
 		public function ViewLocator() {
-			if (m_instance != null) {
+			if (m_instance) {
 				throw new WeemvcError(WeemvcError.SINGLETON_VIEW_MSG, ViewLocator);
+			}else {
+				m_instance = this;
 			}
 		}
 		
 		static public function getInstance():IViewLocator {
-			if (m_instance == null) {
+			if (!m_instance) {
 				m_instance = new ViewLocator();
 			}
 			return m_instance;
@@ -114,14 +116,14 @@ package org.weemvc.as3.view {
 		//递归获得舞台上相应的 MC
 		protected function getContainer(main:MovieClip, param:String):MovieClip {
 			var container:MovieClip = main;
-			if (param == null) {
+			if (!param) {
 				return container;
 			}
 			var reg:RegExp = /[\w]+/ig;
 			var temp:Array = param.match(reg);
 			if(temp && temp.length > 0){
 				for (var i:uint = 0; i < temp.length; i++) {
-					if (container[temp[i]] == null) {
+					if (!container[temp[i]]) {
 						throw new WeemvcError(WeemvcError.MC_NOT_FOUND, ViewLocator, getFullPath(container) + " 容器内的 " +  temp[i]);
 					}else {
 						container = container[temp[i]];

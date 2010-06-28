@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008-2009
  * 控制器--分发视图过来的操作
  * @author	weemve.org
@@ -18,13 +18,15 @@ package org.weemvc.as3.control {
 		protected var m_notifier:INotifier = Notifier.getInstance();
 		
 		public function Controller() {
-			if (m_instance != null) {
+			if (m_instance) {
 				throw new WeemvcError(WeemvcError.SINGLETON_CONTROLLER_MSG, Controller);
+			}else {
+				m_instance = this;
 			}
 		}
 		
 		static public function getInstance():IController {
-			if (m_instance == null) {
+			if (!m_instance) {
 				m_instance = new Controller();
 			}
 			return m_instance;
