@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008-2009
  * 输出日志
  * @author	weemve.org
@@ -14,20 +14,23 @@ package org.weemvc.as3 {
 		protected var m_traceLogger:Object;
 		
 		public function PaperLogger() {
-			if (m_instance != null) {
+			if (m_instance) {
 				throw new WeemvcError(WeemvcError.SINGLETON_PAPERLOGGER_MSG, PaperLogger);
+			}else {
+				m_instance = this;
 			}
 			addLogger(Log);
 		}
 		
 		static public function getInstance():PaperLogger {
-			if (m_instance == null) {
+			if (!m_instance) {
 				m_instance = new PaperLogger();
 			}
 			return m_instance;
 		}
 		
 		public function addLogger(logger:Class):void {
+			//因为 record 是函数类型，所以只能判断是否为 null
 			if (logger && (logger.record != null)) {
 				m_traceLogger = logger;
 			}

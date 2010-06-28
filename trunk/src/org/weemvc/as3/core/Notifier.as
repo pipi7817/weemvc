@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008-2009
  * 发送通知
  * @author	weemve.org
@@ -12,13 +12,15 @@ package org.weemvc.as3.core {
 		static private var m_instance:Notifier = null;
 		
 		public function Notifier() {
-			if (m_instance != null) {
+			if (m_instance) {
 				throw new WeemvcError(WeemvcError.SINGLETON_NOTIFIER_MSG, Notifier);
+			}else {
+				m_instance = this;
 			}
 		}
 		
 		static public function getInstance():INotifier {
-			if (m_instance == null) {
+			if (!m_instance) {
 				m_instance = new Notifier();
 			}
 			return m_instance;
