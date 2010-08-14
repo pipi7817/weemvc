@@ -1,5 +1,5 @@
-﻿/**
- * WeeMVC - Copyright(c) 2008-2009
+/**
+ * WeeMVC - Copyright(c) 2008
  * 视图基类
  * @author	weemve.org
  * 2008-12-14 16:42
@@ -9,31 +9,59 @@ package org.weemvc.as3.view {
 	import org.weemvc.as3.core.INotifier;
 	
 	import flash.display.MovieClip;
-	
-	public class View extends MovieClip implements IView {
+	/**
+	 * 视图类。WeeMVC 的视图。
+	 * 
+	 * <p>
+	 * <b>注意：这里没有继承 FLASH API 中任何一个显示对象（例如 Sprite），
+	 * 是因为这里的 view 将是以一个中介者存在，会将舞台上的相关实例引用通过构造函数传到此
+	 * view 的子类中。而此 view 的子类本身将不会显示到 FLASH 的 stage 中。</b>
+	 * </p>
+	 * <p>
+	 * 构造函数 public function View(panel:MovieClip) 这里 panel 指舞台上的相关实例的引用，
+	 * 因为此类中构造函数未做实质性的内容，所以为方便使用，这里不实现此构造函数。
+	 * </p>
+	 * 
+	 * @see org.weemvc.as3.view.IView	IView
+	 */
+	public class View implements IView {
+		/** @private **/
 		//此视图需要监听的消息列表
-		protected var m_notifications:Array = new Array();
+		protected var m_notifications:Array = [];
+		/** @private **/
 		protected var m_notifier:INotifier = Notifier.getInstance();
 		
 		/**
-		 * 发送 weemvc 事件通知
-		 * @param	notification<Class/String>：命令类或者每个 view 对应的相应的
-		 * 										notifications 列表里的某一通知
-		 * @param	data<Object>：				传递的参数
+		 * @copy	org.weemvc.as3.core.INotifier#sendNotification()
 		 */
 		public function sendNotification(notification:Object, data:Object = null):void {
 			m_notifier.sendNotification(notification, data);
 		}
 		
+		/**
+		 * 设置当前视图需要监听的 notification 列表。
+		 * 
+		 * <p>当系统发出此列表中包含的事件（名称）时，当前视图中的 onDataChanged 
+		 * 能够立即监听到此事件，且形参 notification 就是当前事件的名称
+		 * <b>注意：这里个列表中的每个元素为 String 类型，即和 onDataChanged
+		 * 中形参 notification 的数据类型一致</b></p>
+		 * 
+		 * @param	list	当前视图需要监听的notification（String）列表
+		 */
 		public function set notifications(list:Array):void {
 			m_notifications = list;
 		}
 		
+		/**
+		 * 返回当前监听的 notification 列表。
+		 */
 		public function get notifications():Array {
 			return m_notifications;
 		}
 		
-		//模型更新之后返回的数据，会 call 此函数
+		/**
+		 * @copy	org.weemvc.as3.view.IView#onDataChanged()
+		 */
 		public function onDataChanged(notification:String, data:Object = null):void {
 			//在子类覆盖此函数
 		}
