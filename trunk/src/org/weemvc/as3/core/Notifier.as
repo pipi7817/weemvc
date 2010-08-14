@@ -1,16 +1,31 @@
 /**
- * WeeMVC - Copyright(c) 2008-2009
+ * WeeMVC - Copyright(c) 2008
  * 发送通知
  * @author	weemve.org
  * 2009-5-11 18:32
  */
 package org.weemvc.as3.core {
+	import org.weemvc.as3.core.WeemvcLocator;
 	import org.weemvc.as3.WeemvcError;
 	import org.weemvc.as3.PaperLogger;
-	
+	/**
+	 * WeeMVC 事件类。
+	 * 
+	 * <p>
+	 * WeeMVC 的事件通知都是采用观察者模式实现的。
+	 * </p>
+	 * 
+	 * @see org.weemvc.as3.core.INotifier	INotifier
+	 */
 	public class Notifier extends WeemvcLocator implements INotifier {
+		/** @private **/
 		static private var m_instance:Notifier = null;
 		
+		/**
+		 * 通知类构造函数。
+		 * 
+		 * @throws org.weemvc.as3.WeemvcError 单件的<code>Notifier</code>被实例化多次
+		 */
 		public function Notifier() {
 			if (m_instance) {
 				throw new WeemvcError(WeemvcError.SINGLETON_NOTIFIER_MSG, Notifier);
@@ -19,6 +34,11 @@ package org.weemvc.as3.core {
 			}
 		}
 		
+		/**
+		 * 返回通知类的实例，若没有创建则创建，若已创建，则返回该实例。
+		 * 
+		 * @return	当前的通知类实例。
+		 */
 		static public function getInstance():INotifier {
 			if (!m_instance) {
 				m_instance = new Notifier();
@@ -27,25 +47,21 @@ package org.weemvc.as3.core {
 		}
 		
 		/**
-		 * 添加观察者对象
-		 * @param	notification<Class/String>：通知
-		 * @param	observer<IObserver>：		观察者
+		 * @copy	org.weemvc.as3.core.INotifier#addObserver()
 		 */
 		public function addObserver(notification:Object, observer:IObserver):void {
 			var observers:Array = retrieve(notification);
-			//
+			//若已经存在，则追加；否则新建
 			if (observers) {
 				observers.push(observer);
 			} else {
-				observers = new Array(observer);
+				observers = [observer];
 			}
 			add(notification, observers);
 		}
 		
 		/**
-		 * 移除观察者对象
-		 * @param	notification<Class/String>：通知
-		 * @param	notifyContext<Object>：		此观察者函数域
+		 * @copy	org.weemvc.as3.core.INotifier#removeObserver()
 		 */
 		public function removeObserver(notification:Object, notifyContext:Object):void {
 			var observers:Array = retrieve(notification);
@@ -65,10 +81,8 @@ package org.weemvc.as3.core {
 		}
 		
 		/**
-		 * 发送 weemvc 事件通知
-		 * @param	notification<Class/String>：命令类或者每个 view 对应的相应的
-		 * 										notifications 列表里的某一通知
-		 * @param	data<Object>：				传递的参数
+		 * <p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.NOTIFICATION_NOT_FOUND</code>警告。</b></p>
+		 * @copy	org.weemvc.as3.core.INotifier#sendNotification()
 		 */
 		public function sendNotification(notification:Object, data:Object = null):void {
 			if (hasExists(notification)) {

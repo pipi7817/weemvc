@@ -1,5 +1,5 @@
 /**
- * WeeMVC - Copyright(c) 2008-2009
+ * WeeMVC - Copyright(c) 2008
  * 控制器--分发视图过来的操作
  * @author	weemve.org
  * 2008-12-14 16:39
@@ -12,11 +12,38 @@ package org.weemvc.as3.control {
 	import org.weemvc.as3.core.IObserver;
 	import org.weemvc.as3.WeemvcError;
 	import org.weemvc.as3.PaperLogger;
-	
+	/**
+	 * 控制器类。
+	 * 
+	 * <p>
+	 * 此类是采用命令模式实现的。主要有以下作用。例如：
+	 * </p>
+	 * <ul>
+	 * <li>添加命令类</li>
+	 * <li>删除命令类</li>
+	 * <li>执行命令类</li>
+	 * <li>检查指定的命令类是否存在</li>
+	 * </ul>
+	 * <p>
+	 * 通常是由观察者模式来出发此控制器来执行命令类。当然，您也可以自己来执行一个命令类。
+	 * </p>
+	 * 
+	 * @see org.weemvc.as3.control.IController		IController
+	 * @see org.weemvc.as3.control.ICommand			ICommand
+	 * @see org.weemvc.as3.control.MacroCommand		MacroCommand
+	 * @see org.weemvc.as3.control.SimpleCommand	SimpleCommand
+	 */
 	public class Controller extends WeemvcLocator implements IController {
+		/** @private **/
 		static private var m_instance:Controller = null;
+		/** @private **/
 		protected var m_notifier:INotifier = Notifier.getInstance();
 		
+		/**
+		 * 控制器类构造函数。
+		 * 
+		 * @throws org.weemvc.as3.WeemvcError 单件的<code>Controller</code>被实例化多次
+		 */
 		public function Controller() {
 			if (m_instance) {
 				throw new WeemvcError(WeemvcError.SINGLETON_CONTROLLER_MSG, Controller);
@@ -25,6 +52,11 @@ package org.weemvc.as3.control {
 			}
 		}
 		
+		/**
+		 * 返回控制器类的实例，若没有创建则创建，若已创建，则返回该实例。
+		 * 
+		 * @return	当前的控制器类实例。
+		 */
 		static public function getInstance():IController {
 			if (!m_instance) {
 				m_instance = new Controller();
@@ -33,8 +65,8 @@ package org.weemvc.as3.control {
 		}
 		
 		/**
-		 * 添加命令
-		 * @param	commandName<Class>：命令类
+		 * <p><b>注意：如果要添加的命令类已经添加，WeeMVC 会发出<code>WeemvcError.ADD_COMMAND_MSG</code>警告。</b></p>
+		 * @copy	org.weemvc.as3.control.IController#addCommand()
 		 */
 		public function addCommand(commandName:Class):void {
 			if (!hasExists(commandName)) {
@@ -47,31 +79,28 @@ package org.weemvc.as3.control {
 		}
 		
 		/**
-		 * 移除命令
-		 * @param	commandName<Class>：命令类
+		 * <p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.COMMAND_NOT_FOUND</code>警告。</b></p>
+		 * @copy	org.weemvc.as3.control.IController#removeCommand()
 		 */
 		public function removeCommand(commandName:Class):void {
 			if (hasExists(commandName)) {
 				m_notifier.removeObserver(commandName, this);
 				remove(commandName);
 			}else {
-				PaperLogger.getInstance().log(WeemvcError.REMOVE_COMMAND_MSG, Controller, commandName);
+				PaperLogger.getInstance().log(WeemvcError.COMMAND_NOT_FOUND, Controller, commandName);
 			}
 		}
 		
 		/**
-		 * 判断此命令是否已经存在
-		 * @param	commandName<Class>：命令类
-		 * @return<Boolean>：			是否存在
+		 * @copy	org.weemvc.as3.control.IController#hasCommand()
 		 */
 		public function hasCommand(commandName:Class):Boolean {
 			return hasExists(commandName);
 		}
 		
 		/**
-		 * 执行此命令
-		 * @param	commandName<Class>：命令类
-		 * @param	data<Objcet>：		实例化此命令类时所带的参数
+		 * <p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.COMMAND_NOT_FOUND</code>警告。</b></p>
+		 * @copy	org.weemvc.as3.control.IController#executeCommand()
 		 */
 		public function executeCommand(commandName:Class, data:Object = null):void {
 			if (hasExists(commandName)) {

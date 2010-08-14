@@ -1,5 +1,5 @@
-﻿/**
- * WeeMVC - Copyright(c) 2008-2009
+/**
+ * WeeMVC - Copyright(c) 2008
  * 简单命令基类
  * @author	weemve.org
  * 2009-1-11 1:28
@@ -12,25 +12,42 @@ package org.weemvc.as3.control {
 	import org.weemvc.as3.control.Controller;
 	import org.weemvc.as3.control.IController;
 	import org.weemvc.as3.core.Notifier;
-	
+	/**
+	 * 简单命令类。
+	 * 
+	 * <p>
+	 * 需要实现<code>ICommand</code>接口。
+	 * </p>
+	 * 
+	 * @see org.weemvc.as3.control.ICommand	ICommand
+	 */
 	public class SimpleCommand implements ICommand {
 		
+		/**
+		 * @copy	org.weemvc.as3.control.ICommand#execute()
+		 */
 		public function execute(data:Object = null):void{
-			//到子类将覆盖此函数
+			//在子类覆盖此函数
 		}
 		
+		/** WeeMVC modelLocator 句柄 **/
 		public function get modelLocator():IModelLocator {
 			return ModelLocator.getInstance();
 		}
 		
+		/** WeeMVC viewLocator 句柄 **/
 		public function get viewLocator():IViewLocator {
 			return ViewLocator.getInstance();
 		}
 		
+		/** WeeMVC controller 句柄 **/
 		public function get controller():IController {
 			return Controller.getInstance();
 		}
 		
+		/**
+		 * @copy	org.weemvc.as3.core.INotifier#sendNotification()
+		 */
 		public function sendNotification(notification:Object, data:Object = null):void {
 			Notifier.getInstance().sendNotification(notification, data);
 		}
