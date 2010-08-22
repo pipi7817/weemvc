@@ -17,14 +17,10 @@ package com.ibio8.components.buttons {
 		
 		/**
 		 * 构造函数
-		 * @param	button<MovieClip>:		库里当前的按钮 MC 或者是舞台上还未添加到显示列表的 MC
-		 * @param	useInherit<Boolean>:	是继承库里的 MC 还是将舞台上的 MC 作为资源加载进来，默认为false
+		 * @param	button	库里当前的按钮 MC 或者是舞台上还未添加到显示列表的 MC
 		 */
-		public function BaseRadioButton(button:MovieClip, useInherit:Boolean = false) {
+		public function BaseRadioButton(button:MovieClip) {
 			m_btn = button;
-			if (!useInherit) {
-				this.addChild(m_btn);
-			}
 			m_btn.stop();
 			m_btn.buttonMode = true;
 			m_btn.mouseChildren = false;

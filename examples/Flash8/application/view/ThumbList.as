@@ -1,11 +1,17 @@
-﻿import utils.Delegate;
+﻿/**
+ * 小图集合面板
+ * ibio-develop
+ * 2010-8-21 17:01
+ */
+import utils.Delegate;
 import mx.transitions.Tween;
 import mx.transitions.easing.*;
-import org.weemvc.as2.view.BaseView;
+import org.weemvc.as2.view.View;
 import application.model.vo.ImageVO;
 import application.actions.ShowImageCommand;
+import application.model.DataProxy;
 
-class application.view.ThumbList extends BaseView {
+class application.view.ThumbList extends View {
 	public static var NAME:String = "thumbList";
 	private var m_panel:MovieClip;
 	private var m_playList:Array;
@@ -14,14 +20,17 @@ class application.view.ThumbList extends BaseView {
 	
 	public function ThumbList(target:MovieClip) {
 		m_panel = target;
+		setNotifications([DataProxy.ON_DATA_LOADED]);
 	}
 	
-	public function init(playList:Array):Void {
-		m_playList = playList;
-		buildThumbs();
-		//默认是选中第1张
-		m_panel["mc_thumb" + 0].isSelected = true;
-		sendNotification(ShowImageCommand.NAME, 0);
+	public function onDataChanged(notification:String, data):Void {
+		if (notification == DataProxy.ON_DATA_LOADED) {
+			m_playList = data;
+			buildThumbs();
+			//默认是选中第1张
+			m_panel["mc_thumb" + 0].isSelected = true;
+			sendNotification(ShowImageCommand.NAME, 0);
+		}
 	}
 	
 	private function buildThumbs():Void {

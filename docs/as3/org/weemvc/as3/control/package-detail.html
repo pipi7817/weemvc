@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../../override.css" type="text/css"><title>org.weemvc.as3.control Summary</title></head><body><script language="javascript" type="text/javascript" src="../../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'org.weemvc.as3.control package - API Documentation';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">WeeMVC 框架接口文档[AS3]</td><td class="titleTableTopNav" align="right"><a href="../../../../package-summary.html" onclick="loadClassListFrame('../../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../../class-summary.html" onclick="loadClassListFrame('../../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../../all-index-A.html" onclick="loadClassListFrame('../../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../../index.html?org/weemvc/as3/control/package-detail.html&amp;org/weemvc/as3/control/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">org.weemvc.as3.control</td><td class="titleTableSubNav" id="subNav" align="right"><a href="package-detail.html#interfaceSummary"> Interfaces </a>&nbsp;| <a href="package-detail.html#classSummary">Classes</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("org.weemvc.as3.control"); titleBar_setSubNav(false,false,false,false,false,false,false,false,false,false,false	,false,false,true,true,false);}	
+				-->
+			</script><div class="MainContent"><br><br><hr><a name="interfaceSummary"></a><div class="summaryTableTitle">Interfaces</div><table cellpadding="3" cellspacing="0" class="summaryTable"><tr><th>&nbsp;</th><th width="30%">Interface</th><th width="70%">Description</th></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><i><a href="ICommand.html">ICommand</a></i></td><td class="summaryTableLastCol">
+	 命令类接口。
+	 
+	 
+	 所有的 WeeMVC 命令类都要实现此接口。然而，您不必重新自己全部实现它，因为 WeeMVC
+	 已经帮您实现好，您只需要继承以下类即可：
+	 
+	 
+	 SimpleCommand--在单个命令时可以继承此类。
+	 MacroCommand--需要同时执行多个命令时，可以继承此类。
+	 
+	 
+	 </td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><i><a href="IController.html">IController</a></i></td><td class="summaryTableLastCol">
+	 控制器类接口。
+	 
+	 </td></tr></table><a name="classSummary"></a><div class="summaryTableTitle">Classes</div><table cellpadding="3" cellspacing="0" class="summaryTable"><tr><th>&nbsp;</th><th width="30%">Class</th><th width="70%">Description</th></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="Controller.html">Controller</a></td><td class="summaryTableLastCol">
+	 控制器类。
+	 
+	 
+	 此类是采用命令模式实现的。主要有以下作用。例如：
+	 
+	 
+	 添加命令类
+	 删除命令类
+	 执行命令类
+	 检查指定的命令类是否存在
+	 
+	 
+	 通常是由观察者模式来出发此控制器来执行命令类。当然，您也可以自己来执行一个命令类。
+	 
+	 
+	 </td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="MacroCommand.html">MacroCommand</a></td><td class="summaryTableLastCol">
+	 宏命令类。
+	 
+	 
+	 此类继承自SimpleCommand。它和SimpleCommand区别是：它可以同时执行多个命令，而
+	 SimpleCommand一次只能执行一个命令。
+	 
+	 
+	 此宏命令类也需要实现ICommand接口。
+	 
+	 </td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="SimpleCommand.html">SimpleCommand</a></td><td class="summaryTableLastCol">
+	 简单命令类。
+	 
+	 
+	 需要实现ICommand接口。
+	 
+	 
+	 </td></tr></table><p></p><div><p></p><center class="copyright"><footer></footer><br/>Sun Aug 22 2010, 11:23 AM +08:00  </center></div></div></body></html><!--<br/>Sun Aug 22 2010, 11:23 AM +08:00  -->

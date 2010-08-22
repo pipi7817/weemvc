@@ -13,8 +13,10 @@ package application.actions {
 		
 		public override function execute(data:Object = null):void {
 			var model:DataProxy = modelLocator.getModel(DataProxy);
-			if ((data.playList != undefined) && (data.playList != "")) {
-				model.loadPlayList(data.playList);
+			if (data) {
+				model.loadPlayList(data as String);
+			}else {
+				model.loadPlayList("stuff/playList.json");
 			}
 		}
 	}

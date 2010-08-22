@@ -20,7 +20,7 @@ package application.actions {
 		}
 		
 		protected function addViews():void {
-			viewLocator.addView(StageInitialize);
+			viewLocator.addView(StageManager);
 			viewLocator.addView(BigImagePlayer, "mc_bigImagePlayer");
 			viewLocator.addView(ThumbList, "mc_thumbList");
 		}

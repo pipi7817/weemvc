@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * Weemvc map
  * Controller、ModelLocator、ViewLocator、Notifier 都继承此类
@@ -48,6 +48,7 @@ package org.weemvc.as3.core {
 		 * 获取指定的键值对。
 		 * 
 		 * @param	key		键
+		 * @return			根据键返回相应的值
 		 */
 		protected function retrieve(key:Object):* {
 			return m_weeMap[key];

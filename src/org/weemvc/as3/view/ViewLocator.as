@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * 视图集合类
  * @author	weemve.org
@@ -73,7 +73,7 @@ package org.weemvc.as3.view {
 			if (!hasExists(viewName)) {
 				PaperLogger.getInstance().log(WeemvcError.VIEW_NOT_FOUND, ViewLocator, viewName);
 			}
-			return m_weeMap[viewName];
+			return retrieve(viewName);
 		}
 		
 		/**
