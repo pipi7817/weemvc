@@ -6,24 +6,22 @@
  */
 import org.weemvc.as2.control.ICommand;
 import org.weemvc.as2.control.SimpleCommand;
-import application.actions.LoadDataCommand;
-import application.actions.ShowImageCommand;
-import application.model.DataProxy;
+import application.actions.*;
+import application.model.*;
 import application.view.*;
 	
 class application.actions.StartupCommand extends SimpleCommand implements ICommand {
 	public static var NAME:String = "startup";
 		
-	public function execute(data:Object, viewName:Object):Void {
+	public function execute(data):Void {
+		viewLocator.initialize(data);
 		addViews();
 		addModels();
 		addCommands();
-		//初始化view
-		viewLocator.initialize(MovieClip(data));
 	}
 	
 	private function addViews():Void {
-		viewLocator.addView(StageInitialize.NAME, StageInitialize);
+		viewLocator.addView(StageManager.NAME, StageManager);
 		viewLocator.addView(BigImagePlayer.NAME, BigImagePlayer, "mc_bigImagePlayer");
 		viewLocator.addView(ThumbList.NAME, ThumbList, "mc_thumbList");
 	}

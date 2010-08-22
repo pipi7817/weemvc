@@ -7,7 +7,7 @@
 		public var index:uint;
 		
 		public function MCThumbBox() {
-			super(this, true);
+			super(this);
 			this.txt_title.text = "";
 			this.txt_subtitle.text = "";
 		}

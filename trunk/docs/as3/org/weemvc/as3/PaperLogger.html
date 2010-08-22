@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="PaperLogger,org.weemvc.as3.PaperLogger,addLogger,formatMessage,getInstance,log,removeLogger"><title>org.weemvc.as3.PaperLogger</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'PaperLogger - API Documentation';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">WeeMVC 框架接口文档[AS3]</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?org/weemvc/as3/PaperLogger.html&amp;org/weemvc/as3/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">PaperLogger</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("PaperLogger"); titleBar_setSubNav(false,false,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">org.weemvc.as3</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  PaperLogger</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">PaperLogger  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><p></p><p></p>
+	 输出日志相关信息。
+	 
+	 <p>
+	 目前此类主要输出 WeeMVC 相关的异常警告。例如：
+	 </p>
+	              <ul>
+	                 <li>重复添加已添加过的命令类、视图类、模型类</li>
+	                 <li>重复删除已删除过的命令类、视图类、模型类</li>
+	                 <li>使用未添加的命令类、视图类、模型类</li>
+	              </ul>
+	              <p>
+	 默认的是将这些警告 trace 出来，另外您还可以自行添加日志类，将其输出到其他任何地方。
+	 </p>
+	 
+	           <p></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso"><a href="../../../org/weemvc/as3/model/ModelLocator.html" target="">Controller</a><br/><a href="../../../org/weemvc/as3/view/ViewLocator.html" target="">ViewLocator</a><br/><a href="../../../org/weemvc/as3/control/Controller.html" target="">Controller</a><br/><a href="../../../org/weemvc/as3/core/Notifier.html" target="">Notifier</a></div><br/><hr></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#PaperLogger()" class="signatureLink">PaperLogger</a>()</div><div class="summaryTableDescription">
+		 日志输出类构造函数。
+		 
+		 </div></td><td class="summaryTableOwnerCol">PaperLogger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addLogger()" class="signatureLink">addLogger</a>(logger:Class):void</div><div class="summaryTableDescription">
+		 添加其他日志类。
+		 
+		 注意：因为其他日志类设计为静态类和静态方法，所以这里没有使用接口来规范。
+		 </div></td><td class="summaryTableOwnerCol">PaperLogger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getInstance()" class="signatureLink">getInstance</a>():<a href="../../../org/weemvc/as3/PaperLogger.html">PaperLogger</a></div><div class="summaryTableDescription">[static] 
+		 返回日志输出类的实例，若没有创建则创建，若已创建，则返回该实例。
+		 
+		 </div></td><td class="summaryTableOwnerCol">PaperLogger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#log()" class="signatureLink">log</a>(info:String, currentClass:Class = null, ... rest):void</div><div class="summaryTableDescription">
+		 输出信息。
+		 
+		 </div></td><td class="summaryTableOwnerCol">PaperLogger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeLogger()" class="signatureLink">removeLogger</a>():void</div><div class="summaryTableDescription">
+		 移除当前的日志类。
+		 </div></td><td class="summaryTableOwnerCol">PaperLogger</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="PaperLogger()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">PaperLogger</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function PaperLogger()</code><p></p><p>
+		 日志输出类构造函数。
+		 
+		 </p><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../org/weemvc/as3/WeemvcError.html">WeemvcError</a> </code> &mdash; 单件的<code>PaperLogger</code>被实例化多次
+		 </td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="addLogger()"></a><a name="addLogger(Class)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addLogger</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function addLogger(logger:Class):void</code><p></p><p></p><p>
+		 添加其他日志类。
+		 
+		 <p><b>注意：因为其他日志类设计为静态类和静态方法，所以这里没有使用接口来规范。</b></p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">logger</span>:Class</code> &mdash; 包含静态方法record的其他日志类
+		 </td></tr></table></p><br/><span class="label"> Example </span><br/><div class="detailBody">下面例子说明怎样添加其他信息类，来将该信息输出到其他地方。
+		 <div class="listing" version="3.0"><pre>
+         package {
+             public class UnitDebug {
+             public static function record(msg:String):void {
+                 trace(msg);
+             }
+         }
+         }
+         //设置 WeeMVC 的日志输出类
+         PaperLogger.getInstance().addLogger(UnitDebug);
+         </pre></div>
+		 
+		 </div></div><a name="getInstance()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getInstance</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function getInstance():<a href="../../../org/weemvc/as3/PaperLogger.html">PaperLogger</a></code><p></p><p></p><p>
+		 返回日志输出类的实例，若没有创建则创建，若已创建，则返回该实例。
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../org/weemvc/as3/PaperLogger.html">PaperLogger</a></code> &mdash; 当前的日志输出类实例。
+		 </td></tr></table></div><a name="log()"></a><a name="log(String,Class,restParam)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">log</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function log(info:String, currentClass:Class = null, ... rest):void</code><p></p><p></p><p>
+		 输出信息。
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">info</span>:String</code> &mdash; 		当前要输出的信息
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">currentClass</span>:Class</code> (default = <code>null</code>)<code></code> &mdash; 当前输出内容的类
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code>... <span class="label">rest</span></code> &mdash; rest		其他要输出的任何信息
+		 </td></tr></table></p></div><a name="removeLogger()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeLogger</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeLogger():void</code><p></p><p></p><p>
+		 移除当前的日志类。
+		 </p></div><br/><br/><hr><br/><p></p><center class="copyright"><footer></footer><br/>Sun Aug 22 2010, 11:23 AM +08:00  </center></div></body></html><!--<br/>Sun Aug 22 2010, 11:23 AM +08:00  -->

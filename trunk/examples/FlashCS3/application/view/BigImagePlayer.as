@@ -22,7 +22,7 @@ package application.view {
 		protected var m_posList:Array = new Array();
 		protected var m_tweenX:Tween;
 		protected var m_tweenY:Tween;
-		protected var m_currIndex:uint;
+		protected var m_currentIndex:uint;
 		protected var m_imageList:Array = new Array();
 		
 		public function BigImagePlayer(target:MovieClip) {
@@ -48,12 +48,12 @@ package application.view {
 		
 		public function showImage(index:uint):void {
 			//trace(index);
-			m_currIndex = index;
-			var imageData:ImageVO = m_playList[m_currIndex] as ImageVO;
+			m_currentIndex = index;
+			var imageData:ImageVO = m_playList[m_currentIndex] as ImageVO;
 			m_player.txt_title.text = imageData.title;
 			m_player.txt_description.text = imageData.description;
-			var newX:uint = m_posList[m_currIndex].x;
-			var newY:uint = m_posList[m_currIndex].y;
+			var newX:uint = m_posList[m_currentIndex].x;
+			var newY:uint = m_posList[m_currentIndex].y;
 			try {
 				m_tweenX.stop();
 				m_tweenY.stop();
@@ -67,13 +67,11 @@ package application.view {
 		protected function buildImages():void {
 			for (var i = 0; i < m_playList.length; i++) {
 				var imageData:ImageVO = m_playList[i] as ImageVO;
-				var imageBox:ImageBox = new ImageBox(m_player.mc_mask.width, m_player.mc_mask.height);
-				//
+				var imageBox:ImageBox = new ImageBox(showImgLoadPercent, m_player.mc_mask.width, m_player.mc_mask.height);
 				imageBox.index = i;
 				imageBox.x = 0;
 				imageBox.y = i * m_player.mc_mask.height;
 				imageBox.load(imageData.location);
-				imageBox.loadDoLater(showImgLoadPercent);
 				m_player.mc_body.addChild(imageBox);
 				m_imageList.push(imageBox);
 				m_posList.push({x:imageBox.x, y:imageBox.y});
@@ -82,13 +80,13 @@ package application.view {
 		
 		protected function showImgLoadPercent(percent:uint):void {
 			//如果是当前的大图
-			if (m_imageList[m_currIndex].index == m_currIndex) {
+			if (m_imageList[m_currentIndex].index == m_currentIndex) {
 				sendNotification(Main.LOADING_IMAGE, percent);
 			}
 		}
 		
 		protected function onClickHandler(e:MouseEvent):void {
-			var imageData:ImageVO = m_playList[m_currIndex] as ImageVO;
+			var imageData:ImageVO = m_playList[m_currentIndex] as ImageVO;
 			navigateToURL(new URLRequest(imageData.clickUrl), "_blank");
 			//trace(imageData.clickUrl);
 		}

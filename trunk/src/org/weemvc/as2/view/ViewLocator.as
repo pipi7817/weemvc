@@ -1,25 +1,40 @@
 ﻿/**
- * WeeMVC - Copyright(c) 2008-2009
+ * WeeMVC - Copyright(c) 2008
  * 保存注册的视图类
  * 通过它,你可以找到你想要的视图
- * @version	1.0.22 + 8
  * @author	weemve.org
  * 2009-1-11 23:47
  */
+import org.weemvc.as2.core.WeemvcLocator;
+import org.weemvc.as2.core.Notifier;
+import org.weemvc.as2.core.INotifier;
+import org.weemvc.as2.core.Observer;
+import org.weemvc.as2.core.IObserver;
+import org.weemvc.as2.view.IViewLocator;
+import org.weemvc.as2.view.IView;
 import org.weemvc.as2.WeemvcError;
+import org.weemvc.as2.PaperLogger;
 
-class org.weemvc.as2.view.ViewLocator {
-	static private var m_instance:ViewLocator = null;
-	private var m_viewMap:Array = new Array();
+class org.weemvc.as2.view.ViewLocator extends WeemvcLocator implements IViewLocator {
+	/** @private **/
+	static private var m_instance:IViewLocator = null;
+	/** @private **/
+	private var m_main:MovieClip;
+	/** @private **/
+	private var m_notifier:INotifier;
 	
 	public function ViewLocator() {
-		if (m_instance != null) {
+		if (m_instance) {
 			throw new WeemvcError(WeemvcError.SINGLETON_VIEW_MSG, "ViewLocator");
+		}else {
+			m_instance = this;
+			m_weeMap = {};
+			m_notifier = Notifier.getInstance();
 		}
 	}
 	
-	static public function getInstance():ViewLocator{
-		if(m_instance == null){
+	static public function getInstance():IViewLocator{
+		if(!m_instance){
 			m_instance = new ViewLocator();
 		}
 		return m_instance;
@@ -31,47 +46,95 @@ class org.weemvc.as2.view.ViewLocator {
 	 * 应该使用每个view的句柄
 	 * @param	stage	文档类入口
 	 */
-	public function initialize(stage:MovieClip):Void {
-		for (var key:String in m_viewMap) {
-			var viewName:Object = m_viewMap[key].view;
-			var container:MovieClip = (m_viewMap[key].param != undefined) ? stage[m_viewMap[key].param] : stage;
-			m_viewMap[key].instance = new viewName(container);
-			m_viewMap[key].instance.viewName = viewName;
-		}
+	public function initialize(main:MovieClip):Void {
+		m_main = main;
 	}
 	
 	/**
-	 * 取回某个view
-	 * @param	viewName<String>:	注册的名字
-	 * @return	view instance:		当前的view
+	 * <p><b>注意：如果此视图类不存在，WeeMVC 会发出<code>WeemvcError.VIEW_NOT_FOUND</code>警告。</b></p>
+	 * @copy	org.weemvc.as2.view.IViewLocator#getView()
 	 */
-	public function retrieveView(viewName:String) {
-		if (!hasView(viewName)) {
-			throw new WeemvcError(WeemvcError.VIEW_NOT_FOUND, "ViewLocator", [viewName]);
+	public function getView(viewName:String) {
+		if (!hasExists(viewName)) {
+			PaperLogger.getInstance().log(WeemvcError.VIEW_NOT_FOUND, "ViewLocator", [viewName]);
 		}
-		return m_viewMap[viewName].instance;
+		return retrieve(viewName);
 	}
 	
 	/**
-	 * 添加view
-	 * @param	viewName<String>：		此view的 NAME
-	 * @param	viewClass<Object>：		此view的Class
-	 * @param	stageInstance<String>：	此view构造函数的参数，当前在舞台上对应的实例名
+	 * <p><b>注意：如果要添加视图类已经添加，WeeMVC 会发出<code>WeemvcError.ADD_VIEW_MSG</code>警告。</b></p>
+	 * @copy	org.weemvc.as2.view.IViewLocator#addView()
 	 */
 	public function addView(viewName:String, viewClass:Object, stageInstance:String):Void {
-		if (hasView(viewName)) {
-			throw new WeemvcError(WeemvcError.ADD_VIEW_MSG, "ViewLocator", [viewName]);
+		if (!hasExists(viewName)) {
+			var container:MovieClip = getContainer(m_main, stageInstance);
+			var viewInstance:IView = new viewClass(container);
+			var oberver:IObserver;
+			if (viewInstance.getNotifications().length > 0) {
+				for (var i:Number = 0; i < viewInstance.getNotifications().length; i++) {
+					oberver = new Observer(viewInstance.onDataChanged, viewInstance);
+					/**
+					 * 如果当前的 notification 是字符串，则添加到通知列表
+					 * 此操作意在过滤掉其他 view 对命令 notification 的侦听
+					 */
+					if (typeof(viewInstance.getNotifications()[i]) == "string") {
+						m_notifier.addObserver(viewInstance.getNotifications()[i], oberver);
+					}
+				}
+			}
+			add(viewName, viewInstance);
+		}else {
+			PaperLogger.getInstance().log(WeemvcError.ADD_VIEW_MSG, "ViewLocator", [viewName]);
 		}
-		m_viewMap[viewName] = {view:viewClass, instance:null, param:stageInstance};
 	}
 	
 	public function hasView(viewName:String):Boolean {
-		return m_viewMap[viewName] != undefined;
+		return hasExists(viewName);
 	}
 	
 	public function removeView(viewName:String):Void {
-		if (hasView(viewName)){
-			delete m_viewMap[viewName];
+		if (hasExists(viewName)) {
+			var viewInstance:IView = getView(viewName);
+			if (viewInstance) {
+				var notifications:Array = viewInstance.getNotifications();
+				//移除该视图里面所有的通知
+				for ( var i:Number = 0; i < notifications.length; i++ ) {
+					m_notifier.removeObserver(notifications[i], viewInstance);
+				}
+			}
+			remove(viewName);
+		}else {
+			PaperLogger.getInstance().log(WeemvcError.VIEW_NOT_FOUND, "ViewLocator", [viewName]);
 		}
+	}
+	
+	/** @private **/
+	//递归获得舞台上相应的 MC
+	private function getContainer(main:MovieClip, param:String):MovieClip {
+		var container:MovieClip = main;
+		if (!param) {
+			return container;
+		}
+		var temp:Array = param.split(".");
+		if(temp && temp.length > 0){
+			for (var i:Number = 0; i < temp.length; i++) {
+				if (!container[temp[i]]) {
+					throw new WeemvcError(WeemvcError.MC_NOT_FOUND, "ViewLocator", [getFullPath(container) + " 容器内的 " +  temp[i]]);
+				}else {
+					container = container[temp[i]];
+				}
+			}
+		}
+		return container;
+	}
+	
+	/** @private **/
+	private function getFullPath(data:MovieClip):String {
+		var path:String = data._name;
+		while (m_main && (data._parent != m_main)) {
+			data = MovieClip(data._parent);
+			path = data._name + "." + path;
+		}
+		return path;
 	}
 }

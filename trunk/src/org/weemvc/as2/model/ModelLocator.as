@@ -1,65 +1,74 @@
 ﻿/**
- * WeeMVC - Copyright(c) 2008-2009
+ * WeeMVC - Copyright(c) 2008
  * 单例模式的数据集合
- * @version	1.0.22 + 8
  * @author	weemve.org
  * 2009-1-11 21:40
  */
+import org.weemvc.as2.core.WeemvcLocator;
+import org.weemvc.as2.model.IModelLocator;
 import org.weemvc.as2.WeemvcError;
+import org.weemvc.as2.PaperLogger;
 
-class org.weemvc.as2.model.ModelLocator {
-	static private var m_instance:ModelLocator = null;
-	private var m_modelMap:Array = new Array();
+class org.weemvc.as2.model.ModelLocator extends WeemvcLocator implements IModelLocator {
+	/** @private **/
+	static private var m_instance:IModelLocator = null;
 	
 	public function ModelLocator() {
-		if (m_instance != null) {
+		if (m_instance) {
 			throw new WeemvcError(WeemvcError.SINGLETON_MODEL_MSG, "ModelLocator");
+		}else {
+			m_instance = this;
+			m_weeMap = {};
 		}
 	}
 	
-	static public function getInstance():ModelLocator{
-		if(m_instance == null){
+	static public function getInstance():IModelLocator {
+		if (!m_instance) {
 			m_instance = new ModelLocator();
 		}
 		return m_instance;
 	}
 	
 	/**
-	 * 取回某个model
-	 * @param	modelName<String>:		注册的名字
-	 * @return	model instance:			当前的model
+	 * <p><b>注意：如果此模型类不存在，WeeMVC 会发出<code>WeemvcError.MODEL_NOT_FOUND</code>警告。</b></p>
+	 * @copy	org.weemvc.as2.model.IModelLocator#getModel()
 	 */
-	public function retrieveModel(modelName:String) {
+	public function getModel(modelName:String) {
 		if (!hasModel(modelName)) {
-			throw new WeemvcError(WeemvcError.MODEL_NOT_FOUND, "ModelLocator", [modelName]);
+			PaperLogger.getInstance().log(WeemvcError.MODEL_NOT_FOUND, "ModelLocator", [modelName]);
 		}
-		return m_modelMap[modelName];
+		return retrieve(modelName);
 	}
 	
 	/**
-	 * 添加model
-	 * @param	modelName<String>：	此model的 NAME
-	 * @param	modelClass<Object>：此model的Class
-	 * @param	data<Object>：		此model构造函数的参数
+	 * <p><b>注意：如果要添加模型类已经添加，WeeMVC 会发出<code>WeemvcError.ADD_MODEL_MSG</code>警告。</b></p>
+	 * @copy	org.weemvc.as2.model.IModelLocator#addModel()
 	 */
-	public function addModel(modelName:String, modelClass:Object, data:Object):Void {
-		if (hasModel(modelName)) {
-			throw new WeemvcError(WeemvcError.ADD_MODEL_MSG, "ModelLocator", [modelName]);
-		}
-		if (data != undefined) {
-			m_modelMap[modelName] = new modelClass(data);
+	public function addModel(modelName:String, modelClass:Object, data):Void {
+		if (!hasExists(modelName)) {
+			if (data) {
+				add(modelName, new modelClass(data));
+			}else {
+				add(modelName, new modelClass());
+			}
 		}else {
-			m_modelMap[modelName] = new modelClass();
+			PaperLogger.getInstance().log(WeemvcError.ADD_MODEL_MSG, "ModelLocator", [modelName]);
 		}
 	}
 	
 	public function hasModel(modelName:String):Boolean {
-		return m_modelMap[modelName] != undefined;
+		return hasExists(modelName);
 	}
 	
+	/**
+	 * <p><b>注意：如果此模型类不存在，WeeMVC 会发出<code>WeemvcError.MODEL_NOT_FOUND</code>警告。</b></p>
+	 * @copy	org.weemvc.as2.model.IModelLocator#removeModel()
+	 */
 	public function removeModel(modelName:String):Void {
-		if (hasModel(modelName)){
-			delete m_modelMap[modelName];
+		if (hasExists(modelName)) {
+			remove(modelName);
+		}else {
+			PaperLogger.getInstance().log(WeemvcError.MODEL_NOT_FOUND, "ModelLocator", [modelName]);
 		}
 	}
 }
