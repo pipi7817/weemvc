@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>class View</title>
+	<style type="text/css">
+	/* ZenDoc identity */
+	.zendoc { font-family: Arial, Helvetica, sans-serif; margin:3px; }
+	.zendoc a:hover { text-decoration:none; }
+	.zendoc span.title-comment { font-family: Verdana, Arial, Helvetica, sans-serif; font-size:80%; color:#AAA; }
+	.zendoc span.title-zen { color:#26A; font-weight:normal; }
+	.zendoc span.title-doc { color:black; font-weight:bold; }
+	/* overall */
+	html, body, div { margin:0; padding:0; border:none; }
+	body { font-family:Arial, Helvetica, sans-serif; font-size:90%; }
+	a { text-decoration:none; }
+	a:hover { text-decoration:underline; }
+	h2 { color:#999; margin:2em 0 0 0; padding:0 2px 0 20px; border-bottom:2px solid #58B; }
+	h3 { color:#B36B00; margin-top:3em; }
+	dl { margin:.5em 0 3px 0; }
+	dt { font-weight:bold; }
+	td { vertical-align:top; }
+	th { text-align:left; color:#58B; background-color:#E3ECF4; }
+	code { font-size:1.1em; }
+	/* specific */
+	#header { background-color:#EAEAEA; padding:1px; }
+	#links { color:#999; background-color:#FFE; border-bottom:1px solid #58B; padding:2px 20px; }
+	#links a { color:#999; }
+	.content { padding:10px 20px; }
+	#class-definition { background-color:#58B; color:white; }
+	#class-definition .classkind { font-weight:bold; }
+	#class-definition .classkind .package { font-weight:normal; }
+	#class-definition .classname { font-size:4em; margin:5px 0; }
+	#class-definition .superclassname { padding-left:20px; font-style:italic; }
+	#class-definition .implements { padding-left:20px; font-style:italic; }
+	#class-info .content { margin:20px; border:1px solid #58B; }
+	pre.definition { background-color:#FFE; border:1px solid #E4E29A; padding:3px; }
+	.generated {
+		font-style:italic;
+		font-size:80%;
+		color:#666;
+		margin:1em 0 0 0;
+		padding:5px 20px;
+		border-top:1px solid #999;
+	}
+	/* tables */
+	.member-list { border:1px solid #58B; margin:2em 20px; }
+	.member-list a { color:#B36B00; }
+	.member-list table { border-collapse:collapse; }
+	.member-list td { border-top:1px solid #58B; }
+	.member-list td.name { width:175px; text-align:right; padding-right:5px; }
+	.member-list table { width:100%; }
+	.even { background-color:#FFE; }
+	.odd { background-color:white; }
+	.param .name { color:#666; }
+	</style>
+</head>
+
+<body>
+<div id="page">
+	<div id="header">
+		<h4 class="zendoc"><a href="../" title="返回"><span class="title-comment">返回</span></a></h4>
+	</div>
+	<div id="class-definition" class="section">
+		<div class="content">
+			
+			<div class="classkind">class <span class="package">org.weemvc.as2.view</span></div>
+			<h1 class="classname">View</h1>
+			
+			
+			<div class="implements">Implements: IView</div>
+		</div>
+		<div id="links">
+			<a href="#class-info">Class Information</a>
+			
+			
+			 | <a href="#class-methods">Methods</a>
+			 | <a href="#class-events">Events</a>
+		</div>
+	</div>
+	
+	<div id="class-info" class="section">
+		<h2>Class Information</h2>
+		<div class="content">
+			
+				<dl>
+					
+					
+					<dt>Description</dt>
+					<dd>视图类。WeeMVC 的视图。
+<p>
+<b>注意：这里没有继承 FLASH API 中任何一个显示对象（例如 Sprite），
+是因为这里的 view 将是以一个中介者存在，会将舞台上的相关实例引用通过构造函数传到此
+view 的子类中。而此 view 的子类本身将不会显示到 FLASH 的 stage 中。</b>
+</p>
+<p>
+构造函数 public function View(panel:MovieClip) 这里 panel 指舞台上的相关实例的引用，
+因为此类中构造函数未做实质性的内容，所以为方便使用，这里不实现此构造函数。
+</p></dd>
+					
+					class org.weemvc.as2.view.View implements IView</dd>
+					
+				</dl>
+			
+			
+			</div>
+			
+			
+			
+			
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Methods</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#sendNotification">sendNotification()</a></td>
+					<td>�</td>
+				</tr><tr class="odd">
+					<td class="name"><a href="#setNotifications">setNotifications()</a></td>
+					<td>设置当前视图需要监听的 notification 列表。
+<p>当系统发出此列表中包含的事件（名称）时，当前视图中的 onDataChanged 
+能够立即监听到此事件，且形参 notification 就是当前事件的名称
+<b>注意：这里个列表中的每个元素为 String 类型，即和 onDataChanged
+中形参 notification 的数据类型一致</b></p></td>
+				</tr><tr class="even">
+					<td class="name"><a href="#getNotifications">getNotifications()</a></td>
+					<td>返回当前监听的 notification 列表。</td>
+				</tr>
+			</table></div>
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Events</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#onDataChanged">onDataChanged</a></td>
+					<td>�</td>
+				</tr>
+			</table></div>
+	</div>
+		
+	
+	
+	<br />
+	<div id="class-methods" class="member-group section">
+		<h2>Methods</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="sendNotification">sendNotification()</h3>
+				<pre class="definition"><code>public function sendNotification(notification:String, data):Void</code></pre>
+				<div></div>
+				
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="setNotifications">setNotifications()</h3>
+				<pre class="definition"><code>public function setNotifications(list:Array):Void</code></pre>
+				<div>设置当前视图需要监听的 notification 列表。
+<p>当系统发出此列表中包含的事件（名称）时，当前视图中的 onDataChanged 
+能够立即监听到此事件，且形参 notification 就是当前事件的名称
+<b>注意：这里个列表中的每个元素为 String 类型，即和 onDataChanged
+中形参 notification 的数据类型一致</b></p></div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>list</code></td><td>当前视图需要监听的notification（String）列表</td></tr>
+					</table></dd>
+				</dl>
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="getNotifications">getNotifications()</h3>
+				<pre class="definition"><code>public function getNotifications():Array</code></pre>
+				<div>返回当前监听的 notification 列表。</div>
+				
+				
+				
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	<br />
+	<div id="class-events" class="member-group section">
+		<h2>Events</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="onDataChanged">onDataChanged</h3>
+				<pre class="definition"><code>public function onDataChanged(notification:String, data):Void</code></pre>
+				<div></div>
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	<p class="generated">Page generated: 12:17 pm on August 26, 2010</p>
+</div>
+</body>
+</html>

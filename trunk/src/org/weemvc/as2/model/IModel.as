@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008
  * 模型接口
  * @author	weemve.org

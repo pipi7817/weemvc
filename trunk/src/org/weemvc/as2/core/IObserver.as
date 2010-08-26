@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008
  * 观察者接口
  * @author	weemve.org

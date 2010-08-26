@@ -104,6 +104,13 @@ package org.weemvc.as3.view {
 		}
 		
 		/**
+		 * @copy	org.weemvc.as3.view.IViewLocator#hasView()
+		 */
+		public function hasView(viewName:Class):Boolean {
+			return hasExists(viewName);
+		}
+		
+		/**
 		 * <p><b>注意：如果要添加视图类已经添加，WeeMVC 会发出<code>WeemvcError.VIEW_NOT_FOUND</code>警告。</b></p>
 		 * @copy	org.weemvc.as3.view.IViewLocator#removeView()
 		 */
@@ -121,13 +128,6 @@ package org.weemvc.as3.view {
 			}else {
 				PaperLogger.getInstance().log(WeemvcError.VIEW_NOT_FOUND, ViewLocator, viewName);
 			}
-		}
-		
-		/**
-		 * @copy	org.weemvc.as3.view.IViewLocator#hasView()
-		 */
-		public function hasView(viewName:Class):Boolean {
-			return hasExists(viewName);
 		}
 		
 		/** @private **/

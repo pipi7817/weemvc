@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Classes</title>
+	<style type="text/css">
+	/* ZenDoc identity */
+	.zendoc { font-family: Arial, Helvetica, sans-serif; margin:3px; }
+	.zendoc a:hover { text-decoration:none; }
+	.zendoc span.title-comment { font-family: Verdana, Arial, Helvetica, sans-serif; font-size:80%; color:#AAA; }
+	.zendoc span.title-zen { color:#26A; font-weight:normal; }
+	.zendoc span.title-doc { color:black; font-weight:bold; }
+	/* overall */
+	html, body, div { margin:0; padding:0; border:none; }
+	body { font-family:Arial, Helvetica, sans-serif; font-size:90%; }
+	a { text-decoration:none; }
+	a:hover { text-decoration:underline; }
+	h2 { color:#999; margin:2em 0 0 0; padding:0 2px 0 20px; border-bottom:2px solid #58B; }
+	h3 { color:#B36B00; margin-top:3em; }
+	dl { margin:.5em 0 3px 0; }
+	dt { font-weight:bold; }
+	td { vertical-align:top; }
+	th { text-align:left; color:#58B; background-color:#E3ECF4; }
+	code { font-size:1.1em; }
+	/* specific */
+	#header { background-color:#EAEAEA; padding:1px; }
+	#links { color:#999; background-color:#FFE; border-bottom:1px solid #58B; padding:2px 20px; }
+	#links a { color:#999; }
+	.content { padding:10px 20px; }
+	#class-definition { background-color:#58B; color:white; }
+	#class-definition .classkind { font-weight:bold; }
+	#class-definition .classkind .package { font-weight:normal; }
+	#class-definition .classname { font-size:4em; margin:5px 0; }
+	#class-definition .superclassname { padding-left:20px; font-style:italic; }
+	#class-definition .implements { padding-left:20px; font-style:italic; }
+	#class-info .content { margin:20px; border:1px solid #58B; }
+	pre.definition { background-color:#FFE; border:1px solid #E4E29A; padding:3px; }
+	.generated {
+		font-style:italic;
+		font-size:80%;
+		color:#666;
+		margin:1em 0 0 0;
+		padding:5px 20px;
+		border-top:1px solid #999;
+	}
+	/* tables */
+	.member-list { border:1px solid #58B; margin:2em 20px; }
+	.member-list a { color:#B36B00; }
+	.member-list table { border-collapse:collapse; }
+	.member-list td { border-top:1px solid #58B; }
+	.member-list td.name { width:175px; text-align:left; padding-right:5px; }
+	.member-list table { width:100%; }
+	.even { background-color:#FFE; }
+	.odd { background-color:white; }
+	.param .name { color:#666; }
+	</style>
+</head>
+
+<body>
+<div id="page">
+	<div id="header">
+		<h4 class="zendoc"><a href="../" title="返回"><span class="title-comment">返回</span></a></h4>
+  </div>
+	<div id="class-definition" class="section">
+		<div class="content">
+    	<div class="classkind">Packages<span class="package"> org.weemvc.as2.control</span></div>
+		<h1 class="classname">WeeMVC 框架接口文档[AS2]</h1>
+	</div>
+</div>
+	
+<div id="class-info" class="section">
+		<h2>Interfaces、Classes</h2>
+        
+        <div class="member-list">
+			<table><tr><th colspan="2">Interfaces</th></tr>
+				<tr class="even">
+					<td class="name"><a href="ICommand.html"><em>ICommand</em></a></td>
+					<td>控制器类接口。  </td>
+				</tr>
+                <tr class="even">
+					<td class="name"><a href="IController.html"><em>IController</em></a></td>
+					<td>命令类接口。 所有的 WeeMVC 命令类都要实现此接口。然而，您不必重新自己全部实现它，因为 WeeMVC 已经帮您实现好，您只需要继承以下类即可： SimpleCommand--在单个命令时可以继承此类。 MacroCommand--需要同时执行多个命令时，可以继承此类。 </td>
+				</tr>
+			</table></div>
+        
+		<div class="member-list">
+         <table><tr><th colspan="2">Class</th></tr>
+				<tr class="even">
+					<td class="name"><a href="Controller.html">Controller</a><a href="PaperLogger.html"></a></td>
+					<td>控制器类。  	   	   	 此类是采用命令模式实现的。主要有以下作用。例如：  	   	   	 添加命令类  	 删除命令类  	 执行命令类  	 检查指定的命令类是否存在  	   	   	 通常是由观察者模式来出发此控制器来执行命令类。当然，您也可以自己来执行一个命令类。 </td>
+				</tr><tr class="odd">
+					<td class="name"><a href="MacroCommand.html">MacroCommand</a><a href="Version.html"></a></td>
+					<td>宏命令类。  	   	   	 此类继承自SimpleCommand。它和SimpleCommand区别是：它可以同时执行多个命令，而  	 SimpleCommand一次只能执行一个命令。  	   	   	 此宏命令类也需要实现ICommand接口。 </td>
+				</tr><tr class="even">
+					<td class="name"><a href="SimpleCommand.html">SimpleCommand</a></td>
+					<td>简单命令类。  	   	   	 需要实现ICommand接口。 </td>
+				</tr>
+			</table>
+          </div>
+</div>
+	<p class="generated">Page generated: 11:34 am on August 26, 2010</p>
+</div>
+</body>
+</html>

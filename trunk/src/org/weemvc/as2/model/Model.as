@@ -1,12 +1,12 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008
  * 模型基类
  * @author	weemve.org
  * 2009-5-11 20:45
  */
-
 import org.weemvc.as2.core.Notifier;
 import org.weemvc.as2.model.IModel;
+
 /**
  * 模型类。
  * 

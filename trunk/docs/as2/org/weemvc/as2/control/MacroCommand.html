@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>class MacroCommand</title>
+	<style type="text/css">
+	/* ZenDoc identity */
+	.zendoc { font-family: Arial, Helvetica, sans-serif; margin:3px; }
+	.zendoc a:hover { text-decoration:none; }
+	.zendoc span.title-comment { font-family: Verdana, Arial, Helvetica, sans-serif; font-size:80%; color:#AAA; }
+	.zendoc span.title-zen { color:#26A; font-weight:normal; }
+	.zendoc span.title-doc { color:black; font-weight:bold; }
+	/* overall */
+	html, body, div { margin:0; padding:0; border:none; }
+	body { font-family:Arial, Helvetica, sans-serif; font-size:90%; }
+	a { text-decoration:none; }
+	a:hover { text-decoration:underline; }
+	h2 { color:#999; margin:2em 0 0 0; padding:0 2px 0 20px; border-bottom:2px solid #58B; }
+	h3 { color:#B36B00; margin-top:3em; }
+	dl { margin:.5em 0 3px 0; }
+	dt { font-weight:bold; }
+	td { vertical-align:top; }
+	th { text-align:left; color:#58B; background-color:#E3ECF4; }
+	code { font-size:1.1em; }
+	/* specific */
+	#header { background-color:#EAEAEA; padding:1px; }
+	#links { color:#999; background-color:#FFE; border-bottom:1px solid #58B; padding:2px 20px; }
+	#links a { color:#999; }
+	.content { padding:10px 20px; }
+	#class-definition { background-color:#58B; color:white; }
+	#class-definition .classkind { font-weight:bold; }
+	#class-definition .classkind .package { font-weight:normal; }
+	#class-definition .classname { font-size:4em; margin:5px 0; }
+	#class-definition .superclassname { padding-left:20px; font-style:italic; }
+	#class-definition .implements { padding-left:20px; font-style:italic; }
+	#class-info .content { margin:20px; border:1px solid #58B; }
+	pre.definition { background-color:#FFE; border:1px solid #E4E29A; padding:3px; }
+	.generated {
+		font-style:italic;
+		font-size:80%;
+		color:#666;
+		margin:1em 0 0 0;
+		padding:5px 20px;
+		border-top:1px solid #999;
+	}
+	/* tables */
+	.member-list { border:1px solid #58B; margin:2em 20px; }
+	.member-list a { color:#B36B00; }
+	.member-list table { border-collapse:collapse; }
+	.member-list td { border-top:1px solid #58B; }
+	.member-list td.name { width:175px; text-align:right; padding-right:5px; }
+	.member-list table { width:100%; }
+	.even { background-color:#FFE; }
+	.odd { background-color:white; }
+	.param .name { color:#666; }
+	</style>
+</head>
+
+<body>
+<div id="page">
+	<div id="header">
+		<h4 class="zendoc"><a href="../" title="返回"><span class="title-comment">返回</span></a></h4>
+	</div>
+	<div id="class-definition" class="section">
+		<div class="content">
+			
+			<div class="classkind">class <span class="package">org.weemvc.as2.control</span></div>
+			<h1 class="classname">MacroCommand</h1>
+			
+			<div class="superclassname">Extends: SimpleCommand</div>
+			<div class="implements">Implements: ICommand</div>
+		</div>
+		<div id="links">
+			<a href="#class-info">Class Information</a>
+			 | <a href="#class-constructors">Constructors</a>
+			 | <a href="#class-properties">Properties</a>
+			 | <a href="#class-methods">Methods</a>
+			
+		</div>
+	</div>
+	
+	<div id="class-info" class="section">
+		<h2>Class Information</h2>
+		<div class="content">
+			
+				<dl>
+					
+					
+					<dt>Description</dt>
+					<dd>宏命令类。
+<p>
+此类继承自<code>SimpleCommand</code>。它和<code>SimpleCommand</code>区别是：它可以同时执行多个命令，而
+<code>SimpleCommand</code>一次只能执行一个命令。
+</p>
+<p>
+此宏命令类也需要实现<code>ICommand</code>接口。
+</p></dd>
+					
+					class org.weemvc.as2.control.MacroCommand extends SimpleCommand implements ICommand</dd>
+					
+				</dl>
+			
+			
+			</div>
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Constructors</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#MacroCommand">MacroCommand()</a></td>
+					<td>控制器类构造函数。</td>
+				</tr>
+			</table></div>
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Properties</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#m_subCommands">m_subCommands</a></td>
+					<td>�</td>
+				</tr>
+			</table></div>
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Methods</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#initialize">initialize()</a></td>
+					<td>初始化宏命令类。</td>
+				</tr><tr class="odd">
+					<td class="name"><a href="#addSubCommand">addSubCommand()</a></td>
+					<td>添加将要同时执行的命令类。</td>
+				</tr><tr class="even">
+					<td class="name"><a href="#execute">execute()</a></td>
+					<td>执行宏命令类。</td>
+				</tr>
+			</table></div>
+			
+			
+	</div>
+		
+	<br />
+	
+	<div id="class-constructors" class="member-group section">
+		<h2>Constructors</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="MacroCommand">MacroCommand()</h3>
+				<pre class="definition"><code>public function MacroCommand()</code></pre>
+				<div>控制器类构造函数。</div>
+				
+				
+				
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	<br />
+	<div id="class-properties" class="member-group section">
+		<h2>Properties</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="m_subCommands">m_subCommands</h3>
+				<pre class="definition"><code>private var m_subCommands:Array</code></pre>
+				<div></div>
+				
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	<br />
+	<div id="class-methods" class="member-group section">
+		<h2>Methods</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="initialize">initialize()</h3>
+				<pre class="definition"><code>private function initialize():Void</code></pre>
+				<div>初始化宏命令类。</div>
+				
+				
+				
+			<dl>
+					<dt>Example:</dt>
+					<dd>下面例子说明通常初始化的做法。
+<listing version="2.0">
+package {
+	import org.weemvc.as2.control.MacroCommand;
+	public class DemoMacroCommand extends MacroCommand {
+	override protected function initialize():void {
+			//这里的 OneCommand、TwoCommand、ThreeCommand 都是继承自 SimpleCommand 的命令类
+		addSubCommand(OneCommand);
+		addSubCommand(TwoCommand);
+		addSubCommand(ThreeCommand);
+	}
+}
+}
+</listing></dd>
+				</dl>
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="addSubCommand">addSubCommand()</h3>
+				<pre class="definition"><code>private function addSubCommand(commandClass:Object):Void</code></pre>
+				<div>添加将要同时执行的命令类。</div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>commandName</code></td><td>要添加的命令类，都要实现<code>ICommand</code>接口，
+通常这里是 SimpleCommand 的子类</td></tr>
+					</table></dd>
+				</dl>
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="execute">execute()</h3>
+				<pre class="definition"><code>public function execute(data):Void</code></pre>
+				<div>执行宏命令类。</div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>data</code></td><td>实例化命令类时所带的参数，这里每个子命令类的参数都一样</td></tr>
+					</table></dd>
+				</dl>
+				
+				
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	
+	<p class="generated">Page generated: 12:17 pm on August 26, 2010</p>
+</div>
+</body>
+</html>

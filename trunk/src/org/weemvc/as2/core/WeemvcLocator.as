@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008
  * Weemvc map
  * Controller、ModelLocator、ViewLocator、Notifier 都继承此类

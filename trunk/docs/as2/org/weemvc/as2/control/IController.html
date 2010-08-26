@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>interface IController</title>
+	<style type="text/css">
+	/* ZenDoc identity */
+	.zendoc { font-family: Arial, Helvetica, sans-serif; margin:3px; }
+	.zendoc a:hover { text-decoration:none; }
+	.zendoc span.title-comment { font-family: Verdana, Arial, Helvetica, sans-serif; font-size:80%; color:#AAA; }
+	.zendoc span.title-zen { color:#26A; font-weight:normal; }
+	.zendoc span.title-doc { color:black; font-weight:bold; }
+	/* overall */
+	html, body, div { margin:0; padding:0; border:none; }
+	body { font-family:Arial, Helvetica, sans-serif; font-size:90%; }
+	a { text-decoration:none; }
+	a:hover { text-decoration:underline; }
+	h2 { color:#999; margin:2em 0 0 0; padding:0 2px 0 20px; border-bottom:2px solid #58B; }
+	h3 { color:#B36B00; margin-top:3em; }
+	dl { margin:.5em 0 3px 0; }
+	dt { font-weight:bold; }
+	td { vertical-align:top; }
+	th { text-align:left; color:#58B; background-color:#E3ECF4; }
+	code { font-size:1.1em; }
+	/* specific */
+	#header { background-color:#EAEAEA; padding:1px; }
+	#links { color:#999; background-color:#FFE; border-bottom:1px solid #58B; padding:2px 20px; }
+	#links a { color:#999; }
+	.content { padding:10px 20px; }
+	#class-definition { background-color:#58B; color:white; }
+	#class-definition .classkind { font-weight:bold; }
+	#class-definition .classkind .package { font-weight:normal; }
+	#class-definition .classname { font-size:4em; margin:5px 0; }
+	#class-definition .superclassname { padding-left:20px; font-style:italic; }
+	#class-definition .implements { padding-left:20px; font-style:italic; }
+	#class-info .content { margin:20px; border:1px solid #58B; }
+	pre.definition { background-color:#FFE; border:1px solid #E4E29A; padding:3px; }
+	.generated {
+		font-style:italic;
+		font-size:80%;
+		color:#666;
+		margin:1em 0 0 0;
+		padding:5px 20px;
+		border-top:1px solid #999;
+	}
+	/* tables */
+	.member-list { border:1px solid #58B; margin:2em 20px; }
+	.member-list a { color:#B36B00; }
+	.member-list table { border-collapse:collapse; }
+	.member-list td { border-top:1px solid #58B; }
+	.member-list td.name { width:175px; text-align:right; padding-right:5px; }
+	.member-list table { width:100%; }
+	.even { background-color:#FFE; }
+	.odd { background-color:white; }
+	.param .name { color:#666; }
+	</style>
+</head>
+
+<body>
+<div id="page">
+	<div id="header">
+		<h4 class="zendoc"><a href="../" title="返回"><span class="title-comment">返回</span></a></h4>
+	</div>
+	<div id="class-definition" class="section">
+		<div class="content">
+			
+			<div class="classkind">interface <span class="package">org.weemvc.as2.control</span></div>
+			<h1 class="classname">IController</h1>
+			
+			
+			
+		</div>
+		<div id="links">
+			<a href="#class-info">Class Information</a>
+			
+			
+			 | <a href="#class-methods">Methods</a>
+			
+		</div>
+	</div>
+	
+	<div id="class-info" class="section">
+		<h2>Class Information</h2>
+		<div class="content">
+			
+				<dl>
+					
+					
+					<dt>Description</dt>
+					<dd>控制器类接口。</dd>
+					
+					interface org.weemvc.as2.control.IController</dd>
+					
+				</dl>
+			
+			
+			</div>
+			
+			
+			
+			
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Methods</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#addCommand">addCommand()</a></td>
+					<td>添加命令类。</td>
+				</tr><tr class="odd">
+					<td class="name"><a href="#removeCommand">removeCommand()</a></td>
+					<td>移除命令类。</td>
+				</tr><tr class="even">
+					<td class="name"><a href="#hasCommand">hasCommand()</a></td>
+					<td>判断此命令类是否已经存在。</td>
+				</tr><tr class="odd">
+					<td class="name"><a href="#executeCommand">executeCommand()</a></td>
+					<td>执行此命令类。</td>
+				</tr>
+			</table></div>
+			
+			
+	</div>
+		
+	
+	
+	<br />
+	<div id="class-methods" class="member-group section">
+		<h2>Methods</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="addCommand">addCommand()</h3>
+				<pre class="definition"><code>function addCommand(commandName:String, commandClass:Object):Void</code></pre>
+				<div>添加命令类。</div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>commandName</code></td><td>要添加的命令类，都要实现<code>ICommand</code>接口</td></tr>
+					</table></dd>
+				</dl>
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="removeCommand">removeCommand()</h3>
+				<pre class="definition"><code>function removeCommand(commandName:String):Void</code></pre>
+				<div>移除命令类。</div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>commandName</code></td><td>要移除的命令类，都要实现<code>ICommand</code>接口</td></tr>
+					</table></dd>
+				</dl>
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="hasCommand">hasCommand()</h3>
+				<pre class="definition"><code>function hasCommand(commandName:String):Boolean</code></pre>
+				<div>判断此命令类是否已经存在。</div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>commandName</code></td><td>要判断的命令类，都要实现<code>ICommand</code>接口</td></tr>
+					</table></dd>
+				</dl>
+				<dl>
+					<dt>Returns:</dt>
+					<dd>是否存在</dd>
+				</dl>
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="executeCommand">executeCommand()</h3>
+				<pre class="definition"><code>public function executeCommand(commandName:String, data):Void</code></pre>
+				<div>执行此命令类。</div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>commandName</code></td><td>要执行的命令类，都要实现<code>ICommand</code>接口</td></tr>
+					<tr><td class="name"><code>data</code></td><td>实例化此命令类时所带的参数</td></tr>
+					</table></dd>
+				</dl>
+				
+				
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	
+	<p class="generated">Page generated: 12:17 pm on August 26, 2010</p>
+</div>
+</body>
+</html>

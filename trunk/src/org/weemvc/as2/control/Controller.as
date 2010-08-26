@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008
  * 控制器--分发视图过来的操作
  * @author	weemve.org
@@ -14,12 +14,38 @@ import org.weemvc.as2.core.INotifier;
 import org.weemvc.as2.core.Observer;
 import org.weemvc.as2.core.IObserver;
 
+/**
+ * 控制器类。
+ * 
+ * <p>
+ * 此类是采用命令模式实现的。主要有以下作用。例如：
+ * </p>
+ * <ul>
+ * <li>添加命令类</li>
+ * <li>删除命令类</li>
+ * <li>执行命令类</li>
+ * <li>检查指定的命令类是否存在</li>
+ * </ul>
+ * <p>
+ * 通常是由观察者模式来出发此控制器来执行命令类。当然，您也可以自己来执行一个命令类。
+ * </p>
+ * 
+ * @see org.weemvc.as2.control.IController		IController
+ * @see org.weemvc.as2.control.ICommand			ICommand
+ * @see org.weemvc.as2.control.MacroCommand		MacroCommand
+ * @see org.weemvc.as2.control.SimpleCommand	SimpleCommand
+ */
 class org.weemvc.as2.control.Controller extends WeemvcLocator implements IController {
 	/** @private **/
 	static private var m_instance:IController = null;
 	/** @private **/
 	private var m_notifier:INotifier;
-		
+	
+	/**
+	 * 控制器类构造函数。
+	 * 
+	 * @throws org.weemvc.as2.WeemvcError 单件的<code>Controller</code>被实例化多次
+	 */
 	public function Controller() {
 		if (m_instance) {
 			throw new WeemvcError(WeemvcError.SINGLETON_CONTROLLER_MSG, "Controller", null);
@@ -30,6 +56,11 @@ class org.weemvc.as2.control.Controller extends WeemvcLocator implements IContro
 		}
 	}
 	
+	/**
+	 * 返回控制器类的实例，若没有创建则创建，若已创建，则返回该实例。
+	 * 
+	 * @return	当前的控制器类实例。
+	 */
 	static public function getInstance():IController{
 		if (!m_instance) {
 			m_instance = new Controller();
@@ -37,6 +68,10 @@ class org.weemvc.as2.control.Controller extends WeemvcLocator implements IContro
 		return m_instance;
 	}
 	
+	/**
+	 * <p><b>注意：如果要添加的命令类已经添加，WeeMVC 会发出<code>WeemvcError.ADD_COMMAND_MSG</code>警告。</b></p>
+	 * @copy	org.weemvc.as2.control.IController#addCommand()
+	 */
 	public function addCommand(commandName:String, commandClass:Object):Void {
 		if (!hasExists(commandName)) {
 			var oberver:IObserver = new Observer(executeCommand, this);
@@ -47,10 +82,17 @@ class org.weemvc.as2.control.Controller extends WeemvcLocator implements IContro
 		}
 	}
 	
+	/**
+	 * <p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.COMMAND_NOT_FOUND</code>警告。</b></p>
+	 * @copy	org.weemvc.as2.control.IController#removeCommand()
+	 */
 	public function hasCommand(commandName:String):Boolean {
 		return hasExists(commandName);
 	}
 	
+	/**
+	 * @copy	org.weemvc.as2.control.IController#hasCommand()
+	 */
 	public function removeCommand(commandName:String):Void {
 		if (hasExists(commandName)) {
 			m_notifier.removeObserver(commandName, this);
@@ -60,6 +102,10 @@ class org.weemvc.as2.control.Controller extends WeemvcLocator implements IContro
 		}
 	}
 	
+	/**
+	 * <p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.COMMAND_NOT_FOUND</code>警告。</b></p>
+	 * @copy	org.weemvc.as2.control.IController#executeCommand()
+	 */
 	public function executeCommand(commandName:String, data):Void {
 		if (hasExists(commandName)) {
 			var commandClass:Object = retrieve(commandName);

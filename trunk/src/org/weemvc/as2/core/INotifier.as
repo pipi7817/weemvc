@@ -1,10 +1,11 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008
  * 发送事件接口
  * @author	weemve.org
  * 2009-5-11 18:30
  */
 import org.weemvc.as2.core.IObserver;
+
 /**
  * WeeMVC 事件类接口。
  * 
