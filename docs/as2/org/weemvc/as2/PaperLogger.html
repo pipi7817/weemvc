@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>class PaperLogger</title>
+	<style type="text/css">
+	/* ZenDoc identity */
+	.zendoc { font-family: Arial, Helvetica, sans-serif; margin:3px; }
+	.zendoc a:hover { text-decoration:none; }
+	.zendoc span.title-comment { font-family: Verdana, Arial, Helvetica, sans-serif; font-size:80%; color:#AAA; }
+	.zendoc span.title-zen { color:#26A; font-weight:normal; }
+	.zendoc span.title-doc { color:black; font-weight:bold; }
+	/* overall */
+	html, body, div { margin:0; padding:0; border:none; }
+	body { font-family:Arial, Helvetica, sans-serif; font-size:90%; }
+	a { text-decoration:none; }
+	a:hover { text-decoration:underline; }
+	h2 { color:#999; margin:2em 0 0 0; padding:0 2px 0 20px; border-bottom:2px solid #58B; }
+	h3 { color:#B36B00; margin-top:3em; }
+	dl { margin:.5em 0 3px 0; }
+	dt { font-weight:bold; }
+	td { vertical-align:top; }
+	th { text-align:left; color:#58B; background-color:#E3ECF4; }
+	code { font-size:1.1em; }
+	/* specific */
+	#header { background-color:#EAEAEA; padding:1px; }
+	#links { color:#999; background-color:#FFE; border-bottom:1px solid #58B; padding:2px 20px; }
+	#links a { color:#999; }
+	.content { padding:10px 20px; }
+	#class-definition { background-color:#58B; color:white; }
+	#class-definition .classkind { font-weight:bold; }
+	#class-definition .classkind .package { font-weight:normal; }
+	#class-definition .classname { font-size:4em; margin:5px 0; }
+	#class-definition .superclassname { padding-left:20px; font-style:italic; }
+	#class-definition .implements { padding-left:20px; font-style:italic; }
+	#class-info .content { margin:20px; border:1px solid #58B; }
+	pre.definition { background-color:#FFE; border:1px solid #E4E29A; padding:3px; }
+	.generated {
+		font-style:italic;
+		font-size:80%;
+		color:#666;
+		margin:1em 0 0 0;
+		padding:5px 20px;
+		border-top:1px solid #999;
+	}
+	/* tables */
+	.member-list { border:1px solid #58B; margin:2em 20px; }
+	.member-list a { color:#B36B00; }
+	.member-list table { border-collapse:collapse; }
+	.member-list td { border-top:1px solid #58B; }
+	.member-list td.name { width:175px; text-align:right; padding-right:5px; }
+	.member-list table { width:100%; }
+	.even { background-color:#FFE; }
+	.odd { background-color:white; }
+	.param .name { color:#666; }
+	</style>
+</head>
+
+<body>
+<div id="page">
+	<div id="header">
+		<h4 class="zendoc"><a href="../" title="返回"><span class="title-comment">返回</span></a></h4>
+	</div>
+	<div id="class-definition" class="section">
+		<div class="content">
+			
+			<div class="classkind">class <span class="package">org.weemvc.as2</span></div>
+			<h1 class="classname">PaperLogger</h1>
+			
+			
+			
+		</div>
+		<div id="links">
+			<a href="#class-info">Class Information</a>
+			 | <a href="#class-constructors">Constructors</a>
+			 | <a href="#class-properties">Properties</a>
+			 | <a href="#class-methods">Methods</a>
+			
+		</div>
+	</div>
+	
+	<div id="class-info" class="section">
+		<h2>Class Information</h2>
+		<div class="content">
+			
+				<dl>
+					
+					
+					<dt>Description</dt>
+					<dd>输出日志相关信息。
+<p>
+目前此类主要输出 WeeMVC 相关的异常警告。例如：
+</p>
+<ul>
+<li>重复添加已添加过的命令类、视图类、模型类</li>
+<li>重复删除已删除过的命令类、视图类、模型类</li>
+<li>使用未添加的命令类、视图类、模型类</li>
+</ul>
+<p>
+默认的是将这些警告 trace 出来，另外您还可以自行添加日志类，将其输出到其他任何地方。
+</p></dd>
+					
+					class org.weemvc.as2.PaperLogger</dd>
+					
+				</dl>
+			
+			
+			</div>
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Constructors</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#PaperLogger">PaperLogger()</a></td>
+					<td>日志输出类构造函数。</td>
+				</tr>
+			</table></div>
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Properties</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#m_instance">m_instance</a></td>
+					<td>�</td>
+				</tr>
+			</table></div>
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Methods</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#getInstance">getInstance()</a></td>
+					<td>返回日志输出类的实例，若没有创建则创建，若已创建，则返回该实例。</td>
+				</tr><tr class="odd">
+					<td class="name"><a href="#addLogger">addLogger()</a></td>
+					<td>添加其他日志类。
+<p><b>注意：因为其他日志类设计为静态类和静态方法，所以这里没有使用接口来规范。</b></p></td>
+				</tr><tr class="even">
+					<td class="name"><a href="#removeLogger">removeLogger()</a></td>
+					<td>移除当前的日志类。</td>
+				</tr><tr class="odd">
+					<td class="name"><a href="#log">log()</a></td>
+					<td>输出信息。</td>
+				</tr>
+			</table></div>
+			
+			
+	</div>
+		
+	<br />
+	
+	<div id="class-constructors" class="member-group section">
+		<h2>Constructors</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="PaperLogger">PaperLogger()</h3>
+				<pre class="definition"><code>public function PaperLogger()</code></pre>
+				<div>日志输出类构造函数。</div>
+				
+				
+				<dl>
+					<dt>Throws:</dt>
+					<dd>org.weemvc.as2.WeemvcError 单件的<code>PaperLogger</code>被实例化多次</dd>
+				</dl>
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	<br />
+	<div id="class-properties" class="member-group section">
+		<h2>Properties</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="m_instance">m_instance</h3>
+				<pre class="definition"><code>static private var m_instance:PaperLogger</code></pre>
+				<div></div>
+				
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	<br />
+	<div id="class-methods" class="member-group section">
+		<h2>Methods</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="getInstance">getInstance()</h3>
+				<pre class="definition"><code>static public function getInstance():PaperLogger</code></pre>
+				<div>返回日志输出类的实例，若没有创建则创建，若已创建，则返回该实例。</div>
+				
+				<dl>
+					<dt>Returns:</dt>
+					<dd>当前的日志输出类实例。</dd>
+				</dl>
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="addLogger">addLogger()</h3>
+				<pre class="definition"><code>public function addLogger(logger:Object):Void</code></pre>
+				<div>添加其他日志类。
+<p><b>注意：因为其他日志类设计为静态类和静态方法，所以这里没有使用接口来规范。</b></p></div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>logger</code></td><td>包含静态方法record的其他日志类</td></tr>
+					</table></dd>
+				</dl>
+				
+				
+			<dl>
+					<dt>Example:</dt>
+					<dd>下面例子说明怎样添加其他信息类，来将该信息输出到其他地方。
+<listing version="2.0">
+package {
+	public class UnitDebug {
+	public static function record(msg:String):Void {
+		trace(msg);
+	}
+}
+}
+//设置 WeeMVC 的日志输出类
+PaperLogger.getInstance().addLogger(UnitDebug);
+</listing></dd>
+				</dl>
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="removeLogger">removeLogger()</h3>
+				<pre class="definition"><code>public function removeLogger():Void</code></pre>
+				<div>移除当前的日志类。</div>
+				
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="log">log()</h3>
+				<pre class="definition"><code>public function log(info:String, className:String, rest:Array):Void</code></pre>
+				<div>输出信息。</div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>info</code></td><td>当前要输出的信息</td></tr>
+					<tr><td class="name"><code>className</code></td><td>当前输出内容的类名</td></tr>
+					<tr><td class="name"><code>rest</code></td><td>其他要输出的任何信息</td></tr>
+					</table></dd>
+				</dl>
+				
+				
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	
+	<p class="generated">Page generated: 12:17 pm on August 26, 2010</p>
+</div>
+</body>
+</html>

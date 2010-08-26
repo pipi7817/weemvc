@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008
  * 保存注册的视图类
  * 通过它,你可以找到你想要的视图
@@ -15,6 +15,15 @@ import org.weemvc.as2.view.IView;
 import org.weemvc.as2.WeemvcError;
 import org.weemvc.as2.PaperLogger;
 
+/**
+ * 视图集合类。
+ * 
+ * <p>
+ * 保存所有的视图类。通过它,你可以找到你想要的视图。
+ * </p>
+ * 
+ * @see org.weemvc.as2.view.IViewLocator	IViewLocator
+ */
 class org.weemvc.as2.view.ViewLocator extends WeemvcLocator implements IViewLocator {
 	/** @private **/
 	static private var m_instance:IViewLocator = null;
@@ -23,6 +32,11 @@ class org.weemvc.as2.view.ViewLocator extends WeemvcLocator implements IViewLoca
 	/** @private **/
 	private var m_notifier:INotifier;
 	
+	/**
+	 * 视图集合类构造函数。
+	 * 
+	 * @throws org.weemvc.as2.WeemvcError 单件的<code>ViewLocator</code>被实例化多次
+	 */
 	public function ViewLocator() {
 		if (m_instance) {
 			throw new WeemvcError(WeemvcError.SINGLETON_VIEW_MSG, "ViewLocator");
@@ -33,6 +47,11 @@ class org.weemvc.as2.view.ViewLocator extends WeemvcLocator implements IViewLoca
 		}
 	}
 	
+	/**
+	 * 返回视图集合类的实例，若没有创建则创建，若已创建，则返回该实例。
+	 * 
+	 * @return	当前的视图集合类实例。
+	 */
 	static public function getInstance():IViewLocator{
 		if(!m_instance){
 			m_instance = new ViewLocator();
@@ -41,10 +60,10 @@ class org.weemvc.as2.view.ViewLocator extends WeemvcLocator implements IViewLoca
 	}
 	
 	/**
-	 * 这里是构造所有的view的地方
-	 * 注意不要直接在本类（ViewLocator）里使用main以及main里的实例
-	 * 应该使用每个view的句柄
-	 * @param	stage	文档类入口
+	 * 这里是构造所有的 view 的地方
+	 * <b>注意不要直接在本类（ViewLocator）里使用 main 以及 main 里的实例</b>
+	 * 应该使用每个 view 的句柄
+	 * @param	stage	舞台（root）的引用
 	 */
 	public function initialize(main:MovieClip):Void {
 		m_main = main;
@@ -88,10 +107,17 @@ class org.weemvc.as2.view.ViewLocator extends WeemvcLocator implements IViewLoca
 		}
 	}
 	
+	/**
+	 * @copy	org.weemvc.as2.view.IViewLocator#hasView()
+	 */
 	public function hasView(viewName:String):Boolean {
 		return hasExists(viewName);
 	}
 	
+	/**
+	 * <p><b>注意：如果要添加视图类已经添加，WeeMVC 会发出<code>WeemvcError.VIEW_NOT_FOUND</code>警告。</b></p>
+	 * @copy	org.weemvc.as2.view.IViewLocator#removeView()
+	 */
 	public function removeView(viewName:String):Void {
 		if (hasExists(viewName)) {
 			var viewInstance:IView = getView(viewName);

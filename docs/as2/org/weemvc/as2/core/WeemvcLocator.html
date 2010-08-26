@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>class WeemvcLocator</title>
+	<style type="text/css">
+	/* ZenDoc identity */
+	.zendoc { font-family: Arial, Helvetica, sans-serif; margin:3px; }
+	.zendoc a:hover { text-decoration:none; }
+	.zendoc span.title-comment { font-family: Verdana, Arial, Helvetica, sans-serif; font-size:80%; color:#AAA; }
+	.zendoc span.title-zen { color:#26A; font-weight:normal; }
+	.zendoc span.title-doc { color:black; font-weight:bold; }
+	/* overall */
+	html, body, div { margin:0; padding:0; border:none; }
+	body { font-family:Arial, Helvetica, sans-serif; font-size:90%; }
+	a { text-decoration:none; }
+	a:hover { text-decoration:underline; }
+	h2 { color:#999; margin:2em 0 0 0; padding:0 2px 0 20px; border-bottom:2px solid #58B; }
+	h3 { color:#B36B00; margin-top:3em; }
+	dl { margin:.5em 0 3px 0; }
+	dt { font-weight:bold; }
+	td { vertical-align:top; }
+	th { text-align:left; color:#58B; background-color:#E3ECF4; }
+	code { font-size:1.1em; }
+	/* specific */
+	#header { background-color:#EAEAEA; padding:1px; }
+	#links { color:#999; background-color:#FFE; border-bottom:1px solid #58B; padding:2px 20px; }
+	#links a { color:#999; }
+	.content { padding:10px 20px; }
+	#class-definition { background-color:#58B; color:white; }
+	#class-definition .classkind { font-weight:bold; }
+	#class-definition .classkind .package { font-weight:normal; }
+	#class-definition .classname { font-size:4em; margin:5px 0; }
+	#class-definition .superclassname { padding-left:20px; font-style:italic; }
+	#class-definition .implements { padding-left:20px; font-style:italic; }
+	#class-info .content { margin:20px; border:1px solid #58B; }
+	pre.definition { background-color:#FFE; border:1px solid #E4E29A; padding:3px; }
+	.generated {
+		font-style:italic;
+		font-size:80%;
+		color:#666;
+		margin:1em 0 0 0;
+		padding:5px 20px;
+		border-top:1px solid #999;
+	}
+	/* tables */
+	.member-list { border:1px solid #58B; margin:2em 20px; }
+	.member-list a { color:#B36B00; }
+	.member-list table { border-collapse:collapse; }
+	.member-list td { border-top:1px solid #58B; }
+	.member-list td.name { width:175px; text-align:right; padding-right:5px; }
+	.member-list table { width:100%; }
+	.even { background-color:#FFE; }
+	.odd { background-color:white; }
+	.param .name { color:#666; }
+	</style>
+</head>
+
+<body>
+<div id="page">
+	<div id="header">
+		<h4 class="zendoc"><a href="../" title="返回"><span class="title-comment">返回</span></a></h4>
+	</div>
+	<div id="class-definition" class="section">
+		<div class="content">
+			
+			<div class="classkind">class <span class="package">org.weemvc.as2.core</span></div>
+			<h1 class="classname">WeemvcLocator</h1>
+			
+			
+			
+		</div>
+		<div id="links">
+			<a href="#class-info">Class Information</a>
+			
+			 | <a href="#class-properties">Properties</a>
+			 | <a href="#class-methods">Methods</a>
+			
+		</div>
+	</div>
+	
+	<div id="class-info" class="section">
+		<h2>Class Information</h2>
+		<div class="content">
+			
+				<dl>
+					
+					
+					<dt>Description</dt>
+					<dd>字典类。用来保存类似 key-value 键值对的引用。
+<p>
+Controller、ModelLocator、ViewLocator、Notifier 都继承此类。
+</p></dd>
+					
+					class org.weemvc.as2.core.WeemvcLocator</dd>
+					
+				</dl>
+			
+			
+			</div>
+			
+			
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Properties</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#m_weeMap">m_weeMap</a></td>
+					<td>�</td>
+				</tr>
+			</table></div>
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Methods</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#add">add()</a></td>
+					<td>添加一个新的键值对。</td>
+				</tr><tr class="odd">
+					<td class="name"><a href="#remove">remove()</a></td>
+					<td>移除指定的键值对。</td>
+				</tr><tr class="even">
+					<td class="name"><a href="#retrieve">retrieve()</a></td>
+					<td>获取指定的键值对。</td>
+				</tr><tr class="odd">
+					<td class="name"><a href="#hasExists">hasExists()</a></td>
+					<td>判断指定的键值对是否已经存在。</td>
+				</tr>
+			</table></div>
+			
+			
+	</div>
+		
+	
+	<br />
+	<div id="class-properties" class="member-group section">
+		<h2>Properties</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="m_weeMap">m_weeMap</h3>
+				<pre class="definition"><code>private var m_weeMap:Object</code></pre>
+				<div></div>
+				
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	<br />
+	<div id="class-methods" class="member-group section">
+		<h2>Methods</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="add">add()</h3>
+				<pre class="definition"><code>private function add(key:String, value):Void</code></pre>
+				<div>添加一个新的键值对。</div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>key</code></td><td>键</td></tr>
+					<tr><td class="name"><code>value</code></td><td>值</td></tr>
+					</table></dd>
+				</dl>
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="remove">remove()</h3>
+				<pre class="definition"><code>private function remove(key:String):Void</code></pre>
+				<div>移除指定的键值对。</div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>key</code></td><td>键</td></tr>
+					</table></dd>
+				</dl>
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="retrieve">retrieve()</h3>
+				<pre class="definition"><code>private function retrieve(key:String)</code></pre>
+				<div>获取指定的键值对。</div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>key</code></td><td>键</td></tr>
+					</table></dd>
+				</dl>
+				<dl>
+					<dt>Returns:</dt>
+					<dd>根据键返回相应的值，这里没有指定类型是为了方便返回的实例直接使用</dd>
+				</dl>
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="hasExists">hasExists()</h3>
+				<pre class="definition"><code>private function hasExists(key:String):Boolean</code></pre>
+				<div>判断指定的键值对是否已经存在。</div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>key</code></td><td>键</td></tr>
+					</table></dd>
+				</dl>
+				<dl>
+					<dt>Returns:</dt>
+					<dd>是否存在</dd>
+				</dl>
+				
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	
+	<p class="generated">Page generated: 12:17 pm on August 26, 2010</p>
+</div>
+</body>
+</html>

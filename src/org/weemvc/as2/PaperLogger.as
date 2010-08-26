@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008
  * 输出日志
  * @author	weemve.org
@@ -64,7 +64,7 @@ class org.weemvc.as2.PaperLogger {
 	 * 
 	 * <p><b>注意：因为其他日志类设计为静态类和静态方法，所以这里没有使用接口来规范。</b></p>
 	 * @example 下面例子说明怎样添加其他信息类，来将该信息输出到其他地方。
-	 * <listing version="3.0">
+	 * <listing version="2.0">
 	 * package {
 	 * 	public class UnitDebug {
 	 *		public static function record(msg:String):Void {

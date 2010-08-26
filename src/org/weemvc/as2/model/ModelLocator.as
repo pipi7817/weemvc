@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008
  * 单例模式的数据集合
  * @author	weemve.org
@@ -9,10 +9,25 @@ import org.weemvc.as2.model.IModelLocator;
 import org.weemvc.as2.WeemvcError;
 import org.weemvc.as2.PaperLogger;
 
+/**
+ * 模型集合类。
+ * 
+ * <p>
+ * WeeMVC 的所有模型的集合类。
+ * </p>
+ * 
+ * @see org.weemvc.as2.model.IModelLocator	IModelLocator
+ * @see org.weemvc.as2.model.IModel			IModel
+ */
 class org.weemvc.as2.model.ModelLocator extends WeemvcLocator implements IModelLocator {
 	/** @private **/
 	static private var m_instance:IModelLocator = null;
 	
+	/**
+	 * 模型集合类构造函数。
+	 * 
+	 * @throws org.weemvc.as2.WeemvcError 单件的<code>ModelLocator</code>被实例化多次
+	 */
 	public function ModelLocator() {
 		if (m_instance) {
 			throw new WeemvcError(WeemvcError.SINGLETON_MODEL_MSG, "ModelLocator");
@@ -22,6 +37,11 @@ class org.weemvc.as2.model.ModelLocator extends WeemvcLocator implements IModelL
 		}
 	}
 	
+	/**
+	 * 返回模型集合类的实例，若没有创建则创建，若已创建，则返回该实例。
+	 * 
+	 * @return	当前的模型集合类实例。
+	 */
 	static public function getInstance():IModelLocator {
 		if (!m_instance) {
 			m_instance = new ModelLocator();

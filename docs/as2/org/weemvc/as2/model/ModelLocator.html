@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>class ModelLocator</title>
+	<style type="text/css">
+	/* ZenDoc identity */
+	.zendoc { font-family: Arial, Helvetica, sans-serif; margin:3px; }
+	.zendoc a:hover { text-decoration:none; }
+	.zendoc span.title-comment { font-family: Verdana, Arial, Helvetica, sans-serif; font-size:80%; color:#AAA; }
+	.zendoc span.title-zen { color:#26A; font-weight:normal; }
+	.zendoc span.title-doc { color:black; font-weight:bold; }
+	/* overall */
+	html, body, div { margin:0; padding:0; border:none; }
+	body { font-family:Arial, Helvetica, sans-serif; font-size:90%; }
+	a { text-decoration:none; }
+	a:hover { text-decoration:underline; }
+	h2 { color:#999; margin:2em 0 0 0; padding:0 2px 0 20px; border-bottom:2px solid #58B; }
+	h3 { color:#B36B00; margin-top:3em; }
+	dl { margin:.5em 0 3px 0; }
+	dt { font-weight:bold; }
+	td { vertical-align:top; }
+	th { text-align:left; color:#58B; background-color:#E3ECF4; }
+	code { font-size:1.1em; }
+	/* specific */
+	#header { background-color:#EAEAEA; padding:1px; }
+	#links { color:#999; background-color:#FFE; border-bottom:1px solid #58B; padding:2px 20px; }
+	#links a { color:#999; }
+	.content { padding:10px 20px; }
+	#class-definition { background-color:#58B; color:white; }
+	#class-definition .classkind { font-weight:bold; }
+	#class-definition .classkind .package { font-weight:normal; }
+	#class-definition .classname { font-size:4em; margin:5px 0; }
+	#class-definition .superclassname { padding-left:20px; font-style:italic; }
+	#class-definition .implements { padding-left:20px; font-style:italic; }
+	#class-info .content { margin:20px; border:1px solid #58B; }
+	pre.definition { background-color:#FFE; border:1px solid #E4E29A; padding:3px; }
+	.generated {
+		font-style:italic;
+		font-size:80%;
+		color:#666;
+		margin:1em 0 0 0;
+		padding:5px 20px;
+		border-top:1px solid #999;
+	}
+	/* tables */
+	.member-list { border:1px solid #58B; margin:2em 20px; }
+	.member-list a { color:#B36B00; }
+	.member-list table { border-collapse:collapse; }
+	.member-list td { border-top:1px solid #58B; }
+	.member-list td.name { width:175px; text-align:right; padding-right:5px; }
+	.member-list table { width:100%; }
+	.even { background-color:#FFE; }
+	.odd { background-color:white; }
+	.param .name { color:#666; }
+	</style>
+</head>
+
+<body>
+<div id="page">
+	<div id="header">
+		<h4 class="zendoc"><a href="../" title="返回"><span class="title-comment">返回</span></a></h4>
+	</div>
+	<div id="class-definition" class="section">
+		<div class="content">
+			
+			<div class="classkind">class <span class="package">org.weemvc.as2.model</span></div>
+			<h1 class="classname">ModelLocator</h1>
+			
+			<div class="superclassname">Extends: WeemvcLocator</div>
+			<div class="implements">Implements: IModelLocator</div>
+		</div>
+		<div id="links">
+			<a href="#class-info">Class Information</a>
+			 | <a href="#class-constructors">Constructors</a>
+			 | <a href="#class-properties">Properties</a>
+			 | <a href="#class-methods">Methods</a>
+			
+		</div>
+	</div>
+	
+	<div id="class-info" class="section">
+		<h2>Class Information</h2>
+		<div class="content">
+			
+				<dl>
+					
+					
+					<dt>Description</dt>
+					<dd>模型集合类。
+<p>
+WeeMVC 的所有模型的集合类。
+</p></dd>
+					
+					class org.weemvc.as2.model.ModelLocator extends WeemvcLocator implements IModelLocator</dd>
+					
+				</dl>
+			
+			
+			</div>
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Constructors</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#ModelLocator">ModelLocator()</a></td>
+					<td>模型集合类构造函数。</td>
+				</tr>
+			</table></div>
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Properties</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#m_instance">m_instance</a></td>
+					<td>�</td>
+				</tr>
+			</table></div>
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Methods</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#getInstance">getInstance()</a></td>
+					<td>返回模型集合类的实例，若没有创建则创建，若已创建，则返回该实例。</td>
+				</tr><tr class="odd">
+					<td class="name"><a href="#getModel">getModel()</a></td>
+					<td><p><b>注意：如果此模型类不存在，WeeMVC 会发出<code>WeemvcError.MODEL_NOT_FOUND</code>警告。</b></p></td>
+				</tr><tr class="even">
+					<td class="name"><a href="#addModel">addModel()</a></td>
+					<td><p><b>注意：如果要添加模型类已经添加，WeeMVC 会发出<code>WeemvcError.ADD_MODEL_MSG</code>警告。</b></p></td>
+				</tr><tr class="odd">
+					<td class="name"><a href="#removeModel">removeModel()</a></td>
+					<td><p><b>注意：如果此模型类不存在，WeeMVC 会发出<code>WeemvcError.MODEL_NOT_FOUND</code>警告。</b></p></td>
+				</tr>
+			</table></div>
+			
+			
+	</div>
+		
+	<br />
+	
+	<div id="class-constructors" class="member-group section">
+		<h2>Constructors</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="ModelLocator">ModelLocator()</h3>
+				<pre class="definition"><code>public function ModelLocator()</code></pre>
+				<div>模型集合类构造函数。</div>
+				
+				
+				<dl>
+					<dt>Throws:</dt>
+					<dd>org.weemvc.as2.WeemvcError 单件的<code>ModelLocator</code>被实例化多次</dd>
+				</dl>
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	<br />
+	<div id="class-properties" class="member-group section">
+		<h2>Properties</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="m_instance">m_instance</h3>
+				<pre class="definition"><code>static private var m_instance:IModelLocator</code></pre>
+				<div></div>
+				
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	<br />
+	<div id="class-methods" class="member-group section">
+		<h2>Methods</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="getInstance">getInstance()</h3>
+				<pre class="definition"><code>static public function getInstance():IModelLocator</code></pre>
+				<div>返回模型集合类的实例，若没有创建则创建，若已创建，则返回该实例。</div>
+				
+				<dl>
+					<dt>Returns:</dt>
+					<dd>当前的模型集合类实例。</dd>
+				</dl>
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="getModel">getModel()</h3>
+				<pre class="definition"><code>public function getModel(modelName:String)</code></pre>
+				<div><p><b>注意：如果此模型类不存在，WeeMVC 会发出<code>WeemvcError.MODEL_NOT_FOUND</code>警告。</b></p></div>
+				
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="addModel">addModel()</h3>
+				<pre class="definition"><code>public function addModel(modelName:String, modelClass:Object, data):Void</code></pre>
+				<div><p><b>注意：如果要添加模型类已经添加，WeeMVC 会发出<code>WeemvcError.ADD_MODEL_MSG</code>警告。</b></p></div>
+				
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="removeModel">removeModel()</h3>
+				<pre class="definition"><code>public function removeModel(modelName:String):Void</code></pre>
+				<div><p><b>注意：如果此模型类不存在，WeeMVC 会发出<code>WeemvcError.MODEL_NOT_FOUND</code>警告。</b></p></div>
+				
+				
+				
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	
+	<p class="generated">Page generated: 12:17 pm on August 26, 2010</p>
+</div>
+</body>
+</html>

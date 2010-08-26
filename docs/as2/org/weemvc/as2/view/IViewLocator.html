@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>interface IViewLocator</title>
+	<style type="text/css">
+	/* ZenDoc identity */
+	.zendoc { font-family: Arial, Helvetica, sans-serif; margin:3px; }
+	.zendoc a:hover { text-decoration:none; }
+	.zendoc span.title-comment { font-family: Verdana, Arial, Helvetica, sans-serif; font-size:80%; color:#AAA; }
+	.zendoc span.title-zen { color:#26A; font-weight:normal; }
+	.zendoc span.title-doc { color:black; font-weight:bold; }
+	/* overall */
+	html, body, div { margin:0; padding:0; border:none; }
+	body { font-family:Arial, Helvetica, sans-serif; font-size:90%; }
+	a { text-decoration:none; }
+	a:hover { text-decoration:underline; }
+	h2 { color:#999; margin:2em 0 0 0; padding:0 2px 0 20px; border-bottom:2px solid #58B; }
+	h3 { color:#B36B00; margin-top:3em; }
+	dl { margin:.5em 0 3px 0; }
+	dt { font-weight:bold; }
+	td { vertical-align:top; }
+	th { text-align:left; color:#58B; background-color:#E3ECF4; }
+	code { font-size:1.1em; }
+	/* specific */
+	#header { background-color:#EAEAEA; padding:1px; }
+	#links { color:#999; background-color:#FFE; border-bottom:1px solid #58B; padding:2px 20px; }
+	#links a { color:#999; }
+	.content { padding:10px 20px; }
+	#class-definition { background-color:#58B; color:white; }
+	#class-definition .classkind { font-weight:bold; }
+	#class-definition .classkind .package { font-weight:normal; }
+	#class-definition .classname { font-size:4em; margin:5px 0; }
+	#class-definition .superclassname { padding-left:20px; font-style:italic; }
+	#class-definition .implements { padding-left:20px; font-style:italic; }
+	#class-info .content { margin:20px; border:1px solid #58B; }
+	pre.definition { background-color:#FFE; border:1px solid #E4E29A; padding:3px; }
+	.generated {
+		font-style:italic;
+		font-size:80%;
+		color:#666;
+		margin:1em 0 0 0;
+		padding:5px 20px;
+		border-top:1px solid #999;
+	}
+	/* tables */
+	.member-list { border:1px solid #58B; margin:2em 20px; }
+	.member-list a { color:#B36B00; }
+	.member-list table { border-collapse:collapse; }
+	.member-list td { border-top:1px solid #58B; }
+	.member-list td.name { width:175px; text-align:right; padding-right:5px; }
+	.member-list table { width:100%; }
+	.even { background-color:#FFE; }
+	.odd { background-color:white; }
+	.param .name { color:#666; }
+	</style>
+</head>
+
+<body>
+<div id="page">
+	<div id="header">
+		<h4 class="zendoc"><a href="../" title="返回"><span class="title-comment">返回</span></a></h4>
+	</div>
+	<div id="class-definition" class="section">
+		<div class="content">
+			
+			<div class="classkind">interface <span class="package">org.weemvc.as2.view</span></div>
+			<h1 class="classname">IViewLocator</h1>
+			
+			
+			
+		</div>
+		<div id="links">
+			<a href="#class-info">Class Information</a>
+			
+			
+			 | <a href="#class-methods">Methods</a>
+			
+		</div>
+	</div>
+	
+	<div id="class-info" class="section">
+		<h2>Class Information</h2>
+		<div class="content">
+			
+				<dl>
+					
+					
+					<dt>Description</dt>
+					<dd>视图集合类接口。
+<p>
+通过它,你可以找到你想要的视图。
+</p></dd>
+					
+					interface org.weemvc.as2.view.IViewLocator</dd>
+					
+				</dl>
+			
+			
+			</div>
+			
+			
+			
+			
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Methods</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#initialize">initialize()</a></td>
+					<td>初始化舞台，将舞台 MovieClip（root）实例传递给 WeeMVC。</td>
+				</tr><tr class="odd">
+					<td class="name"><a href="#getView">getView()</a></td>
+					<td>获得指定的视图类。</td>
+				</tr><tr class="even">
+					<td class="name"><a href="#addView">addView()</a></td>
+					<td>添加视图类。</td>
+				</tr><tr class="odd">
+					<td class="name"><a href="#removeView">removeView()</a></td>
+					<td>移除视图类。</td>
+				</tr><tr class="even">
+					<td class="name"><a href="#hasView">hasView()</a></td>
+					<td>判断当前视图类是否存在。</td>
+				</tr>
+			</table></div>
+			
+			
+	</div>
+		
+	
+	
+	<br />
+	<div id="class-methods" class="member-group section">
+		<h2>Methods</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="initialize">initialize()</h3>
+				<pre class="definition"><code>function initialize(mc:MovieClip):Void</code></pre>
+				<div>初始化舞台，将舞台 MovieClip（root）实例传递给 WeeMVC。</div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>main</code></td><td>舞台（root）的引用</td></tr>
+					</table></dd>
+				</dl>
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="getView">getView()</h3>
+				<pre class="definition"><code>function getView(viewName:String)</code></pre>
+				<div>获得指定的视图类。</div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>viewName</code></td><td>指定要获得的视图类名，都要实现<code>IView</code>接口</td></tr>
+					</table></dd>
+				</dl>
+				<dl>
+					<dt>Returns:</dt>
+					<dd>当前的视图类实例</dd>
+				</dl>
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="addView">addView()</h3>
+				<pre class="definition"><code>function addView(viewName:String, viewClass:Object, stageInstance:String):Void</code></pre>
+				<div>添加视图类。</div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>viewName</code></td><td>要添加的视图类名</td></tr>
+					<tr><td class="name"><code>viewClass</code></td><td>要添加的视图类，都要实现<code>IView</code>接口</td></tr>
+					<tr><td class="name"><code>stageInstance</code></td><td>当前的视图构造函数的参数（当前在舞台上对应的实例名）</td></tr>
+					</table></dd>
+				</dl>
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="removeView">removeView()</h3>
+				<pre class="definition"><code>function removeView(viewName:String):Void</code></pre>
+				<div>移除视图类。</div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>viewName</code></td><td>要移除的视图类名，都要实现<code>IView</code>接口</td></tr>
+					</table></dd>
+				</dl>
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="hasView">hasView()</h3>
+				<pre class="definition"><code>function hasView(viewName:String):Boolean</code></pre>
+				<div>判断当前视图类是否存在。</div>
+				<dl>
+					<dt>Parameters:</dt>
+					<dd><table class="param">
+						<tr><td class="name"><code>viewName</code></td><td>指定的视图类名，都要实现<code>IView</code>接口</td></tr>
+					</table></dd>
+				</dl>
+				<dl>
+					<dt>Returns:</dt>
+					<dd>是否存在</dd>
+				</dl>
+				
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	
+	<p class="generated">Page generated: 12:17 pm on August 26, 2010</p>
+</div>
+</body>
+</html>

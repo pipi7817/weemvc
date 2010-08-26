@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>class Controller</title>
+	<style type="text/css">
+	/* ZenDoc identity */
+	.zendoc { font-family: Arial, Helvetica, sans-serif; margin:3px; }
+	.zendoc a:hover { text-decoration:none; }
+	.zendoc span.title-comment { font-family: Verdana, Arial, Helvetica, sans-serif; font-size:80%; color:#AAA; }
+	.zendoc span.title-zen { color:#26A; font-weight:normal; }
+	.zendoc span.title-doc { color:black; font-weight:bold; }
+	/* overall */
+	html, body, div { margin:0; padding:0; border:none; }
+	body { font-family:Arial, Helvetica, sans-serif; font-size:90%; }
+	a { text-decoration:none; }
+	a:hover { text-decoration:underline; }
+	h2 { color:#999; margin:2em 0 0 0; padding:0 2px 0 20px; border-bottom:2px solid #58B; }
+	h3 { color:#B36B00; margin-top:3em; }
+	dl { margin:.5em 0 3px 0; }
+	dt { font-weight:bold; }
+	td { vertical-align:top; }
+	th { text-align:left; color:#58B; background-color:#E3ECF4; }
+	code { font-size:1.1em; }
+	/* specific */
+	#header { background-color:#EAEAEA; padding:1px; }
+	#links { color:#999; background-color:#FFE; border-bottom:1px solid #58B; padding:2px 20px; }
+	#links a { color:#999; }
+	.content { padding:10px 20px; }
+	#class-definition { background-color:#58B; color:white; }
+	#class-definition .classkind { font-weight:bold; }
+	#class-definition .classkind .package { font-weight:normal; }
+	#class-definition .classname { font-size:4em; margin:5px 0; }
+	#class-definition .superclassname { padding-left:20px; font-style:italic; }
+	#class-definition .implements { padding-left:20px; font-style:italic; }
+	#class-info .content { margin:20px; border:1px solid #58B; }
+	pre.definition { background-color:#FFE; border:1px solid #E4E29A; padding:3px; }
+	.generated {
+		font-style:italic;
+		font-size:80%;
+		color:#666;
+		margin:1em 0 0 0;
+		padding:5px 20px;
+		border-top:1px solid #999;
+	}
+	/* tables */
+	.member-list { border:1px solid #58B; margin:2em 20px; }
+	.member-list a { color:#B36B00; }
+	.member-list table { border-collapse:collapse; }
+	.member-list td { border-top:1px solid #58B; }
+	.member-list td.name { width:175px; text-align:right; padding-right:5px; }
+	.member-list table { width:100%; }
+	.even { background-color:#FFE; }
+	.odd { background-color:white; }
+	.param .name { color:#666; }
+	</style>
+</head>
+
+<body>
+<div id="page">
+	<div id="header">
+		<h4 class="zendoc"><a href="../" title="返回"><span class="title-comment">返回</span></a></h4>
+	</div>
+	<div id="class-definition" class="section">
+		<div class="content">
+			
+			<div class="classkind">class <span class="package">org.weemvc.as2.control</span></div>
+			<h1 class="classname">Controller</h1>
+			
+			<div class="superclassname">Extends: WeemvcLocator</div>
+			<div class="implements">Implements: IController</div>
+		</div>
+		<div id="links">
+			<a href="#class-info">Class Information</a>
+			 | <a href="#class-constructors">Constructors</a>
+			 | <a href="#class-properties">Properties</a>
+			 | <a href="#class-methods">Methods</a>
+			
+		</div>
+	</div>
+	
+	<div id="class-info" class="section">
+		<h2>Class Information</h2>
+		<div class="content">
+			
+				<dl>
+					
+					
+					<dt>Description</dt>
+					<dd>控制器类。
+<p>
+此类是采用命令模式实现的。主要有以下作用。例如：
+</p>
+<ul>
+<li>添加命令类</li>
+<li>删除命令类</li>
+<li>执行命令类</li>
+<li>检查指定的命令类是否存在</li>
+</ul>
+<p>
+通常是由观察者模式来出发此控制器来执行命令类。当然，您也可以自己来执行一个命令类。
+</p></dd>
+					
+					class org.weemvc.as2.control.Controller extends WeemvcLocator implements IController</dd>
+					
+				</dl>
+			
+			
+			</div>
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Constructors</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#Controller">Controller()</a></td>
+					<td>控制器类构造函数。</td>
+				</tr>
+			</table></div>
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Properties</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#m_instance">m_instance</a></td>
+					<td>�</td>
+				</tr><tr class="odd">
+					<td class="name"><a href="#m_notifier">m_notifier</a></td>
+					<td>�</td>
+				</tr>
+			</table></div>
+			
+			
+			<div class="member-list">
+			<table><tr><th colspan="2">Methods</th></tr>
+				<tr class="even">
+					<td class="name"><a href="#getInstance">getInstance()</a></td>
+					<td>返回控制器类的实例，若没有创建则创建，若已创建，则返回该实例。</td>
+				</tr><tr class="odd">
+					<td class="name"><a href="#addCommand">addCommand()</a></td>
+					<td><p><b>注意：如果要添加的命令类已经添加，WeeMVC 会发出<code>WeemvcError.ADD_COMMAND_MSG</code>警告。</b></p></td>
+				</tr><tr class="even">
+					<td class="name"><a href="#hasCommand">hasCommand()</a></td>
+					<td><p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.COMMAND_NOT_FOUND</code>警告。</b></p></td>
+				</tr><tr class="odd">
+					<td class="name"><a href="#removeCommand">removeCommand()</a></td>
+					<td>�</td>
+				</tr><tr class="even">
+					<td class="name"><a href="#executeCommand">executeCommand()</a></td>
+					<td><p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.COMMAND_NOT_FOUND</code>警告。</b></p></td>
+				</tr>
+			</table></div>
+			
+			
+	</div>
+		
+	<br />
+	
+	<div id="class-constructors" class="member-group section">
+		<h2>Constructors</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="Controller">Controller()</h3>
+				<pre class="definition"><code>public function Controller()</code></pre>
+				<div>控制器类构造函数。</div>
+				
+				
+				<dl>
+					<dt>Throws:</dt>
+					<dd>org.weemvc.as2.WeemvcError 单件的<code>Controller</code>被实例化多次</dd>
+				</dl>
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	<br />
+	<div id="class-properties" class="member-group section">
+		<h2>Properties</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="m_instance">m_instance</h3>
+				<pre class="definition"><code>static private var m_instance:IController</code></pre>
+				<div></div>
+				
+			
+			
+			
+			
+			</div>
+		</div><div class="content">
+			<div class="member-item">
+				<h3 id="m_notifier">m_notifier</h3>
+				<pre class="definition"><code>private var m_notifier:INotifier</code></pre>
+				<div></div>
+				
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	<br />
+	<div id="class-methods" class="member-group section">
+		<h2>Methods</h2>
+		<div class="content">
+			<div class="member-item">
+				<h3 id="getInstance">getInstance()</h3>
+				<pre class="definition"><code>static public function getInstance():IController</code></pre>
+				<div>返回控制器类的实例，若没有创建则创建，若已创建，则返回该实例。</div>
+				
+				<dl>
+					<dt>Returns:</dt>
+					<dd>当前的控制器类实例。</dd>
+				</dl>
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="addCommand">addCommand()</h3>
+				<pre class="definition"><code>public function addCommand(commandName:String, commandClass:Object):Void</code></pre>
+				<div><p><b>注意：如果要添加的命令类已经添加，WeeMVC 会发出<code>WeemvcError.ADD_COMMAND_MSG</code>警告。</b></p></div>
+				
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="hasCommand">hasCommand()</h3>
+				<pre class="definition"><code>public function hasCommand(commandName:String):Boolean</code></pre>
+				<div><p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.COMMAND_NOT_FOUND</code>警告。</b></p></div>
+				
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="removeCommand">removeCommand()</h3>
+				<pre class="definition"><code>public function removeCommand(commandName:String):Void</code></pre>
+				<div></div>
+				
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="executeCommand">executeCommand()</h3>
+				<pre class="definition"><code>public function executeCommand(commandName:String, data):Void</code></pre>
+				<div><p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.COMMAND_NOT_FOUND</code>警告。</b></p></div>
+				
+				
+				
+			
+			
+			
+			
+			</div>
+		</div>
+	</div>
+	
+	<p class="generated">Page generated: 12:17 pm on August 26, 2010</p>
+</div>
+</body>
+</html>
