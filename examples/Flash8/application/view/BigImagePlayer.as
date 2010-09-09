@@ -12,7 +12,6 @@ import application.model.DataProxy;
 import application.view.StageManager;
 	
 class application.view.BigImagePlayer extends View {
-	public static var NAME:String = "bigImagePlayer";
 	private var m_player:MovieClip;
 	private var m_playList:Array;
 	private var m_posList:Array = new Array();
@@ -28,7 +27,7 @@ class application.view.BigImagePlayer extends View {
 		m_player.txt_description.text = "";
 		m_player.buttonMode = true;
 		m_player.btn.onRelease = Delegate.create(this, onBtnClick);
-		setNotifications([DataProxy.ON_DATA_LOADED]);
+		setWeeList([DataProxy.ON_DATA_LOADED]);
 	}
 	
 	public function onDataChanged(notification:String, data):Void {
@@ -42,7 +41,7 @@ class application.view.BigImagePlayer extends View {
 	public function changeImage(index:Number):Void {
 		m_currentIndex = index;
 		clearInterval(m_timer);
-		sendNotification(StageManager.HIDE_PERCENT, null);
+		sendWee(StageManager.HIDE_PERCENT, null);
 		m_player.txt_title.text = "";
 		m_player.txt_description.text = "";
 		if (m_imageList[m_currentIndex].loadPercent < 100) {
@@ -50,6 +49,10 @@ class application.view.BigImagePlayer extends View {
 		}else {
 			showImage();
 		}
+	}
+	
+	public function toString():String {
+		return "BigImagePlayer";
 	}
 	
 	private function showImage():Void {
@@ -83,11 +86,11 @@ class application.view.BigImagePlayer extends View {
 	
 	private function onTimer():Void {
 		if (m_imageList[m_currentIndex].loadPercent < 100) {
-			sendNotification(StageManager.SHOW_PERCENT, m_imageList[m_currentIndex].loadPercent);
+			sendWee(StageManager.SHOW_PERCENT, m_imageList[m_currentIndex].loadPercent);
 		}else {
 			clearInterval(m_timer);
 			showImage();
-			sendNotification(StageManager.HIDE_PERCENT, null);
+			sendWee(StageManager.HIDE_PERCENT, null);
 		}
 	}
 	

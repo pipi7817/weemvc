@@ -8,8 +8,8 @@ import application.actions.LoadDataCommand;
 import org.weemvc.as2.control.Controller;
 
 //---------------------初始化
-Controller.getInstance().addCommand(StartupCommand.NAME, StartupCommand);
-Controller.getInstance().executeCommand(StartupCommand.NAME, this);
+Controller.getInstance().addCommand(StartupCommand, StartupCommand);
+Controller.getInstance().executeCommand(StartupCommand, this);
 
 //flashvars 传递 JSON url
-Controller.getInstance().executeCommand(LoadDataCommand.NAME, _level0.playList);
+Controller.getInstance().executeCommand(LoadDataCommand, _level0.playList);

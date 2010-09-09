@@ -1,4 +1,4 @@
-﻿/**
+/**
  * 小图集合面板
  * ibio-develop
  * 2009-5-12 11:42
@@ -21,11 +21,11 @@ package application.view {
 		
 		public function ThumbList(target:MovieClip) {
 			m_panel = target;
-			notifications = [Main.PLAY_LIST_LOADED];
+			setWeeList([Main.PLAY_LIST_LOADED]);
 		}
 		
-		override public function onDataChanged(notification:String, data:Object = null):void {
-			if (notification == Main.PLAY_LIST_LOADED) {
+		override public function onDataChanged(wee:String, data:Object = null):void {
+			if (wee == Main.PLAY_LIST_LOADED) {
 				init(data as Array);
 			}
 		}
@@ -35,7 +35,7 @@ package application.view {
 			buildThumbs();
 			//默认是选中第1张
 			m_panel["mc_thumb" + 0].selected = true;
-			sendNotification(ShowImageCommand, 0);
+			sendWee(ShowImageCommand, 0);
 		}
 		
 		protected function buildThumbs():void {
@@ -62,7 +62,7 @@ package application.view {
 			}
 			m_tweenY = new Tween(m_panel.mc_arrow, "y", Strong.easeOut, m_panel.mc_arrow.y, newY, 1.5, true);
 			//trace("当前点击：", e.currentTarget.index);
-			sendNotification(ShowImageCommand, e.currentTarget.index);
+			sendWee(ShowImageCommand, e.currentTarget.index);
 		}
 	}
 }

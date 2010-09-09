@@ -113,7 +113,7 @@ WeeMVC 的事件通知都是采用观察者模式实现的。
 					<td class="name"><a href="#removeObserver">removeObserver()</a></td>
 					<td>移除观察者类。</td>
 				</tr><tr class="even">
-					<td class="name"><a href="#sendNotification">sendNotification()</a></td>
+					<td class="name"><a href="#sendWee">sendWee()</a></td>
 					<td>发送 WeeMVC 事件。</td>
 				</tr>
 			</table></div>
@@ -129,12 +129,12 @@ WeeMVC 的事件通知都是采用观察者模式实现的。
 		<div class="content">
 			<div class="member-item">
 				<h3 id="addObserver">addObserver()</h3>
-				<pre class="definition"><code>function addObserver(notification:String, observer:IObserver):Void</code></pre>
+				<pre class="definition"><code>function addObserver(wee:Object, observer:IObserver):Void</code></pre>
 				<div>添加观察者类。</div>
 				<dl>
 					<dt>Parameters:</dt>
 					<dd><table class="param">
-						<tr><td class="name"><code>notification</code></td><td>事件（命令类/在<code>View</code>的notifications列表中的事件名称）</td></tr>
+						<tr><td class="name"><code>wee</code></td><td>事件（命令类/在<code>View</code>的 getWeeList() 列表中的事件名称）</td></tr>
 					<tr><td class="name"><code>observer</code></td><td>观察者</td></tr>
 					</table></dd>
 				</dl>
@@ -146,12 +146,12 @@ WeeMVC 的事件通知都是采用观察者模式实现的。
 			
 			</div><div class="member-item">
 				<h3 id="removeObserver">removeObserver()</h3>
-				<pre class="definition"><code>function removeObserver(notification:String, notifyContext:Object):Void</code></pre>
+				<pre class="definition"><code>function removeObserver(wee:Object, notifyContext:Object):Void</code></pre>
 				<div>移除观察者类。</div>
 				<dl>
 					<dt>Parameters:</dt>
 					<dd><table class="param">
-						<tr><td class="name"><code>notification</code></td><td>事件</td></tr>
+						<tr><td class="name"><code>wee</code></td><td>事件</td></tr>
 					<tr><td class="name"><code>notifyContext</code></td><td>当前观察者的作用域</td></tr>
 					</table></dd>
 				</dl>
@@ -162,13 +162,13 @@ WeeMVC 的事件通知都是采用观察者模式实现的。
 			
 			
 			</div><div class="member-item">
-				<h3 id="sendNotification">sendNotification()</h3>
-				<pre class="definition"><code>function sendNotification(notification:String, data):Void</code></pre>
+				<h3 id="sendWee">sendWee()</h3>
+				<pre class="definition"><code>function sendWee(wee:Object, data):Void</code></pre>
 				<div>发送 WeeMVC 事件。</div>
 				<dl>
 					<dt>Parameters:</dt>
 					<dd><table class="param">
-						<tr><td class="name"><code>notification</code></td><td>事件（命令类/在<code>View</code>的notifications列表中的事件名称）</td></tr>
+						<tr><td class="name"><code>wee</code></td><td>事件（命令类/在<code>View</code>的 getWeeList() 列表中的事件名称）</td></tr>
 					<tr><td class="name"><code>data</code></td><td>需要传递的参数</td></tr>
 					</table></dd>
 				</dl>
@@ -182,7 +182,7 @@ WeeMVC 的事件通知都是采用观察者模式实现的。
 		</div>
 	</div>
 	
-	<p class="generated">Page generated: 12:17 pm on August 26, 2010</p>
+	<p class="generated">Page generated: 9:58 pm on September 9, 2010</p>
 </div>
 </body>
 </html>

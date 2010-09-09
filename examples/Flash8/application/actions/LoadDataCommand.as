@@ -8,10 +8,9 @@ import org.weemvc.as2.control.SimpleCommand;
 import application.model.DataProxy;
 	
 class application.actions.LoadDataCommand extends SimpleCommand implements ICommand {
-	public static var NAME:String = "loadData";
 	
 	public function execute(data):Void {
-		var model:DataProxy = modelLocator.getModel(DataProxy.NAME);
+		var model:DataProxy = modelLocator.getModel(DataProxy);
 		//开始加载数据
 		if (data) {
 			model.loadPlayList(data);
@@ -19,4 +18,7 @@ class application.actions.LoadDataCommand extends SimpleCommand implements IComm
 			model.loadPlayList("stuff/playList.json");
 		}
 	}
+	
+	public function toString():String {
+		return "LoadDataCommand";	}
 }

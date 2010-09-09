@@ -7,7 +7,6 @@ import org.weemvc.as2.view.View;
 import application.model.DataProxy;
 
 class application.view.StageManager extends View {
-	public static var NAME:String = "stageManager";
 	public static var SHOW_PERCENT:String = "showPercent";
 	public static var HIDE_PERCENT:String = "hidePercent";
 	private var m_root:MovieClip;
@@ -17,15 +16,15 @@ class application.view.StageManager extends View {
 		m_root.txt_initialize.x = (Stage.width - m_root.txt_initialize._width) / 2;
 		m_root.txt_initialize.y = (Stage.height - m_root.txt_initialize._height) / 2;
 		hideLoading();
-		setNotifications([DataProxy.ON_DATA_LOADED, SHOW_PERCENT, HIDE_PERCENT]);
+		setWeeList([DataProxy.ON_DATA_LOADED, SHOW_PERCENT, HIDE_PERCENT]);
 	}
 	
-	public function onDataChanged(notification:String, data):Void {
-		if (notification == DataProxy.ON_DATA_LOADED) {
+	public function onDataChanged(wee:String, data):Void {
+		if (wee == DataProxy.ON_DATA_LOADED) {
 			m_root.txt_initialize._visible = false;
-		}else if(notification == SHOW_PERCENT) {
+		}else if(wee == SHOW_PERCENT) {
 			showLoading(data);
-		}else if (notification == HIDE_PERCENT) {
+		}else if (wee == HIDE_PERCENT) {
 			hideLoading();
 		}
 	}
@@ -39,5 +38,9 @@ class application.view.StageManager extends View {
 	
 	public function hideLoading():Void {
 		m_root.txt_loading._visible = false;
+	}
+	
+	public function toString():String {
+		return "StageManager";
 	}
 }
