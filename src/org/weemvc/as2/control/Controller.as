@@ -1,9 +1,10 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * 控制器--分发视图过来的操作
  * @author	weemve.org
  * 2009-1-11 21:36
  */
+import org.weemvc.as2.Util;
 import org.weemvc.as2.WeemvcError;
 import org.weemvc.as2.PaperLogger;
 import org.weemvc.as2.control.ICommand;
@@ -72,7 +73,8 @@ class org.weemvc.as2.control.Controller extends WeemvcLocator implements IContro
 	 * <p><b>注意：如果要添加的命令类已经添加，WeeMVC 会发出<code>WeemvcError.ADD_COMMAND_MSG</code>警告。</b></p>
 	 * @copy	org.weemvc.as2.control.IController#addCommand()
 	 */
-	public function addCommand(commandName:String, commandClass:Object):Void {
+	public function addCommand(commandClass:Object):Void {
+		var commandName:Object = Util.getProto(commandClass);
 		if (!hasExists(commandName)) {
 			var oberver:IObserver = new Observer(executeCommand, this);
 			m_notifier.addObserver(commandName, oberver);
@@ -86,14 +88,16 @@ class org.weemvc.as2.control.Controller extends WeemvcLocator implements IContro
 	 * <p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.COMMAND_NOT_FOUND</code>警告。</b></p>
 	 * @copy	org.weemvc.as2.control.IController#removeCommand()
 	 */
-	public function hasCommand(commandName:String):Boolean {
+	public function hasCommand(commandClass:Object):Boolean {
+		var commandName:Object = Util.getProto(commandClass);
 		return hasExists(commandName);
 	}
 	
 	/**
 	 * @copy	org.weemvc.as2.control.IController#hasCommand()
 	 */
-	public function removeCommand(commandName:String):Void {
+	public function removeCommand(commandClass:Object):Void {
+		var commandName:Object = Util.getProto(commandClass);
 		if (hasExists(commandName)) {
 			m_notifier.removeObserver(commandName, this);
 			remove(commandName);
@@ -106,7 +110,8 @@ class org.weemvc.as2.control.Controller extends WeemvcLocator implements IContro
 	 * <p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.COMMAND_NOT_FOUND</code>警告。</b></p>
 	 * @copy	org.weemvc.as2.control.IController#executeCommand()
 	 */
-	public function executeCommand(commandName:String, data):Void {
+	public function executeCommand(commandClass:Object, data):Void {
+		var commandName:Object = Util.getProto(commandClass);
 		if (hasExists(commandName)) {
 			var commandClass:Object = retrieve(commandName);
 			var commandInstance:ICommand = new commandClass();

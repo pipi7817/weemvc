@@ -8,6 +8,7 @@ package org.weemvc.as3.model {
 	import org.weemvc.as3.core.WeemvcLocator;
 	import org.weemvc.as3.WeemvcError;
 	import org.weemvc.as3.PaperLogger;
+	
 	/**
 	 * 模型集合类。
 	 * 
@@ -51,26 +52,26 @@ package org.weemvc.as3.model {
 		 * <p><b>注意：如果此模型类不存在，WeeMVC 会发出<code>WeemvcError.MODEL_NOT_FOUND</code>警告。</b></p>
 		 * @copy	org.weemvc.as3.model.IModelLocator#getModel()
 		 */
-		public function getModel(modelName:Class):* {
-			if (!hasExists(modelName)) {
-				PaperLogger.getInstance().log(WeemvcError.MODEL_NOT_FOUND, ModelLocator, modelName);
+		public function getModel(modelClass:Class):* {
+			if (!hasModel(modelClass)) {
+				PaperLogger.getInstance().log(WeemvcError.MODEL_NOT_FOUND, ModelLocator, modelClass);
 			}
-			return retrieve(modelName);
+			return retrieve(modelClass);
 		}
 		
 		/**
 		 * <p><b>注意：如果要添加模型类已经添加，WeeMVC 会发出<code>WeemvcError.ADD_MODEL_MSG</code>警告。</b></p>
 		 * @copy	org.weemvc.as3.model.IModelLocator#addModel()
 		 */
-		public function addModel(modelName:Class, data:Object = null):void {
-			if (!hasExists(modelName)) {
+		public function addModel(modelClass:Class, data:Object = null):void {
+			if (!hasModel(modelClass)) {
 				if (data) {
-					add(modelName, new modelName(data));
+					add(modelClass, new modelClass(data));
 				}else {
-					add(modelName, new modelName());
+					add(modelClass, new modelClass());
 				}
 			}else {
-				PaperLogger.getInstance().log(WeemvcError.ADD_MODEL_MSG, ModelLocator, modelName);
+				PaperLogger.getInstance().log(WeemvcError.ADD_MODEL_MSG, ModelLocator, modelClass);
 			}
 		}
 		
@@ -78,19 +79,19 @@ package org.weemvc.as3.model {
 		 * <p><b>注意：如果此模型类不存在，WeeMVC 会发出<code>WeemvcError.MODEL_NOT_FOUND</code>警告。</b></p>
 		 * @copy	org.weemvc.as3.model.IModelLocator#removeModel()
 		 */
-		public function removeModel(modelName:Class):void {
-			if (hasExists(modelName)) {
-				remove(modelName);
+		public function removeModel(modelClass:Class):void {
+			if (hasModel(modelClass)) {
+				remove(modelClass);
 			}else {
-				PaperLogger.getInstance().log(WeemvcError.MODEL_NOT_FOUND, ModelLocator, modelName);
+				PaperLogger.getInstance().log(WeemvcError.MODEL_NOT_FOUND, ModelLocator, modelClass);
 			}
 		}
 		
 		/**
 		 * @copy	org.weemvc.as3.model.IModelLocator#hasModel()
 		 */
-		public function hasModel(modelName:Class):Boolean {
-			return hasExists(modelName);
+		public function hasModel(modelClass:Class):Boolean {
+			return hasExists(modelClass);
 		}
 	}
 }

@@ -12,6 +12,7 @@ package org.weemvc.as3.control {
 	import org.weemvc.as3.control.Controller;
 	import org.weemvc.as3.control.IController;
 	import org.weemvc.as3.core.Notifier;
+	
 	/**
 	 * 简单命令类。
 	 * 
@@ -46,10 +47,10 @@ package org.weemvc.as3.control {
 		}
 		
 		/**
-		 * @copy	org.weemvc.as3.core.INotifier#sendNotification()
+		 * @copy	org.weemvc.as3.core.INotifier#sendWee()
 		 */
-		public function sendNotification(notification:Object, data:Object = null):void {
-			Notifier.getInstance().sendNotification(notification, data);
+		public function sendWee(wee:Object, data:Object = null):void {
+			Notifier.getInstance().sendWee(wee, data);
 		}
 	}
 }

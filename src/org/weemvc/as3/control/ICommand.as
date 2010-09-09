@@ -8,6 +8,7 @@ package org.weemvc.as3.control {
 	import org.weemvc.as3.model.IModelLocator;
 	import org.weemvc.as3.view.IViewLocator;
 	import org.weemvc.as3.control.IController;
+	
 	/**
 	 * 命令类接口。
 	 * 

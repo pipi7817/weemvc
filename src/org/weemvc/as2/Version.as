@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * 版本以及更新时间
  * @author	weemve.org
@@ -10,6 +10,6 @@
  */
 class org.weemvc.as2.Version {
 	
-	public static var VERSION:String = "1.2.7";
-	public static var LAST_UPDATE:String = "2010-8-21 1:54";
+	public static var VERSION:String = "1.3.0";
+	public static var LAST_UPDATE:String = "2010-9-9 21:44";
 }

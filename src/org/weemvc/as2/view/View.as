@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * 视图基类
  * @author	weemve.org
@@ -28,37 +28,46 @@ class org.weemvc.as2.view.View implements IView {
 	private var m_notifications:Array = [];
 	
 	/**
-	 * @copy	org.weemvc.as2.core.INotifier#sendNotification()
+	 * @copy	org.weemvc.as2.core.INotifier#sendWee()
 	 */
-	public function sendNotification(notification:String, data):Void {
-		Notifier.getInstance().sendNotification(notification, data);
+	public function sendWee(wee:Object, data):Void {
+		Notifier.getInstance().sendWee(wee, data);
 	}
 	
 	/**
-	 * 设置当前视图需要监听的 notification 列表。
+	 * 设置当前视图需要监听的“WeeMVC事件”列表。
 	 * 
-	 * <p>当系统发出此列表中包含的事件（名称）时，当前视图中的 onDataChanged 
-	 * 能够立即监听到此事件，且形参 notification 就是当前事件的名称
+	 * <p>当系统发出此列表中包含的“WeeMVC事件”（名称）时，当前视图中的 onDataChanged 
+	 * 能够立即监听到此事件，且形参 wee 就是当前事件的名称
 	 * <b>注意：这里个列表中的每个元素为 String 类型，即和 onDataChanged
-	 * 中形参 notification 的数据类型一致</b></p>
+	 * 中形参 wee 的数据类型一致</b></p>
 	 * 
-	 * @param	list	当前视图需要监听的notification（String）列表
+	 * @param	list	当前视图需要监听的“WeeMVC事件”（String）列表
 	 */
-	public function setNotifications(list:Array):Void {
+	public function setWeeList(list:Array):Void {
 		m_notifications = list;
 	}
 	
 	/**
-	 * 返回当前监听的 notification 列表。
+	 * 返回当前监听的“WeeMVC事件”列表。
 	 */
-	public function getNotifications():Array {
+	public function getWeeList():Array {
 		return m_notifications;
 	}
 	
 	/**
 	 * @copy	org.weemvc.as2.view.IView#onDataChanged()
 	 */
-	public function onDataChanged(notification:String, data):Void {
+	public function onDataChanged(wee:String, data):Void {
 		//在子类覆盖此函数
+	}
+	
+	/**
+	 * <p>返回当前视图类的名称
+	 * <b>由于在 AS2 中不支持反射获得类型，所以在子类覆盖此函数
+	 * 来获得此类的名称</b></p>
+	 */
+	public function toString():String {
+		return "该视图类的名称";
 	}
 }

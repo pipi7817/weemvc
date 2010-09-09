@@ -5,6 +5,7 @@
  * 2009-5-11 20:46
  */
 package org.weemvc.as3.model {
+	
 	/**
 	 * 模型类接口。
 	 * 
@@ -15,9 +16,10 @@ package org.weemvc.as3.model {
 	 * @see org.weemvc.as3.model.Model	Model
 	 */
 	public interface IModel {
+		
 		/**
-		 * @copy	org.weemvc.as3.core.INotifier#sendNotification()
+		 * @copy	org.weemvc.as3.core.INotifier#sendWee()
 		 */
-		function sendNotification(notification:Object, data:Object = null):void;
+		function sendWee(wee:Object, data:Object = null):void;
 	}
 }

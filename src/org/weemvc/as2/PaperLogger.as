@@ -1,11 +1,11 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * 输出日志
  * @author	weemve.org
  * 2009-9-12 15:01
  */
-
 import org.weemvc.as2.WeemvcError;
+
 /**
  * 输出日志相关信息。
  * 

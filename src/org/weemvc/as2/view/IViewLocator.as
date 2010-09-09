@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * 视图集合类的接口
  * @author	weemve.org
@@ -24,29 +24,29 @@ interface org.weemvc.as2.view.IViewLocator {
 	/**
 	 * 获得指定的视图类。
 	 * 
-	 * @param	viewName	指定要获得的视图类名，都要实现<code>IView</code>接口
+	 * @param	viewClass	指定要获得的视图类名，都要实现<code>IView</code>接口
 	 * @return				当前的视图类实例
 	 */
-	function getView(viewName:String);
+	function getView(viewClass:Object);
 	/**
 	 * 添加视图类。
 	 * 
-	 * @param	viewName		要添加的视图类名
+	 * @param	viewClass		要添加的视图类名
 	 * @param	viewClass		要添加的视图类，都要实现<code>IView</code>接口
 	 * @param	stageInstance	当前的视图构造函数的参数（当前在舞台上对应的实例名）
 	 */
-	function addView(viewName:String, viewClass:Object, stageInstance:String):Void;
+	function addView(viewClass:Object, stageInstance:String):Void;
 	/**
 	 * 移除视图类。
 	 * 
-	 * @param	viewName	要移除的视图类名，都要实现<code>IView</code>接口
+	 * @param	viewClass	要移除的视图类名，都要实现<code>IView</code>接口
 	 */
-	function removeView(viewName:String):Void;
+	function removeView(viewClass:Object):Void;
 	/**
 	 * 判断当前视图类是否存在。
 	 * 
-	 * @param	viewName	指定的视图类名，都要实现<code>IView</code>接口
+	 * @param	viewClass	指定的视图类名，都要实现<code>IView</code>接口
 	 * @return				是否存在
 	 */
-	function hasView(viewName:String):Boolean;
+	function hasView(viewClass:Object):Boolean;
 }

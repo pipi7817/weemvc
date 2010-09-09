@@ -1,9 +1,10 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * 单例模式的数据集合
  * @author	weemve.org
  * 2009-1-11 21:40
  */
+import org.weemvc.as2.Util;
 import org.weemvc.as2.core.WeemvcLocator;
 import org.weemvc.as2.model.IModelLocator;
 import org.weemvc.as2.WeemvcError;
@@ -53,8 +54,9 @@ class org.weemvc.as2.model.ModelLocator extends WeemvcLocator implements IModelL
 	 * <p><b>注意：如果此模型类不存在，WeeMVC 会发出<code>WeemvcError.MODEL_NOT_FOUND</code>警告。</b></p>
 	 * @copy	org.weemvc.as2.model.IModelLocator#getModel()
 	 */
-	public function getModel(modelName:String) {
-		if (!hasModel(modelName)) {
+	public function getModel(modelClass:Object) {
+		var modelName:Object = Util.getProto(modelClass);
+		if (!hasExists(modelName)) {
 			PaperLogger.getInstance().log(WeemvcError.MODEL_NOT_FOUND, "ModelLocator", [modelName]);
 		}
 		return retrieve(modelName);
@@ -64,7 +66,8 @@ class org.weemvc.as2.model.ModelLocator extends WeemvcLocator implements IModelL
 	 * <p><b>注意：如果要添加模型类已经添加，WeeMVC 会发出<code>WeemvcError.ADD_MODEL_MSG</code>警告。</b></p>
 	 * @copy	org.weemvc.as2.model.IModelLocator#addModel()
 	 */
-	public function addModel(modelName:String, modelClass:Object, data):Void {
+	public function addModel(modelClass:Object, data):Void {
+		var modelName:Object = Util.getProto(modelClass);
 		if (!hasExists(modelName)) {
 			if (data) {
 				add(modelName, new modelClass(data));
@@ -76,7 +79,8 @@ class org.weemvc.as2.model.ModelLocator extends WeemvcLocator implements IModelL
 		}
 	}
 	
-	public function hasModel(modelName:String):Boolean {
+	public function hasModel(modelClass:Object):Boolean {
+		var modelName:Object = Util.getProto(modelClass);
 		return hasExists(modelName);
 	}
 	
@@ -84,7 +88,8 @@ class org.weemvc.as2.model.ModelLocator extends WeemvcLocator implements IModelL
 	 * <p><b>注意：如果此模型类不存在，WeeMVC 会发出<code>WeemvcError.MODEL_NOT_FOUND</code>警告。</b></p>
 	 * @copy	org.weemvc.as2.model.IModelLocator#removeModel()
 	 */
-	public function removeModel(modelName:String):Void {
+	public function removeModel(modelClass:Object):Void {
+		var modelName:Object = Util.getProto(modelClass);
 		if (hasExists(modelName)) {
 			remove(modelName);
 		}else {

@@ -12,6 +12,7 @@ package org.weemvc.as3.control {
 	import org.weemvc.as3.core.IObserver;
 	import org.weemvc.as3.WeemvcError;
 	import org.weemvc.as3.PaperLogger;
+	
 	/**
 	 * 控制器类。
 	 * 
@@ -68,13 +69,13 @@ package org.weemvc.as3.control {
 		 * <p><b>注意：如果要添加的命令类已经添加，WeeMVC 会发出<code>WeemvcError.ADD_COMMAND_MSG</code>警告。</b></p>
 		 * @copy	org.weemvc.as3.control.IController#addCommand()
 		 */
-		public function addCommand(commandName:Class):void {
-			if (!hasExists(commandName)) {
+		public function addCommand(commandClass:Class):void {
+			if (!hasCommand(commandClass)) {
 				var oberver:IObserver = new Observer(executeCommand, this);
-				m_notifier.addObserver(commandName, oberver);
-				add(commandName, commandName);
+				m_notifier.addObserver(commandClass, oberver);
+				add(commandClass, commandClass);
 			}else {
-				PaperLogger.getInstance().log(WeemvcError.ADD_COMMAND_MSG, Controller, commandName);
+				PaperLogger.getInstance().log(WeemvcError.ADD_COMMAND_MSG, Controller, commandClass);
 			}
 		}
 		
@@ -82,33 +83,33 @@ package org.weemvc.as3.control {
 		 * <p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.COMMAND_NOT_FOUND</code>警告。</b></p>
 		 * @copy	org.weemvc.as3.control.IController#removeCommand()
 		 */
-		public function removeCommand(commandName:Class):void {
-			if (hasExists(commandName)) {
-				m_notifier.removeObserver(commandName, this);
-				remove(commandName);
+		public function removeCommand(commandClass:Class):void {
+			if (hasCommand(commandClass)) {
+				m_notifier.removeObserver(commandClass, this);
+				remove(commandClass);
 			}else {
-				PaperLogger.getInstance().log(WeemvcError.COMMAND_NOT_FOUND, Controller, commandName);
+				PaperLogger.getInstance().log(WeemvcError.COMMAND_NOT_FOUND, Controller, commandClass);
 			}
 		}
 		
 		/**
 		 * @copy	org.weemvc.as3.control.IController#hasCommand()
 		 */
-		public function hasCommand(commandName:Class):Boolean {
-			return hasExists(commandName);
+		public function hasCommand(commandClass:Class):Boolean {
+			return hasExists(commandClass);
 		}
 		
 		/**
 		 * <p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.COMMAND_NOT_FOUND</code>警告。</b></p>
 		 * @copy	org.weemvc.as3.control.IController#executeCommand()
 		 */
-		public function executeCommand(commandName:Class, data:Object = null):void {
-			if (hasExists(commandName)) {
-				var commandClass:Class = retrieve(commandName);
+		public function executeCommand(commandClass:Class, data:Object = null):void {
+			if (hasCommand(commandClass)) {
+				var commandClass:Class = retrieve(commandClass);
 				var commandInstance:ICommand = new commandClass();
 				commandInstance.execute(data);
 			}else {
-				PaperLogger.getInstance().log(WeemvcError.COMMAND_NOT_FOUND, Controller, commandName);
+				PaperLogger.getInstance().log(WeemvcError.COMMAND_NOT_FOUND, Controller, commandClass);
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * 模型接口
  * @author	weemve.org
@@ -15,8 +15,9 @@
  * @see org.weemvc.as2.model.Model	Model
  */
 interface org.weemvc.as2.model.IModel {
+	
 	/**
-	 * @copy	org.weemvc.as2.core.INotifier#sendNotification()
+	 * @copy	org.weemvc.as2.core.INotifier#sendWee()
 	 */
-	function sendNotification(notification:String, data):Void;
+	function sendWee(wee:Object, data):Void;
 }

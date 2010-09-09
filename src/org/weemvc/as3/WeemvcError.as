@@ -8,6 +8,7 @@ package org.weemvc.as3 {
 	import org.weemvc.as3.Version;
 	
 	import flash.utils.getQualifiedClassName;
+	
 	/**
 	 * WeeMVC 错误信息和警告信息。
 	 * 

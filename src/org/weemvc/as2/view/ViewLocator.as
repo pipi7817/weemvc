@@ -1,15 +1,17 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * 保存注册的视图类
  * 通过它,你可以找到你想要的视图
  * @author	weemve.org
  * 2009-1-11 23:47
  */
+import org.weemvc.as2.Util;
 import org.weemvc.as2.core.WeemvcLocator;
 import org.weemvc.as2.core.Notifier;
 import org.weemvc.as2.core.INotifier;
 import org.weemvc.as2.core.Observer;
 import org.weemvc.as2.core.IObserver;
+import org.weemvc.as2.control.Controller;
 import org.weemvc.as2.view.IViewLocator;
 import org.weemvc.as2.view.IView;
 import org.weemvc.as2.WeemvcError;
@@ -73,8 +75,9 @@ class org.weemvc.as2.view.ViewLocator extends WeemvcLocator implements IViewLoca
 	 * <p><b>注意：如果此视图类不存在，WeeMVC 会发出<code>WeemvcError.VIEW_NOT_FOUND</code>警告。</b></p>
 	 * @copy	org.weemvc.as2.view.IViewLocator#getView()
 	 */
-	public function getView(viewName:String) {
-		if (!hasExists(viewName)) {
+	public function getView(viewClass:Object) {
+		var viewName:Object = Util.getProto(viewClass);
+		if (!hasView(viewName)) {
 			PaperLogger.getInstance().log(WeemvcError.VIEW_NOT_FOUND, "ViewLocator", [viewName]);
 		}
 		return retrieve(viewName);
@@ -84,20 +87,22 @@ class org.weemvc.as2.view.ViewLocator extends WeemvcLocator implements IViewLoca
 	 * <p><b>注意：如果要添加视图类已经添加，WeeMVC 会发出<code>WeemvcError.ADD_VIEW_MSG</code>警告。</b></p>
 	 * @copy	org.weemvc.as2.view.IViewLocator#addView()
 	 */
-	public function addView(viewName:String, viewClass:Object, stageInstance:String):Void {
+	public function addView(viewClass:Object, stageInstance:String):Void {
+		var viewName:Object = Util.getProto(viewClass);
 		if (!hasExists(viewName)) {
 			var container:MovieClip = getContainer(m_main, stageInstance);
 			var viewInstance:IView = new viewClass(container);
+			var notifications:Array = viewInstance.getWeeList();
 			var oberver:IObserver;
-			if (viewInstance.getNotifications().length > 0) {
-				for (var i:Number = 0; i < viewInstance.getNotifications().length; i++) {
+			if (notifications.length > 0) {
+				for (var i:Number = 0; i < notifications.length; i++) {
 					oberver = new Observer(viewInstance.onDataChanged, viewInstance);
 					/**
-					 * 如果当前的 notification 是字符串，则添加到通知列表
-					 * 此操作意在过滤掉其他 view 对命令 notification 的侦听
+					 * 如果当前的“WeeMVC事件”不是命令类，则添加到视图的通知列表
+					 * 此操作意在过滤掉所有 view 对命令类型“WeeMVC事件”的侦听
 					 */
-					if (typeof(viewInstance.getNotifications()[i]) == "string") {
-						m_notifier.addObserver(viewInstance.getNotifications()[i], oberver);
+					if (typeof(notifications[i]) == "string") {
+						m_notifier.addObserver(notifications[i], oberver);
 					}
 				}
 			}
@@ -110,7 +115,8 @@ class org.weemvc.as2.view.ViewLocator extends WeemvcLocator implements IViewLoca
 	/**
 	 * @copy	org.weemvc.as2.view.IViewLocator#hasView()
 	 */
-	public function hasView(viewName:String):Boolean {
+	public function hasView(viewClass:Object):Boolean {
+		var viewName:Object = Util.getProto(viewClass);
 		return hasExists(viewName);
 	}
 	
@@ -118,11 +124,12 @@ class org.weemvc.as2.view.ViewLocator extends WeemvcLocator implements IViewLoca
 	 * <p><b>注意：如果要添加视图类已经添加，WeeMVC 会发出<code>WeemvcError.VIEW_NOT_FOUND</code>警告。</b></p>
 	 * @copy	org.weemvc.as2.view.IViewLocator#removeView()
 	 */
-	public function removeView(viewName:String):Void {
+	public function removeView(viewClass:Object):Void {
+		var viewName:Object = Util.getProto(viewClass);
 		if (hasExists(viewName)) {
 			var viewInstance:IView = getView(viewName);
 			if (viewInstance) {
-				var notifications:Array = viewInstance.getNotifications();
+				var notifications:Array = viewInstance.getWeeList();
 				//移除该视图里面所有的通知
 				for ( var i:Number = 0; i < notifications.length; i++ ) {
 					m_notifier.removeObserver(notifications[i], viewInstance);

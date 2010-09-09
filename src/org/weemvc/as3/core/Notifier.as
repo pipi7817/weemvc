@@ -8,6 +8,7 @@ package org.weemvc.as3.core {
 	import org.weemvc.as3.core.WeemvcLocator;
 	import org.weemvc.as3.WeemvcError;
 	import org.weemvc.as3.PaperLogger;
+	
 	/**
 	 * WeeMVC 事件类。
 	 * 
@@ -49,53 +50,55 @@ package org.weemvc.as3.core {
 		/**
 		 * @copy	org.weemvc.as3.core.INotifier#addObserver()
 		 */
-		public function addObserver(notification:Object, observer:IObserver):void {
-			var observers:Array = retrieve(notification);
+		public function addObserver(wee:Object, observer:IObserver):void {
+			var observers:Array = retrieve(wee);
 			//若已经存在，则追加；否则新建
 			if (observers) {
 				observers.push(observer);
 			} else {
 				observers = [observer];
 			}
-			add(notification, observers);
+			add(wee, observers);
 		}
 		
 		/**
 		 * @copy	org.weemvc.as3.core.INotifier#removeObserver()
 		 */
-		public function removeObserver(notification:Object, notifyContext:Object):void {
-			var observers:Array = retrieve(notification);
+		public function removeObserver(wee:Object, notifyContext:Object):void {
+			var observers:Array = retrieve(wee);
 			var observer:IObserver;
-			for (var i:int = 0; i < observers.length; i++) {
-				observer = observers[i] as IObserver;
-				//如果函数作用域和传递进来的一致，则删除
-				//一个 observer 只可能对应一个作用域，所以要 break
-				if (observer.compareContext(notifyContext)) {
-					observers.splice(i, 1);
-					break;
+			if (observers) {
+				for (var i:int = 0; i < observers.length; i++) {
+					observer = observers[i] as IObserver;
+					//如果函数作用域和传递进来的一致，则删除
+					//一个 observer 只可能对应一个作用域，所以要 break
+					if (observer.compareContext(notifyContext)) {
+						observers.splice(i, 1);
+						break;
+					}
 				}
-			}
-			if (observers.length <= 0) {
-				remove(notification);
+				if (observers.length <= 0) {
+					remove(wee);
+				}
 			}
 		}
 		
 		/**
 		 * <p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.NOTIFICATION_NOT_FOUND</code>警告。</b></p>
-		 * @copy	org.weemvc.as3.core.INotifier#sendNotification()
+		 * @copy	org.weemvc.as3.core.INotifier#sendWee()
 		 */
-		public function sendNotification(notification:Object, data:Object = null):void {
-			if (hasExists(notification)) {
+		public function sendWee(wee:Object, data:Object = null):void {
+			if (hasExists(wee)) {
 				//取回当前通知的 list
-				var observers:Array = retrieve(notification);
+				var observers:Array = retrieve(wee);
 				var observer:IObserver;
 				//
 				for (var i:uint = 0; i < observers.length; i++) {
 					observer = observers[i] as IObserver;
-					observer.notifyObserver(notification, data);
+					observer.notifyObserver(wee, data);
 				}
 			}else {
-				PaperLogger.getInstance().log(WeemvcError.NOTIFICATION_NOT_FOUND, Notifier, notification);
+				PaperLogger.getInstance().log(WeemvcError.NOTIFICATION_NOT_FOUND, Notifier, wee);
 			}
 		}
 	}

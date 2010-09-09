@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008
  * 视图集合类
  * @author	weemve.org
@@ -69,64 +69,65 @@ package org.weemvc.as3.view {
 		 * <p><b>注意：如果此视图类不存在，WeeMVC 会发出<code>WeemvcError.VIEW_NOT_FOUND</code>警告。</b></p>
 		 * @copy	org.weemvc.as3.view.IViewLocator#getView()
 		 */
-		public function getView(viewName:Class):* {
-			if (!hasExists(viewName)) {
-				PaperLogger.getInstance().log(WeemvcError.VIEW_NOT_FOUND, ViewLocator, viewName);
+		public function getView(viewClass:Class):* {
+			if (!hasView(viewClass)) {
+				PaperLogger.getInstance().log(WeemvcError.VIEW_NOT_FOUND, ViewLocator, viewClass);
 			}
-			return retrieve(viewName);
+			return retrieve(viewClass);
 		}
 		
 		/**
 		 * <p><b>注意：如果要添加视图类已经添加，WeeMVC 会发出<code>WeemvcError.ADD_VIEW_MSG</code>警告。</b></p>
 		 * @copy	org.weemvc.as3.view.IViewLocator#addView()
 		 */
-		public function addView(viewName:Class, stageInstance:String = null):void {
-			if (!hasExists(viewName)) {
+		public function addView(viewClass:Class, stageInstance:String = null):void {
+			if (!hasView(viewClass)) {
 				var container:MovieClip = getContainer(m_main, stageInstance);
-				var viewInstance:IView = new viewName(container);
+				var viewInstance:IView = new viewClass(container);
+				var notifications:Array = viewInstance.getWeeList();
 				var oberver:IObserver;
-				if (viewInstance.notifications.length > 0) {
-					for (var i:uint = 0; i < viewInstance.notifications.length; i++) {
+				if (notifications.length > 0) {
+					for (var i:uint = 0; i < notifications.length; i++) {
 						oberver = new Observer(viewInstance.onDataChanged, viewInstance);
 						/**
-						 * 如果当前的 notification 是字符串，则添加到通知列表
-						 * 此操作意在过滤掉其他 view 对命令 notification 的侦听
+						 * 如果当前的“WeeMVC事件”不是命令类，则添加到视图的通知列表
+						 * 此操作意在过滤掉所有 view 对命令类型“WeeMVC事件”的侦听
 						 */
-						if (viewInstance.notifications[i] is String) {
-							m_notifier.addObserver(viewInstance.notifications[i], oberver);
+						if (notifications[i] is String) {
+							m_notifier.addObserver(notifications[i], oberver);
 						}
 					}
 				}
-				add(viewName, viewInstance);
+				add(viewClass, viewInstance);
 			}else {
-				PaperLogger.getInstance().log(WeemvcError.ADD_VIEW_MSG, ViewLocator, viewName);
+				PaperLogger.getInstance().log(WeemvcError.ADD_VIEW_MSG, ViewLocator, viewClass);
 			}
 		}
 		
 		/**
 		 * @copy	org.weemvc.as3.view.IViewLocator#hasView()
 		 */
-		public function hasView(viewName:Class):Boolean {
-			return hasExists(viewName);
+		public function hasView(viewClass:Class):Boolean {
+			return hasExists(viewClass);
 		}
 		
 		/**
 		 * <p><b>注意：如果要添加视图类已经添加，WeeMVC 会发出<code>WeemvcError.VIEW_NOT_FOUND</code>警告。</b></p>
 		 * @copy	org.weemvc.as3.view.IViewLocator#removeView()
 		 */
-		public function removeView(viewName:Class):void {
-			if (hasExists(viewName)) {
-				var viewInstance:IView = getView(viewName);
+		public function removeView(viewClass:Class):void {
+			if (hasView(viewClass)) {
+				var viewInstance:IView = getView(viewClass);
 				if (viewInstance) {
-					var notifications:Array = viewInstance.notifications;
+					var notifications:Array = viewInstance.getWeeList();
 					//移除该视图里面所有的通知
 					for ( var i:Number = 0; i < notifications.length; i++ ) {
 						m_notifier.removeObserver(notifications[i], viewInstance);
 					}
 				}
-				remove(viewName);
+				remove(viewClass);
 			}else {
-				PaperLogger.getInstance().log(WeemvcError.VIEW_NOT_FOUND, ViewLocator, viewName);
+				PaperLogger.getInstance().log(WeemvcError.VIEW_NOT_FOUND, ViewLocator, viewClass);
 			}
 		}
 		
