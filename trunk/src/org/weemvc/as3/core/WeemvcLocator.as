@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WeeMVC - Copyright(c) 2008
  * Weemvc map
  * Controller、ModelLocator、ViewLocator、Notifier 都继承此类
@@ -7,6 +7,7 @@
  */
 package org.weemvc.as3.core {
 	import flash.utils.Dictionary;
+	
 	/**
 	 * 字典类。用来保存类似 key-value 键值对的引用。
 	 * 

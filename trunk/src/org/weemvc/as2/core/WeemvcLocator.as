@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * Weemvc map
  * Controller、ModelLocator、ViewLocator、Notifier 都继承此类
@@ -27,8 +27,10 @@ class org.weemvc.as2.core.WeemvcLocator {
 	 * 
 	 * @param	key		键
 	 * @param	value	值
+	 * @internal		因为这里 value 需要保存任何值，所以没有指定
+	 * 变量类型，而在 AS3 中是可以指定 * 的
 	 */
-	private function add(key:String, value):Void {
+	private function add(key:Object, value):Void {
 		m_weeMap[key] = value;
 	}
 	
@@ -37,7 +39,7 @@ class org.weemvc.as2.core.WeemvcLocator {
 	 * 
 	 * @param	key		键
 	 */
-	private function remove(key:String):Void {
+	private function remove(key:Object):Void {
 		if (hasExists(key)){
 			delete m_weeMap[key];
 		}
@@ -49,7 +51,7 @@ class org.weemvc.as2.core.WeemvcLocator {
 	 * @param	key		键
 	 * @return			根据键返回相应的值，这里没有指定类型是为了方便返回的实例直接使用
 	 */
-	private function retrieve(key:String) {
+	private function retrieve(key:Object) {
 		return m_weeMap[key];
 	}
 	
@@ -59,7 +61,7 @@ class org.weemvc.as2.core.WeemvcLocator {
 	 * @param	key		键
 	 * @return			是否存在
 	 */
-	private function hasExists(key:String):Boolean {
+	private function hasExists(key:Object):Boolean {
 		return (m_weeMap[key] != undefined);
 	}
 }

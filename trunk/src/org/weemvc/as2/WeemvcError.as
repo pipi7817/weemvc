@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * 错误处理
  * @version	1.0.23 + 8

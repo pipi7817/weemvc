@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * 发送事件接口
  * @author	weemve.org
@@ -16,25 +16,28 @@ import org.weemvc.as2.core.IObserver;
  * @see org.weemvc.as2.core.Notifier	Notifier
  */
 interface org.weemvc.as2.core.INotifier {
+	
 	/**
 	 * 添加观察者类。
 	 *
-	 * @param	notification	事件（命令类/在<code>View</code>的notifications列表中的事件名称）
+	 * @param	wee				事件（命令类/在<code>View</code>的 getWeeList() 列表中的事件名称）
 	 * @param	observer		观察者
 	 */
-	function addObserver(notification:String, observer:IObserver):Void;
+	function addObserver(wee:Object, observer:IObserver):Void;
+	
 	/**
 	 * 移除观察者类。
 	 *
-	 * @param	notification	事件
+	 * @param	wee				事件
 	 * @param	notifyContext	当前观察者的作用域
 	 */
-	function removeObserver(notification:String, notifyContext:Object):Void;
+	function removeObserver(wee:Object, notifyContext:Object):Void;
+	
 	/**
 	 * 发送 WeeMVC 事件。
 	 * 
-	 * @param	notification	事件（命令类/在<code>View</code>的notifications列表中的事件名称）
+	 * @param	wee				事件（命令类/在<code>View</code>的 getWeeList() 列表中的事件名称）
 	 * @param	data			需要传递的参数
 	 */
-	function sendNotification(notification:String, data):Void;
+	function sendWee(wee:Object, data):Void;
 }

@@ -32,37 +32,37 @@ package org.weemvc.as3.view {
 		protected var m_notifier:INotifier = Notifier.getInstance();
 		
 		/**
-		 * @copy	org.weemvc.as3.core.INotifier#sendNotification()
+		 * @copy	org.weemvc.as3.core.INotifier#sendWee()
 		 */
-		public function sendNotification(notification:Object, data:Object = null):void {
-			m_notifier.sendNotification(notification, data);
+		public function sendWee(wee:Object, data:Object = null):void {
+			m_notifier.sendWee(wee, data);
 		}
 		
 		/**
-		 * 设置当前视图需要监听的 notification 列表。
+		 * 设置当前视图需要监听的 wee 列表。
 		 * 
 		 * <p>当系统发出此列表中包含的事件（名称）时，当前视图中的 onDataChanged 
-		 * 能够立即监听到此事件，且形参 notification 就是当前事件的名称
+		 * 能够立即监听到此事件，且形参 wee 就是当前事件的名称
 		 * <b>注意：这里个列表中的每个元素为 String 类型，即和 onDataChanged
-		 * 中形参 notification 的数据类型一致</b></p>
+		 * 中形参 wee 的数据类型一致</b></p>
 		 * 
-		 * @param	list	当前视图需要监听的notification（String）列表
+		 * @param	list	当前视图需要监听的“WeeMVC 事件”（String）列表
 		 */
-		public function set notifications(list:Array):void {
+		public function setWeeList(list:Array):void {
 			m_notifications = list;
 		}
 		
 		/**
-		 * 返回当前监听的 notification 列表。
+		 * 返回当前监听的“WeeMVC 事件”列表。
 		 */
-		public function get notifications():Array {
+		public function getWeeList():Array {
 			return m_notifications;
 		}
 		
 		/**
 		 * @copy	org.weemvc.as3.view.IView#onDataChanged()
 		 */
-		public function onDataChanged(notification:String, data:Object = null):void {
+		public function onDataChanged(wee:String, data:Object = null):void {
 			//在子类覆盖此函数
 		}
 	}

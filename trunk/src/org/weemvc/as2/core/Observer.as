@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * 观察者
  * @author	weemve.org
@@ -20,6 +20,7 @@ class org.weemvc.as2.core.Observer implements IObserver {
 	private var m_callBack:Function;
 	/** @private **/
 	private var m_context:Object;
+	
 	/**
 	 * 观察者类构造函数。
 	 * 
@@ -62,8 +63,8 @@ class org.weemvc.as2.core.Observer implements IObserver {
 	/**
 	 * @copy	org.weemvc.as2.core.IObserver#notifyObserver()
 	 */
-	public function notifyObserver(notification:String, data):Void {
-		m_callBack.call(m_context, notification, data);
+	public function notifyObserver(wee:Object, data):Void {
+		m_callBack.call(m_context, wee, data);
 	}
 	
 	/**

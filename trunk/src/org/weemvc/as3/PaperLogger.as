@@ -6,6 +6,7 @@
  */
 package org.weemvc.as3 {
 	import org.weemvc.as3.WeemvcError;
+	
 	/**
 	 * 输出日志相关信息。
 	 * 

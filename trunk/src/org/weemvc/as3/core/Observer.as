@@ -5,6 +5,7 @@
  * 2009-5-11 19:01
  */
 package org.weemvc.as3.core {
+	
 	/**
 	 * 观察者类。
 	 * 
@@ -19,6 +20,7 @@ package org.weemvc.as3.core {
 		protected var m_callBack:Function;
 		/** @private **/
 		protected var m_context:Object;
+		
 		/**
 		 * 观察者类构造函数。
 		 * 
@@ -61,8 +63,8 @@ package org.weemvc.as3.core {
 		/**
 		 * @copy	org.weemvc.as3.core.IObserver#notifyObserver()
 		 */
-		public function notifyObserver(notification:Object, data:Object = null):void {
-			m_callBack.call(m_context, notification, data);
+		public function notifyObserver(wee:Object, data:Object = null):void {
+			m_callBack.call(m_context, wee, data);
 		}
 		
 		/**

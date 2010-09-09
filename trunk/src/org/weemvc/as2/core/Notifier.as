@@ -1,9 +1,10 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * 发送通知
  * @author	weemve.org
  * 2009-5-11 18:32
  */
+import org.weemvc.as2.Util;
 import org.weemvc.as2.core.WeemvcLocator;
 import org.weemvc.as2.core.INotifier;
 import org.weemvc.as2.core.IObserver;
@@ -52,22 +53,22 @@ class org.weemvc.as2.core.Notifier extends WeemvcLocator implements INotifier {
 	/**
 	 * @copy	org.weemvc.as2.core.INotifier#addObserver()
 	 */
-	public function addObserver(notification:String, observer:IObserver):Void {
-		var observers:Array = retrieve(notification);
+	public function addObserver(wee:Object, observer:IObserver):Void {
+		var observers:Array = retrieve(wee);
 		//若已经存在，则追加；否则新建
 		if (observers) {
 			observers.push(observer);
 		} else {
 			observers = [observer];
 		}
-		add(notification, observers);
+		add(wee, observers);
 	}
 	
 	/**
 	 * @copy	org.weemvc.as2.core.INotifier#removeObserver()
 	 */
-	public function removeObserver(notification:String, notifyContext:Object):Void {
-		var observers:Array = retrieve(notification);
+	public function removeObserver(wee:Object, notifyContext:Object):Void {
+		var observers:Array = retrieve(wee);
 		var observer:IObserver;
 		for (var i:Number = 0; i < observers.length; i++) {
 			observer = IObserver(observers[i]);
@@ -79,26 +80,27 @@ class org.weemvc.as2.core.Notifier extends WeemvcLocator implements INotifier {
 			}
 		}
 		if (observers.length <= 0) {
-			remove(notification);
+			remove(wee);
 		}
 	}
 	
 	/**
 	 * <p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.NOTIFICATION_NOT_FOUND</code>警告。</b></p>
-	 * @copy	org.weemvc.as2.core.INotifier#sendNotification()
+	 * @copy	org.weemvc.as2.core.INotifier#sendWee()
 	 */
-	public function sendNotification(notification:String, data):Void {
-		if (hasExists(notification)) {
+	public function sendWee(wee:Object, data):Void {
+		var newWee:Object = Util.getProto(wee);
+		if (hasExists(newWee)) {
 			//取回当前通知的 list
-			var observers:Array = retrieve(notification);
+			var observers:Array = retrieve(newWee);
 			var observer:IObserver;
 			//
 			for (var i:Number = 0; i < observers.length; i++) {
 				observer = observers[i];
-				observer.notifyObserver(notification, data);
+				observer.notifyObserver(newWee, data);
 			}
 		}else {
-			PaperLogger.getInstance().log(WeemvcError.NOTIFICATION_NOT_FOUND, "Notifier", [notification]);
+			PaperLogger.getInstance().log(WeemvcError.NOTIFICATION_NOT_FOUND, "Notifier", [newWee]);
 		}
 	}
 }

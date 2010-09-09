@@ -7,6 +7,7 @@
 package org.weemvc.as3.control {
 	import org.weemvc.as3.control.SimpleCommand;
 	import org.weemvc.as3.control.ICommand;
+	
 	/**
 	 * 宏命令类。
 	 * 

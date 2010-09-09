@@ -7,6 +7,7 @@
 package org.weemvc.as3.model {
 	import org.weemvc.as3.core.Notifier;
 	import org.weemvc.as3.core.INotifier;
+	
 	/**
 	 * 模型类。
 	 * 
@@ -30,10 +31,10 @@ package org.weemvc.as3.model {
 		protected var m_notifier:INotifier = Notifier.getInstance();
 		
 		 /**
-		 * @copy	org.weemvc.as3.core.INotifier#sendNotification()
+		 * @copy	org.weemvc.as3.core.INotifier#sendWee()
 		 */
-		public function sendNotification(notification:Object, data:Object = null):void {
-			m_notifier.sendNotification(notification, data);
+		public function sendWee(wee:Object, data:Object = null):void {
+			m_notifier.sendWee(wee, data);
 		}
 	}
 }

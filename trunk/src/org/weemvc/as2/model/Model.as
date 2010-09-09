@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * 模型基类
  * @author	weemve.org
@@ -26,10 +26,20 @@ import org.weemvc.as2.model.IModel;
  * @see org.weemvc.as2.model.ModelLocator	ModelLocator
  */
 class org.weemvc.as2.model.Model implements IModel {
+	
 	/**
-	 * @copy	org.weemvc.as2.core.INotifier#sendNotification()
+	 * @copy	org.weemvc.as2.core.INotifier#sendWee()
 	 */
-	public function sendNotification(notification:String, data):Void {
-		Notifier.getInstance().sendNotification(notification, data);
+	public function sendWee(wee:Object, data):Void {
+		Notifier.getInstance().sendWee(wee, data);
+	}
+	
+	/**
+	 * <p>返回当前模型类的名称
+	 * <b>由于在 AS2 中不支持反射获得类型，所以在子类覆盖此函数
+	 * 来获得此类的名称</b></p>
+	 */
+	public function toString():String {
+		return "该模型类的名称";
 	}
 }
