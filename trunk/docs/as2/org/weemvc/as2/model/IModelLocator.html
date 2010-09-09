@@ -132,12 +132,12 @@ WeeMVC 的所有模型的集合类。
 		<div class="content">
 			<div class="member-item">
 				<h3 id="getModel">getModel()</h3>
-				<pre class="definition"><code>function getModel(modelName:String)</code></pre>
+				<pre class="definition"><code>function getModel(modelClass:Object)</code></pre>
 				<div>获得指定的模型类。</div>
 				<dl>
 					<dt>Parameters:</dt>
 					<dd><table class="param">
-						<tr><td class="name"><code>modelName</code></td><td>指定要获得的模型类名，都要实现<code>IModel</code>接口</td></tr>
+						<tr><td class="name"><code>modelClass</code></td><td>指定要获得的模型类名，都要实现<code>IModel</code>接口</td></tr>
 					</table></dd>
 				</dl>
 				<dl>
@@ -151,12 +151,12 @@ WeeMVC 的所有模型的集合类。
 			
 			</div><div class="member-item">
 				<h3 id="addModel">addModel()</h3>
-				<pre class="definition"><code>public function addModel(modelName:String, modelClass:Object, data):Void</code></pre>
+				<pre class="definition"><code>public function addModel(modelClass:Object, data):Void</code></pre>
 				<div>添加模型类。</div>
 				<dl>
 					<dt>Parameters:</dt>
 					<dd><table class="param">
-						<tr><td class="name"><code>modelName</code></td><td>指定要添加的模型类名，都要实现<code>IModel</code>接口</td></tr>
+						<tr><td class="name"><code>modelClass</code></td><td>指定要添加的模型类名，都要实现<code>IModel</code>接口</td></tr>
 					<tr><td class="name"><code>data</code></td><td>传递给此模型类构造函数的任何参数</td></tr>
 					</table></dd>
 				</dl>
@@ -168,12 +168,12 @@ WeeMVC 的所有模型的集合类。
 			
 			</div><div class="member-item">
 				<h3 id="removeModel">removeModel()</h3>
-				<pre class="definition"><code>function removeModel(modelName:String):Void</code></pre>
+				<pre class="definition"><code>function removeModel(modelClass:Object):Void</code></pre>
 				<div>移除模型类。</div>
 				<dl>
 					<dt>Parameters:</dt>
 					<dd><table class="param">
-						<tr><td class="name"><code>modelName</code></td><td>指定要移除的模型类名，都要实现<code>IModel</code>接口</td></tr>
+						<tr><td class="name"><code>modelClass</code></td><td>指定要移除的模型类名，都要实现<code>IModel</code>接口</td></tr>
 					</table></dd>
 				</dl>
 				
@@ -184,12 +184,12 @@ WeeMVC 的所有模型的集合类。
 			
 			</div><div class="member-item">
 				<h3 id="hasModel">hasModel()</h3>
-				<pre class="definition"><code>function hasModel(modelName:String):Boolean</code></pre>
+				<pre class="definition"><code>function hasModel(modelClass:Object):Boolean</code></pre>
 				<div>判断指定的模型类是否存在。</div>
 				<dl>
 					<dt>Parameters:</dt>
 					<dd><table class="param">
-						<tr><td class="name"><code>modelName</code></td><td>指定的模型类名，都要实现<code>IModel</code>接口</td></tr>
+						<tr><td class="name"><code>modelClass</code></td><td>指定的模型类名，都要实现<code>IModel</code>接口</td></tr>
 					</table></dd>
 				</dl>
 				<dl>
@@ -205,7 +205,7 @@ WeeMVC 的所有模型的集合类。
 		</div>
 	</div>
 	
-	<p class="generated">Page generated: 12:17 pm on August 26, 2010</p>
+	<p class="generated">Page generated: 9:58 pm on September 9, 2010</p>
 </div>
 </body>
 </html>

@@ -11,7 +11,6 @@ import application.model.*;
 import application.view.*;
 	
 class application.actions.StartupCommand extends SimpleCommand implements ICommand {
-	public static var NAME:String = "startup";
 		
 	public function execute(data):Void {
 		viewLocator.initialize(data);
@@ -20,18 +19,22 @@ class application.actions.StartupCommand extends SimpleCommand implements IComma
 		addCommands();
 	}
 	
+	public function toString():String {
+		return "StartupCommand";
+	}
+	
 	private function addViews():Void {
-		viewLocator.addView(StageManager.NAME, StageManager);
-		viewLocator.addView(BigImagePlayer.NAME, BigImagePlayer, "mc_bigImagePlayer");
-		viewLocator.addView(ThumbList.NAME, ThumbList, "mc_thumbList");
+		viewLocator.addView(StageManager);
+		viewLocator.addView(BigImagePlayer, "mc_bigImagePlayer");
+		viewLocator.addView(ThumbList, "mc_thumbList");
 	}
 	
 	private function addModels():Void {
-		modelLocator.addModel(DataProxy.NAME, DataProxy);
+		modelLocator.addModel(DataProxy, null);
 	}
 	
 	private function addCommands():Void {
-		controller.addCommand(LoadDataCommand.NAME, LoadDataCommand);
-		controller.addCommand(ShowImageCommand.NAME, ShowImageCommand);
+		controller.addCommand(LoadDataCommand);
+		controller.addCommand(ShowImageCommand);
 	}
 }

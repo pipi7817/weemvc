@@ -1,12 +1,12 @@
-﻿package application.view.components {
+package application.view.components {
 	import com.ibio8.components.buttons.BaseRadioButton;
 	
 	import flash.text.TextField;
 	
-	public class MCThumbBox extends BaseRadioButton {
+	public class MCBaseThumbBtn extends BaseRadioButton {
 		public var index:uint;
 		
-		public function MCThumbBox() {
+		public function MCBaseThumbBtn() {
 			super(this);
 			this.txt_title.text = "";
 			this.txt_subtitle.text = "";

@@ -1,12 +1,12 @@
 ﻿import utils.Delegate;
 
-class application.view.components.MCThumbBox extends MovieClip {
+class application.view.components.MCBaseThumbBtn extends MovieClip {
 	//是否选中
 	private var m_isSelected:Boolean = false;
 	private var txt_title:TextField;
 	private var txt_subtitle:TextField;
 	
-	public function MCThumbBox() {
+	public function MCBaseThumbBtn() {
 		this.stop();
 		this.onRollOver = Delegate.create(this, mcRollOver);
 		this.onRollOut = this.onReleaseOutside = Delegate.create(this, mcRollOut);

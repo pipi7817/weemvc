@@ -1,4 +1,4 @@
-﻿/**
+/**
  * 大图播放区域
  * ibio-develop
  * 2009-5-12 11:40
@@ -31,11 +31,11 @@ package application.view {
 			m_player.txt_description.text = "";
 			m_player.buttonMode = true;
 			m_player.addEventListener(MouseEvent.CLICK, onClickHandler);
-			notifications = [Main.PLAY_LIST_LOADED];
+			setWeeList([Main.PLAY_LIST_LOADED]);
 		}
 		
-		override public function onDataChanged(notification:String, data:Object = null):void {
-			if (notification == Main.PLAY_LIST_LOADED) {
+		override public function onDataChanged(wee:String, data:Object = null):void {
+			if (wee == Main.PLAY_LIST_LOADED) {
 				init(data as Array);
 			}
 		}
@@ -81,7 +81,7 @@ package application.view {
 		protected function showImgLoadPercent(percent:uint):void {
 			//如果是当前的大图
 			if (m_imageList[m_currentIndex].index == m_currentIndex) {
-				sendNotification(Main.LOADING_IMAGE, percent);
+				sendWee(Main.LOADING_IMAGE, percent);
 			}
 		}
 		

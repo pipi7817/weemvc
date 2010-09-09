@@ -130,7 +130,7 @@ WeeMVC 的事件通知都是采用观察者模式实现的。
 					<td class="name"><a href="#removeObserver">removeObserver()</a></td>
 					<td>�</td>
 				</tr><tr class="odd">
-					<td class="name"><a href="#sendNotification">sendNotification()</a></td>
+					<td class="name"><a href="#sendWee">sendWee()</a></td>
 					<td><p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.NOTIFICATION_NOT_FOUND</code>警告。</b></p></td>
 				</tr>
 			</table></div>
@@ -196,7 +196,7 @@ WeeMVC 的事件通知都是采用观察者模式实现的。
 			
 			</div><div class="member-item">
 				<h3 id="addObserver">addObserver()</h3>
-				<pre class="definition"><code>public function addObserver(notification:String, observer:IObserver):Void</code></pre>
+				<pre class="definition"><code>public function addObserver(wee:Object, observer:IObserver):Void</code></pre>
 				<div></div>
 				
 				
@@ -207,7 +207,7 @@ WeeMVC 的事件通知都是采用观察者模式实现的。
 			
 			</div><div class="member-item">
 				<h3 id="removeObserver">removeObserver()</h3>
-				<pre class="definition"><code>public function removeObserver(notification:String, notifyContext:Object):Void</code></pre>
+				<pre class="definition"><code>public function removeObserver(wee:Object, notifyContext:Object):Void</code></pre>
 				<div></div>
 				
 				
@@ -217,8 +217,8 @@ WeeMVC 的事件通知都是采用观察者模式实现的。
 			
 			
 			</div><div class="member-item">
-				<h3 id="sendNotification">sendNotification()</h3>
-				<pre class="definition"><code>public function sendNotification(notification:String, data):Void</code></pre>
+				<h3 id="sendWee">sendWee()</h3>
+				<pre class="definition"><code>public function sendWee(wee:Object, data):Void</code></pre>
 				<div><p><b>注意：如果此命令类不存在，WeeMVC 会发出<code>WeemvcError.NOTIFICATION_NOT_FOUND</code>警告。</b></p></div>
 				
 				
@@ -231,7 +231,7 @@ WeeMVC 的事件通知都是采用观察者模式实现的。
 		</div>
 	</div>
 	
-	<p class="generated">Page generated: 12:17 pm on August 26, 2010</p>
+	<p class="generated">Page generated: 9:58 pm on September 9, 2010</p>
 </div>
 </body>
 </html>

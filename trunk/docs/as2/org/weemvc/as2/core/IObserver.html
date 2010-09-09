@@ -182,12 +182,12 @@ WeeMVC 的观察者。
 			
 			</div><div class="member-item">
 				<h3 id="notifyObserver">notifyObserver()</h3>
-				<pre class="definition"><code>function notifyObserver(notification:String, data):Void</code></pre>
+				<pre class="definition"><code>function notifyObserver(wee:Object, data):Void</code></pre>
 				<div>执行通知。call回调函数，并且传递参数。</div>
 				<dl>
 					<dt>Parameters:</dt>
 					<dd><table class="param">
-						<tr><td class="name"><code>notification</code></td><td>事件（命令类/在<code>View</code>的notifications列表中的事件名称）</td></tr>
+						<tr><td class="name"><code>wee</code></td><td>事件（命令类/在<code>View</code>的 getWeeList() 列表中的事件名称）</td></tr>
 					<tr><td class="name"><code>data</code></td><td>传递的参数
 <b>注意：因为传递的参数可以是任何类型，且如果为 Object 的话，则找不回原来的类型。所以这里不指定参数类型。</b></td></tr>
 					</table></dd>
@@ -221,7 +221,7 @@ WeeMVC 的观察者。
 		</div>
 	</div>
 	
-	<p class="generated">Page generated: 12:17 pm on August 26, 2010</p>
+	<p class="generated">Page generated: 9:58 pm on September 9, 2010</p>
 </div>
 </body>
 </html>

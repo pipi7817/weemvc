@@ -129,12 +129,12 @@
 		<div class="content">
 			<div class="member-item">
 				<h3 id="addCommand">addCommand()</h3>
-				<pre class="definition"><code>function addCommand(commandName:String, commandClass:Object):Void</code></pre>
+				<pre class="definition"><code>function addCommand(commandClass:Object):Void</code></pre>
 				<div>添加命令类。</div>
 				<dl>
 					<dt>Parameters:</dt>
 					<dd><table class="param">
-						<tr><td class="name"><code>commandName</code></td><td>要添加的命令类，都要实现<code>ICommand</code>接口</td></tr>
+						<tr><td class="name"><code>commandClass</code></td><td>要添加的命令类，都要实现<code>ICommand</code>接口</td></tr>
 					</table></dd>
 				</dl>
 				
@@ -145,12 +145,12 @@
 			
 			</div><div class="member-item">
 				<h3 id="removeCommand">removeCommand()</h3>
-				<pre class="definition"><code>function removeCommand(commandName:String):Void</code></pre>
+				<pre class="definition"><code>function removeCommand(commandClass:Object):Void</code></pre>
 				<div>移除命令类。</div>
 				<dl>
 					<dt>Parameters:</dt>
 					<dd><table class="param">
-						<tr><td class="name"><code>commandName</code></td><td>要移除的命令类，都要实现<code>ICommand</code>接口</td></tr>
+						<tr><td class="name"><code>commandClass</code></td><td>要移除的命令类，都要实现<code>ICommand</code>接口</td></tr>
 					</table></dd>
 				</dl>
 				
@@ -161,12 +161,12 @@
 			
 			</div><div class="member-item">
 				<h3 id="hasCommand">hasCommand()</h3>
-				<pre class="definition"><code>function hasCommand(commandName:String):Boolean</code></pre>
+				<pre class="definition"><code>function hasCommand(commandClass:Object):Boolean</code></pre>
 				<div>判断此命令类是否已经存在。</div>
 				<dl>
 					<dt>Parameters:</dt>
 					<dd><table class="param">
-						<tr><td class="name"><code>commandName</code></td><td>要判断的命令类，都要实现<code>ICommand</code>接口</td></tr>
+						<tr><td class="name"><code>commandClass</code></td><td>要判断的命令类，都要实现<code>ICommand</code>接口</td></tr>
 					</table></dd>
 				</dl>
 				<dl>
@@ -180,12 +180,12 @@
 			
 			</div><div class="member-item">
 				<h3 id="executeCommand">executeCommand()</h3>
-				<pre class="definition"><code>public function executeCommand(commandName:String, data):Void</code></pre>
+				<pre class="definition"><code>public function executeCommand(commandClass:Object, data):Void</code></pre>
 				<div>执行此命令类。</div>
 				<dl>
 					<dt>Parameters:</dt>
 					<dd><table class="param">
-						<tr><td class="name"><code>commandName</code></td><td>要执行的命令类，都要实现<code>ICommand</code>接口</td></tr>
+						<tr><td class="name"><code>commandClass</code></td><td>要执行的命令类，都要实现<code>ICommand</code>接口</td></tr>
 					<tr><td class="name"><code>data</code></td><td>实例化此命令类时所带的参数</td></tr>
 					</table></dd>
 				</dl>
@@ -199,7 +199,7 @@
 		</div>
 	</div>
 	
-	<p class="generated">Page generated: 12:17 pm on August 26, 2010</p>
+	<p class="generated">Page generated: 9:58 pm on September 9, 2010</p>
 </div>
 </body>
 </html>

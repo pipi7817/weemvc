@@ -12,7 +12,6 @@ import application.actions.ShowImageCommand;
 import application.model.DataProxy;
 
 class application.view.ThumbList extends View {
-	public static var NAME:String = "thumbList";
 	private var m_panel:MovieClip;
 	private var m_playList:Array;
 	private var m_arrowYList:Array = [0, 62.5, 125.0, 187.5];
@@ -20,17 +19,21 @@ class application.view.ThumbList extends View {
 	
 	public function ThumbList(target:MovieClip) {
 		m_panel = target;
-		setNotifications([DataProxy.ON_DATA_LOADED]);
+		setWeeList([DataProxy.ON_DATA_LOADED]);
 	}
 	
-	public function onDataChanged(notification:String, data):Void {
-		if (notification == DataProxy.ON_DATA_LOADED) {
+	public function onDataChanged(wee:String, data):Void {
+		if (wee == DataProxy.ON_DATA_LOADED) {
 			m_playList = data;
 			buildThumbs();
 			//默认是选中第1张
 			m_panel["mc_thumb" + 0].isSelected = true;
-			sendNotification(ShowImageCommand.NAME, 0);
+			sendWee(ShowImageCommand, 0);
 		}
+	}
+	
+	public function toString():String {
+		return "ThumbList";
 	}
 	
 	private function buildThumbs():Void {
@@ -56,6 +59,6 @@ class application.view.ThumbList extends View {
 		}
 		m_tweenY = new Tween(m_panel.mc_arrow, "_y", Strong.easeOut, m_panel.mc_arrow._y, newY, 1.5, true);
 		//trace("当前点击：", e.currentTarget.index);
-		sendNotification(ShowImageCommand.NAME, obj.index);
+		sendWee(ShowImageCommand, obj.index);
 	}
 }

@@ -113,18 +113,23 @@ view 的子类中。而此 view 的子类本身将不会显示到 FLASH 的 stag
 			<div class="member-list">
 			<table><tr><th colspan="2">Methods</th></tr>
 				<tr class="even">
-					<td class="name"><a href="#sendNotification">sendNotification()</a></td>
+					<td class="name"><a href="#sendWee">sendWee()</a></td>
 					<td>�</td>
 				</tr><tr class="odd">
-					<td class="name"><a href="#setNotifications">setNotifications()</a></td>
-					<td>设置当前视图需要监听的 notification 列表。
-<p>当系统发出此列表中包含的事件（名称）时，当前视图中的 onDataChanged 
-能够立即监听到此事件，且形参 notification 就是当前事件的名称
+					<td class="name"><a href="#setWeeList">setWeeList()</a></td>
+					<td>设置当前视图需要监听的“WeeMVC事件”列表。
+<p>当系统发出此列表中包含的“WeeMVC事件”（名称）时，当前视图中的 onDataChanged 
+能够立即监听到此事件，且形参 wee 就是当前事件的名称
 <b>注意：这里个列表中的每个元素为 String 类型，即和 onDataChanged
-中形参 notification 的数据类型一致</b></p></td>
+中形参 wee 的数据类型一致</b></p></td>
 				</tr><tr class="even">
-					<td class="name"><a href="#getNotifications">getNotifications()</a></td>
-					<td>返回当前监听的 notification 列表。</td>
+					<td class="name"><a href="#getWeeList">getWeeList()</a></td>
+					<td>返回当前监听的“WeeMVC事件”列表。</td>
+				</tr><tr class="odd">
+					<td class="name"><a href="#toString">toString()</a></td>
+					<td><p>返回当前视图类的名称
+<b>由于在 AS2 中不支持反射获得类型，所以在子类覆盖此函数
+来获得此类的名称</b></p></td>
 				</tr>
 			</table></div>
 			
@@ -145,8 +150,8 @@ view 的子类中。而此 view 的子类本身将不会显示到 FLASH 的 stag
 		<h2>Methods</h2>
 		<div class="content">
 			<div class="member-item">
-				<h3 id="sendNotification">sendNotification()</h3>
-				<pre class="definition"><code>public function sendNotification(notification:String, data):Void</code></pre>
+				<h3 id="sendWee">sendWee()</h3>
+				<pre class="definition"><code>public function sendWee(wee:Object, data):Void</code></pre>
 				<div></div>
 				
 				
@@ -156,17 +161,17 @@ view 的子类中。而此 view 的子类本身将不会显示到 FLASH 的 stag
 			
 			
 			</div><div class="member-item">
-				<h3 id="setNotifications">setNotifications()</h3>
-				<pre class="definition"><code>public function setNotifications(list:Array):Void</code></pre>
-				<div>设置当前视图需要监听的 notification 列表。
-<p>当系统发出此列表中包含的事件（名称）时，当前视图中的 onDataChanged 
-能够立即监听到此事件，且形参 notification 就是当前事件的名称
+				<h3 id="setWeeList">setWeeList()</h3>
+				<pre class="definition"><code>public function setWeeList(list:Array):Void</code></pre>
+				<div>设置当前视图需要监听的“WeeMVC事件”列表。
+<p>当系统发出此列表中包含的“WeeMVC事件”（名称）时，当前视图中的 onDataChanged 
+能够立即监听到此事件，且形参 wee 就是当前事件的名称
 <b>注意：这里个列表中的每个元素为 String 类型，即和 onDataChanged
-中形参 notification 的数据类型一致</b></p></div>
+中形参 wee 的数据类型一致</b></p></div>
 				<dl>
 					<dt>Parameters:</dt>
 					<dd><table class="param">
-						<tr><td class="name"><code>list</code></td><td>当前视图需要监听的notification（String）列表</td></tr>
+						<tr><td class="name"><code>list</code></td><td>当前视图需要监听的“WeeMVC事件”（String）列表</td></tr>
 					</table></dd>
 				</dl>
 				
@@ -176,9 +181,22 @@ view 的子类中。而此 view 的子类本身将不会显示到 FLASH 的 stag
 			
 			
 			</div><div class="member-item">
-				<h3 id="getNotifications">getNotifications()</h3>
-				<pre class="definition"><code>public function getNotifications():Array</code></pre>
-				<div>返回当前监听的 notification 列表。</div>
+				<h3 id="getWeeList">getWeeList()</h3>
+				<pre class="definition"><code>public function getWeeList():Array</code></pre>
+				<div>返回当前监听的“WeeMVC事件”列表。</div>
+				
+				
+				
+			
+			
+			
+			
+			</div><div class="member-item">
+				<h3 id="toString">toString()</h3>
+				<pre class="definition"><code>public function toString():String</code></pre>
+				<div><p>返回当前视图类的名称
+<b>由于在 AS2 中不支持反射获得类型，所以在子类覆盖此函数
+来获得此类的名称</b></p></div>
 				
 				
 				
@@ -195,7 +213,7 @@ view 的子类中。而此 view 的子类本身将不会显示到 FLASH 的 stag
 		<div class="content">
 			<div class="member-item">
 				<h3 id="onDataChanged">onDataChanged</h3>
-				<pre class="definition"><code>public function onDataChanged(notification:String, data):Void</code></pre>
+				<pre class="definition"><code>public function onDataChanged(wee:String, data):Void</code></pre>
 				<div></div>
 			
 			
@@ -204,7 +222,7 @@ view 的子类中。而此 view 的子类本身将不会显示到 FLASH 的 stag
 			</div>
 		</div>
 	</div>
-	<p class="generated">Page generated: 12:17 pm on August 26, 2010</p>
+	<p class="generated">Page generated: 9:58 pm on September 9, 2010</p>
 </div>
 </body>
 </html>
