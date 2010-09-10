@@ -25,7 +25,6 @@ class application.view.BigImagePlayer extends View {
 		m_player = target;
 		m_player.txt_title.text = "";
 		m_player.txt_description.text = "";
-		m_player.buttonMode = true;
 		m_player.btn.onRelease = Delegate.create(this, onBtnClick);
 		setWeeList([DataProxy.ON_DATA_LOADED]);
 	}
