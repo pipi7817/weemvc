@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * 宏命令基类
  * @author	weemve.org
@@ -72,9 +72,11 @@ class org.weemvc.as2.control.MacroCommand extends SimpleCommand implements IComm
 	 * @param	data	实例化命令类时所带的参数，这里每个子命令类的参数都一样
 	 */
 	public function execute(data):Void {
+		var commandClass:Object;
+		var commandInstance:ICommand;
 		while (m_subCommands.length > 0) {
-			var commandClass:Object = m_subCommands.shift();
-			var commandInstance:ICommand = new commandClass();
+			commandClass = m_subCommands.shift();
+			commandInstance = new commandClass();
 			commandInstance.execute(data, viewName);
 		}
 	}

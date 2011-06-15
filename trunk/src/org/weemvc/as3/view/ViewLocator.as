@@ -13,7 +13,7 @@ package org.weemvc.as3.view {
 	import org.weemvc.as3.WeemvcError;
 	import org.weemvc.as3.PaperLogger;
 	
-	import flash.display.MovieClip;
+	import flash.display.Sprite;
 	/**
 	 * 视图集合类。
 	 * 
@@ -27,7 +27,7 @@ package org.weemvc.as3.view {
 		/** @private **/
 		static private var m_instance:ViewLocator = null;
 		/** @private **/
-		protected var m_main:MovieClip;
+		protected var m_main:Sprite;
 		/** @private **/
 		protected var m_notifier:INotifier = Notifier.getInstance();
 		
@@ -57,11 +57,11 @@ package org.weemvc.as3.view {
 		}
 		
 		/**
-		 * 初始化舞台，将舞台 MovieClip（root）实例传递给 WeeMVC。
+		 * 视图初始化，将显示对象（root）实例传递给 WeeMVC。
 		 * 
-		 * @param	main	舞台（root）的引用
+		 * @param	main	根显示对象（root）的引用
 		 */
-		public function initialize(main:MovieClip):void {
+		public function initialize(main:Sprite):void {
 			m_main = main;
 		}
 		
@@ -81,11 +81,14 @@ package org.weemvc.as3.view {
 		 * @copy	org.weemvc.as3.view.IViewLocator#addView()
 		 */
 		public function addView(viewClass:Class, stageInstance:String = null):void {
+			var container:Sprite;
+			var viewInstance:IView;
+			var notifications:Array;
+			var oberver:IObserver;
 			if (!hasView(viewClass)) {
-				var container:MovieClip = getContainer(m_main, stageInstance);
-				var viewInstance:IView = new viewClass(container);
-				var notifications:Array = viewInstance.getWeeList();
-				var oberver:IObserver;
+				container = getContainer(m_main, stageInstance);
+				viewInstance = new viewClass(container);
+				notifications = viewInstance.getWeeList();
 				if (notifications.length > 0) {
 					for (var i:uint = 0; i < notifications.length; i++) {
 						oberver = new Observer(viewInstance.onDataChanged, viewInstance);
@@ -132,18 +135,19 @@ package org.weemvc.as3.view {
 		}
 		
 		/** @private **/
-		//递归获得舞台上相应的 MC
-		protected function getContainer(main:MovieClip, param:String):MovieClip {
-			var container:MovieClip = main;
+		//递归获得舞台上相应的显示对象
+		protected function getContainer(main:Sprite, param:String):Sprite {
+			var container:Sprite = main;
+			var reg:RegExp = /[\w]+/ig;
+			var temp:Array;
 			if (!param) {
 				return container;
 			}
-			var reg:RegExp = /[\w]+/ig;
-			var temp:Array = param.match(reg);
-			if(temp && temp.length > 0){
+			temp = param.match(reg);
+			if (temp && (temp.length > 0)) {
 				for (var i:uint = 0; i < temp.length; i++) {
 					if (!container[temp[i]]) {
-						throw new WeemvcError(WeemvcError.MC_NOT_FOUND, ViewLocator, getFullPath(container) + " 容器内的 " +  temp[i]);
+						throw new WeemvcError(WeemvcError.CHILD_NOT_FOUND, ViewLocator, getFullPath(container) + " 容器内的 " +  temp[i]);
 					}else {
 						container = container[temp[i]];
 					}
@@ -153,10 +157,10 @@ package org.weemvc.as3.view {
 		}
 		
 		/** @private **/
-		protected function getFullPath(data:MovieClip):String {
+		protected function getFullPath(data:Sprite):String {
 			var path:String = data.name;
 			while (data.stage && (data.parent != data.stage)) {
-				data = data.parent as MovieClip;
+				data = data.parent as Sprite;
 				path = data.name + "." + path;
 			}
 			return path;

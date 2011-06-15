@@ -89,11 +89,14 @@ class org.weemvc.as2.view.ViewLocator extends WeemvcLocator implements IViewLoca
 	 */
 	public function addView(viewClass:Object, stageInstance:String):Void {
 		var viewName:Object = Util.getProto(viewClass);
+		var container:MovieClip;
+		var viewInstance:IView;
+		var notifications:Array;
+		var oberver:IObserver;
 		if (!hasExists(viewName)) {
-			var container:MovieClip = getContainer(m_main, stageInstance);
-			var viewInstance:IView = new viewClass(container);
-			var notifications:Array = viewInstance.getWeeList();
-			var oberver:IObserver;
+			container = getContainer(m_main, stageInstance);
+			viewInstance = new viewClass(container);
+			notifications = viewInstance.getWeeList();
 			if (notifications.length > 0) {
 				for (var i:Number = 0; i < notifications.length; i++) {
 					oberver = new Observer(viewInstance.onDataChanged, viewInstance);
@@ -126,10 +129,12 @@ class org.weemvc.as2.view.ViewLocator extends WeemvcLocator implements IViewLoca
 	 */
 	public function removeView(viewClass:Object):Void {
 		var viewName:Object = Util.getProto(viewClass);
+		var viewInstance:IView;
+		var notifications:Array;
 		if (hasExists(viewName)) {
-			var viewInstance:IView = getView(viewName);
+			viewInstance = getView(viewName);
 			if (viewInstance) {
-				var notifications:Array = viewInstance.getWeeList();
+				notifications = viewInstance.getWeeList();
 				//移除该视图里面所有的通知
 				for ( var i:Number = 0; i < notifications.length; i++ ) {
 					m_notifier.removeObserver(notifications[i], viewInstance);
@@ -145,11 +150,12 @@ class org.weemvc.as2.view.ViewLocator extends WeemvcLocator implements IViewLoca
 	//递归获得舞台上相应的 MC
 	private function getContainer(main:MovieClip, param:String):MovieClip {
 		var container:MovieClip = main;
+		var temp:Array;
 		if (!param) {
 			return container;
 		}
-		var temp:Array = param.split(".");
-		if(temp && temp.length > 0){
+		temp = param.split(".");
+		if (temp && (temp.length > 0)) {
 			for (var i:Number = 0; i < temp.length; i++) {
 				if (!container[temp[i]]) {
 					throw new WeemvcError(WeemvcError.MC_NOT_FOUND, "ViewLocator", [getFullPath(container) + " 容器内的 " +  temp[i]]);

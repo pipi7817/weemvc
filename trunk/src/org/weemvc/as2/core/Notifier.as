@@ -70,17 +70,19 @@ class org.weemvc.as2.core.Notifier extends WeemvcLocator implements INotifier {
 	public function removeObserver(wee:Object, notifyContext:Object):Void {
 		var observers:Array = retrieve(wee);
 		var observer:IObserver;
-		for (var i:Number = 0; i < observers.length; i++) {
-			observer = IObserver(observers[i]);
-			//如果函数作用域和传递进来的一致，则删除
-			//一个 observer 只可能对应一个作用域，所以要 break
-			if (observer.compareContext(notifyContext)) {
-				observers.splice(i, 1);
-				break;
+		if (observers) {
+			for (var i:Number = 0; i < observers.length; i++) {
+				observer = IObserver(observers[i]);
+				//如果函数作用域和传递进来的一致，则删除
+				//一个 observer 只可能对应一个作用域，所以要 break
+				if (observer.compareContext(notifyContext)) {
+					observers.splice(i, 1);
+					break;
+				}
 			}
-		}
-		if (observers.length <= 0) {
-			remove(wee);
+			if (observers.length <= 0) {
+				remove(wee);
+			}
 		}
 	}
 	
@@ -90,10 +92,11 @@ class org.weemvc.as2.core.Notifier extends WeemvcLocator implements INotifier {
 	 */
 	public function sendWee(wee:Object, data):Void {
 		var newWee:Object = Util.getProto(wee);
+		var observers:Array;
+		var observer:IObserver;
 		if (hasExists(newWee)) {
 			//取回当前通知的 list
-			var observers:Array = retrieve(newWee);
-			var observer:IObserver;
+			observers = retrieve(newWee);
 			//
 			for (var i:Number = 0; i < observers.length; i++) {
 				observer = observers[i];

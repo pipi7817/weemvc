@@ -75,8 +75,9 @@ class org.weemvc.as2.control.Controller extends WeemvcLocator implements IContro
 	 */
 	public function addCommand(commandClass:Object):Void {
 		var commandName:Object = Util.getProto(commandClass);
+		var oberver:IObserver;
 		if (!hasExists(commandName)) {
-			var oberver:IObserver = new Observer(executeCommand, this);
+			oberver = new Observer(executeCommand, this);
 			m_notifier.addObserver(commandName, oberver);
 			add(commandName, commandClass);
 		}else {
@@ -112,9 +113,11 @@ class org.weemvc.as2.control.Controller extends WeemvcLocator implements IContro
 	 */
 	public function executeCommand(commandClass:Object, data):Void {
 		var commandName:Object = Util.getProto(commandClass);
+		var commandClass:Object;
+		var commandInstance:ICommand;
 		if (hasExists(commandName)) {
-			var commandClass:Object = retrieve(commandName);
-			var commandInstance:ICommand = new commandClass();
+			commandClass = retrieve(commandName);
+			commandInstance = new commandClass();
 			commandInstance.execute(data);
 		}else {
 			PaperLogger.getInstance().log(WeemvcError.COMMAND_NOT_FOUND, "Controller", [commandName]);
