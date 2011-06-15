@@ -8,7 +8,7 @@ package org.weemvc.as3.view {
 	import org.weemvc.as3.core.Notifier;
 	import org.weemvc.as3.core.INotifier;
 	
-	import flash.display.MovieClip;
+	import flash.display.Sprite;
 	/**
 	 * 视图类。WeeMVC 的视图。
 	 * 
@@ -18,7 +18,7 @@ package org.weemvc.as3.view {
 	 * view 的子类中。而此 view 的子类本身将不会显示到 FLASH 的 stage 中。</b>
 	 * </p>
 	 * <p>
-	 * 构造函数 public function View(panel:MovieClip) 这里 panel 指舞台上的相关实例的引用，
+	 * 构造函数 public function View(panel:Sprite) 这里 panel 指舞台上的相关实例的引用，
 	 * 因为此类中构造函数未做实质性的内容，所以为方便使用，这里不实现此构造函数。
 	 * </p>
 	 * 

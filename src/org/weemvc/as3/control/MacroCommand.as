@@ -71,9 +71,11 @@ package org.weemvc.as3.control {
 		 * @param	data	实例化命令类时所带的参数，这里每个子命令类的参数都一样
 		 */
 		final override public function execute(data:Object = null):void {
+			var commandClass:Class;
+			var commandInstance:ICommand;
 			while (m_subCommands.length > 0) {
-				var commandClass:Class = m_subCommands.shift();
-				var commandInstance:ICommand = new commandClass();
+				commandClass = m_subCommands.shift();
+				commandInstance = new commandClass();
 				commandInstance.execute(data);
 			}
 		}

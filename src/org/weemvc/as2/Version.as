@@ -10,6 +10,6 @@
  */
 class org.weemvc.as2.Version {
 	
-	public static var VERSION:String = "1.3.0";
-	public static var LAST_UPDATE:String = "2010-9-9 21:44";
+	public static var VERSION:String = "1.4.0";
+	public static var LAST_UPDATE:String = "2011-6-14 22:26";
 }

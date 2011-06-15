@@ -55,7 +55,7 @@ package org.weemvc.as3 {
 		/** WeeMVC 警告 **/
 		public static const VIEW_NOT_FOUND:String = "没有找到此 View：";
 		/** WeeMVC 警告 **/
-		public static const MC_NOT_FOUND:String = "没有找到此 MovieClip：";
+		public static const CHILD_NOT_FOUND:String = "没有找到此显示对象：";
 		/** WeeMVC 警告 **/
 		public static const NOTIFICATION_NOT_FOUND:String = "没有找到此 Notification：";
 		

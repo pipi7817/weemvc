@@ -70,8 +70,9 @@ package org.weemvc.as3.control {
 		 * @copy	org.weemvc.as3.control.IController#addCommand()
 		 */
 		public function addCommand(commandClass:Class):void {
+			var oberver:IObserver;
 			if (!hasCommand(commandClass)) {
-				var oberver:IObserver = new Observer(executeCommand, this);
+				oberver = new Observer(executeCommand, this);
 				m_notifier.addObserver(commandClass, oberver);
 				add(commandClass, commandClass);
 			}else {
@@ -104,9 +105,11 @@ package org.weemvc.as3.control {
 		 * @copy	org.weemvc.as3.control.IController#executeCommand()
 		 */
 		public function executeCommand(commandClass:Class, data:Object = null):void {
+			var commandClass:Class;
+			var commandInstance:ICommand;
 			if (hasCommand(commandClass)) {
-				var commandClass:Class = retrieve(commandClass);
-				var commandInstance:ICommand = new commandClass();
+				commandClass = retrieve(commandClass);
+				commandInstance = new commandClass();
 				commandInstance.execute(data);
 			}else {
 				PaperLogger.getInstance().log(WeemvcError.COMMAND_NOT_FOUND, Controller, commandClass);

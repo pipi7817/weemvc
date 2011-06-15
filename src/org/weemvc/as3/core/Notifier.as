@@ -88,10 +88,11 @@ package org.weemvc.as3.core {
 		 * @copy	org.weemvc.as3.core.INotifier#sendWee()
 		 */
 		public function sendWee(wee:Object, data:Object = null):void {
+			var observers:Array;
+			var observer:IObserver;
 			if (hasExists(wee)) {
 				//取回当前通知的 list
-				var observers:Array = retrieve(wee);
-				var observer:IObserver;
+				observers = retrieve(wee);
 				//
 				for (var i:uint = 0; i < observers.length; i++) {
 					observer = observers[i] as IObserver;

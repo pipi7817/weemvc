@@ -5,7 +5,7 @@
  * 2009-5-11 17:50
  */
 package org.weemvc.as3.view {
-	import flash.display.MovieClip;
+	import flash.display.Sprite;
 	/**
 	 * 视图集合类接口。
 	 * 
@@ -17,11 +17,11 @@ package org.weemvc.as3.view {
 	 */
 	public interface IViewLocator {
 		/**
-		 * 初始化舞台，将舞台 MovieClip（root）实例传递给 WeeMVC。
+		 * 初始化舞台，将根显示对象（root）实例传递给 WeeMVC。
 		 * 
 		 * @param	main	舞台（root）的引用
 		 */
-		function initialize(main:MovieClip):void;
+		function initialize(main:Sprite):void;
 		/**
 		 * 获得指定的视图类。
 		 * 
