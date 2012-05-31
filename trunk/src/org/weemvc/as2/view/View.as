@@ -45,7 +45,7 @@ class org.weemvc.as2.view.View implements IView {
 	 * @param	list	当前视图需要监听的“WeeMVC事件”（String）列表
 	 */
 	public function setWeeList(list:Array):Void {
-		m_notifications = list;
+		m_notifications = filterWee(list);
 	}
 	
 	/**
@@ -69,5 +69,21 @@ class org.weemvc.as2.view.View implements IView {
 	 */
 	public function toString():String {
 		return "该视图类的名称";
+	}
+	
+	/** @private **/
+	private function filterWee(list:Array):Array {
+		var obj:Object = {};
+		var newList:Array = [];
+		if (list) {
+			for (var i = 0; i < list.length; i++) {
+				//如果不存在，则加入
+				if (!obj[list[i]]) {
+					obj[list[i]] = true;
+					newList.push(list[i]);
+				}
+			}
+		}
+		return newList;
 	}
 }
