@@ -4,6 +4,8 @@
  * 2009-5-12 11:41
  */
 package application.view {
+	import application.model.DataProxy;
+	
 	import org.weemvc.as3.view.View;
 	import flash.display.MovieClip;
 	
@@ -15,19 +17,22 @@ package application.view {
 			m_root.txt_initialize.x = (m_root.stage.stageWidth - m_root.txt_initialize.width) / 2;
 			m_root.txt_initialize.y = (m_root.stage.stageHeight - m_root.txt_initialize.height) / 2;
 			hideLoading();
-			setWeeList([Main.PLAY_LIST_LOADED, Main.LOADING_IMAGE]);
+			setWeeList([DataProxy.PLAYLIST, Main.LOADING_IMAGE]);
 		}
 		
 		override public function onDataChanged(wee:String, data:Object = null):void {
-			if (wee == Main.PLAY_LIST_LOADED) {
-				hideInitialize();
-			}else if (wee == Main.LOADING_IMAGE) {
-				var p:uint = data as uint;
-				if (p < 100) {
-					showLoading(p);
-				}else {
-					hideLoading();
-				}
+			switch(wee) {
+				case DataProxy.PLAYLIST:
+					hideInitialize();
+					break;
+				case Main.LOADING_IMAGE:
+					var p:uint = data as uint;
+					if (p < 100) {
+						showLoading(p);
+					}else {
+						hideLoading();
+					}
+					break;
 			}
 		}
 		

@@ -3,7 +3,7 @@
  * ibio-develop
  * 2009-5-12 10:51
  */
-package application.actions {
+package application.action {
 	import org.weemvc.as3.control.ICommand;
 	import org.weemvc.as3.control.SimpleCommand;
 	import application.model.DataProxy;

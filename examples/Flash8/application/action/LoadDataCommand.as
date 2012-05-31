@@ -7,7 +7,7 @@ import org.weemvc.as2.control.ICommand;
 import org.weemvc.as2.control.SimpleCommand;
 import application.model.DataProxy;
 	
-class application.actions.LoadDataCommand extends SimpleCommand implements ICommand {
+class application.action.LoadDataCommand extends SimpleCommand implements ICommand {
 	
 	public function execute(data):Void {
 		var model:DataProxy = modelLocator.getModel(DataProxy);
@@ -20,5 +20,6 @@ class application.actions.LoadDataCommand extends SimpleCommand implements IComm
 	}
 	
 	public function toString():String {
-		return "LoadDataCommand";	}
+		return "LoadDataCommand";
+	}
 }

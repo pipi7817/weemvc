@@ -16,11 +16,11 @@ class application.view.StageManager extends View {
 		m_root.txt_initialize.x = (Stage.width - m_root.txt_initialize._width) / 2;
 		m_root.txt_initialize.y = (Stage.height - m_root.txt_initialize._height) / 2;
 		hideLoading();
-		setWeeList([DataProxy.ON_DATA_LOADED, SHOW_PERCENT, HIDE_PERCENT]);
+		setWeeList([DataProxy.PLAYLIST, SHOW_PERCENT, HIDE_PERCENT]);
 	}
 	
 	public function onDataChanged(wee:String, data):Void {
-		if (wee == DataProxy.ON_DATA_LOADED) {
+		if (wee == DataProxy.PLAYLIST) {
 			m_root.txt_initialize._visible = false;
 		}else if(wee == SHOW_PERCENT) {
 			showLoading(data);

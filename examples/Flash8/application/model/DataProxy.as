@@ -8,9 +8,10 @@ import application.model.PlayListBuilder;
 import utils.Delegate;
 
 class application.model.DataProxy extends Model {
-	public static var ON_DATA_LOADED:String = "onDataLoaded";
-	public var playList:Array;
-	public var currentIndex:Number;
+	public static var PLAYLIST:String = "DataProxy.playlist";
+	public static var CURRENT_INDEX:String = "DataProxy.currentIndex";
+	private var m_playlist:Array;
+	private var m_currentIndex:Number;
 	
 	public function loadPlayList(playListData:String):Void {
 		var plBuilder:PlayListBuilder = new PlayListBuilder();
@@ -22,8 +23,21 @@ class application.model.DataProxy extends Model {
 		return "DataProxy";
 	}
 	
+	public function set playlist(value:Array):Void {
+		if (m_playlist != value) {
+			sendWee(PLAYLIST, value);
+		}
+		m_playlist = value;
+	}
+	
+	public function set currentIndex(value:Number):Void {
+		if (m_currentIndex != value) {
+			sendWee(CURRENT_INDEX, value);
+		}
+		m_currentIndex = value;
+	}
+	
 	private function onPlayListLoaded(obj:Object):Void {
-		playList = obj.playList;
-		sendWee(ON_DATA_LOADED, playList);
+		playlist = obj.playList;
 	}
 }

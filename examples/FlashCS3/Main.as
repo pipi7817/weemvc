@@ -5,14 +5,13 @@
  */
 package {
 	import org.weemvc.as3.control.Controller;
-	import application.actions.StartupCommand;
-	import application.actions.LoadDataCommand;
+	import application.action.StartupCommand;
+	import application.action.LoadDataCommand;
 	
 	import flash.display.MovieClip;
 	import flash.text.TextField;
 	
 	public class Main extends MovieClip {
-		public static const PLAY_LIST_LOADED:String = "playListLoaded";
 		public static const LOADING_IMAGE:String = "loadingImage";
 		
 		public function Main() {

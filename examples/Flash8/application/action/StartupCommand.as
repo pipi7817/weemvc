@@ -6,11 +6,11 @@
  */
 import org.weemvc.as2.control.ICommand;
 import org.weemvc.as2.control.SimpleCommand;
-import application.actions.*;
+import application.action.*;
 import application.model.*;
 import application.view.*;
 	
-class application.actions.StartupCommand extends SimpleCommand implements ICommand {
+class application.action.StartupCommand extends SimpleCommand implements ICommand {
 		
 	public function execute(data):Void {
 		viewLocator.initialize(data);

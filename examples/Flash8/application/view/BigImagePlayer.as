@@ -26,14 +26,19 @@ class application.view.BigImagePlayer extends View {
 		m_player.txt_title.text = "";
 		m_player.txt_description.text = "";
 		m_player.btn.onRelease = Delegate.create(this, onBtnClick);
-		setWeeList([DataProxy.ON_DATA_LOADED]);
+		setWeeList([DataProxy.PLAYLIST, DataProxy.CURRENT_INDEX]);
 	}
 	
-	public function onDataChanged(notification:String, data):Void {
-		if (notification == DataProxy.ON_DATA_LOADED) {
-			m_playList = data;
-			buildImages();
-			m_player.mc_body.setMask(m_player.mc_mask);
+	public function onDataChanged(wee:String, data):Void {
+		switch(wee) {
+			case DataProxy.PLAYLIST:
+				m_playList = data;
+				buildImages();
+				m_player.mc_body.setMask(m_player.mc_mask);
+				break;
+			case DataProxy.CURRENT_INDEX:
+				changeImage(data);
+				break;
 		}
 	}
 	

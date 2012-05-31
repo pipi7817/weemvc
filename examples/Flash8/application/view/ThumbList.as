@@ -8,7 +8,7 @@ import mx.transitions.Tween;
 import mx.transitions.easing.*;
 import org.weemvc.as2.view.View;
 import application.model.vo.ImageVO;
-import application.actions.ShowImageCommand;
+import application.action.ShowImageCommand;
 import application.model.DataProxy;
 
 class application.view.ThumbList extends View {
@@ -19,16 +19,18 @@ class application.view.ThumbList extends View {
 	
 	public function ThumbList(target:MovieClip) {
 		m_panel = target;
-		setWeeList([DataProxy.ON_DATA_LOADED]);
+		setWeeList([DataProxy.PLAYLIST]);
 	}
 	
 	public function onDataChanged(wee:String, data):Void {
-		if (wee == DataProxy.ON_DATA_LOADED) {
-			m_playList = data;
-			buildThumbs();
-			//默认是选中第1张
-			m_panel["mc_thumb" + 0].isSelected = true;
-			sendWee(ShowImageCommand, 0);
+		switch(wee) {
+			case DataProxy.PLAYLIST:
+				m_playList = data;
+				buildThumbs();
+				//默认是选中第1张
+				m_panel["mc_thumb" + 0].isSelected = true;
+				sendWee(ShowImageCommand, 0);
+				break;
 		}
 	}
 	
