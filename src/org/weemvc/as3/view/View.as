@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WeeMVC - Copyright(c) 2008
  * 视图基类
  * @author	weemve.org
@@ -49,7 +49,7 @@ package org.weemvc.as3.view {
 		 * @param	list	当前视图需要监听的“WeeMVC 事件”（String）列表
 		 */
 		public function setWeeList(list:Array):void {
-			m_notifications = list;
+			m_notifications = filterWee(list);
 		}
 		
 		/**
@@ -64,6 +64,20 @@ package org.weemvc.as3.view {
 		 */
 		public function onDataChanged(wee:String, data:Object = null):void {
 			//在子类覆盖此函数
+		}
+		
+		/** @private **/
+		protected function filterWee(list:Array):Array {
+			var obj:Object = {};
+			return list.filter(function(item:*, index:int, array:Array):Boolean {
+				var flag:Boolean = false;
+				//如果不存在，则加入
+				if (!obj[item]) {
+					obj[item] = true;
+					flag = true;
+				}
+				return flag;
+			});
 		}
 	}
 }
