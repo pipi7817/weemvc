@@ -3,8 +3,8 @@
  * ibio-develop
  * 2010-8-21 2:47
  */
-import application.actions.StartupCommand;
-import application.actions.LoadDataCommand;
+import application.action.StartupCommand;
+import application.action.LoadDataCommand;
 import org.weemvc.as2.control.Controller;
 
 //---------------------初始化

@@ -6,7 +6,8 @@
 package application.view {
 	import org.weemvc.as3.view.View;
 	import application.model.vo.ImageVO;
-	import application.actions.ShowImageCommand;
+	import application.model.DataProxy;
+	import application.action.ShowImageCommand;
 	
 	import fl.transitions.Tween;
 	import fl.transitions.easing.*;
@@ -21,12 +22,14 @@ package application.view {
 		
 		public function ThumbList(target:MovieClip) {
 			m_panel = target;
-			setWeeList([Main.PLAY_LIST_LOADED]);
+			setWeeList([DataProxy.PLAYLIST]);
 		}
 		
 		override public function onDataChanged(wee:String, data:Object = null):void {
-			if (wee == Main.PLAY_LIST_LOADED) {
-				init(data as Array);
+			switch(wee) {
+				case DataProxy.PLAYLIST:
+					init(data as Array);
+					break;
 			}
 		}
 		

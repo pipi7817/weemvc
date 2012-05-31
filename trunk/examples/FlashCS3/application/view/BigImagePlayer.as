@@ -6,6 +6,7 @@
 package application.view {
 	import org.weemvc.as3.view.View;
 	import application.model.vo.ImageVO;
+	import application.model.DataProxy;
 	import application.view.components.ImageBox;
 	
 	import fl.transitions.Tween;
@@ -31,12 +32,17 @@ package application.view {
 			m_player.txt_description.text = "";
 			m_player.buttonMode = true;
 			m_player.addEventListener(MouseEvent.CLICK, onClickHandler);
-			setWeeList([Main.PLAY_LIST_LOADED]);
+			setWeeList([DataProxy.PLAYLIST, DataProxy.CURRENT_INDEX]);
 		}
 		
 		override public function onDataChanged(wee:String, data:Object = null):void {
-			if (wee == Main.PLAY_LIST_LOADED) {
-				init(data as Array);
+			switch(wee) {
+				case DataProxy.PLAYLIST:
+					init(data as Array);
+					break;
+				case DataProxy.CURRENT_INDEX:
+					showImage(data as uint);
+					break;
 			}
 		}
 		
