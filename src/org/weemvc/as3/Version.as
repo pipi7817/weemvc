@@ -11,7 +11,7 @@ package org.weemvc.as3 {
 	 */
 	public class Version {
 		
-		public static const VERSION:String = "1.4.0";
-		public static const LAST_UPDATE:String = "2011-6-14 22:14";
+		public static const VERSION:String = "1.4.1";
+		public static const LAST_UPDATE:String = "2012/5/31 13:45";
 	}
 }
